@@ -1,0 +1,232 @@
+<div class="container">
+  <form [formGroup]="frmByer" (ngSubmit)="byer()">
+    <div class="row " >
+
+      <div class="col-md-12 text-center">
+        <h4> Buyer</h4>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Order No.</mat-label>
+          <input matInput placeholder="Order Number">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker1">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Byer Order</mat-label>
+          <input matInput placeholder="Byer Order">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Customer Code</mat-label>
+          <mat-select [formControl]="customerCodes">
+
+            <mat-option *ngFor="let customerCode of customerCodeList" [value]="customerCode">{{customerCode}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Customer Order Date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Shipment Date</mat-label>
+          <input matInput [matDatepicker]="picker2">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4" >
+        <mat-form-field appearance="outline">
+          <mat-label>U.M.O.</mat-label>
+          <input matInput placeholder="U.M.O.">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Issue Unit</mat-label>
+          <input matInput placeholder="Issue Unit">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Order Type</mat-label>
+          <mat-select [formControl]="orderType">
+
+            <mat-option *ngFor="let orderTypes of orderTypeList" [value]="orderTypes">{{orderTypes}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Shipping List</mat-label>
+          <input matInput placeholder="Shipping List">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Special Instruction If Any</mat-label>
+          <input matInput placeholder="Shipping List">
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Shipping List</mat-label>
+          <input matInput placeholder="Shipping List">
+        </mat-form-field>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Production Quality</mat-label>
+          <input matInput placeholder="Production Quality">
+        </mat-form-field>
+
+          <button type="submit" mat-raised-button color="primary" >Add</button>
+
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Washing Remark</mat-label>
+          <input matInput placeholder="Shipping List" >
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Export Quality</mat-label>
+          <input matInput placeholder="Export Quality" >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Finishing Type</mat-label>
+          <mat-select [formControl]="finishingType">
+
+            <mat-option *ngFor="let finishingTypes of finishingTypeList" [value]="finishingTypes">{{finishingTypes}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Design</mat-label>
+          <input matInput placeholder="Design" >
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Finishing Remark</mat-label>
+          <input matInput placeholder="Finishing  Remark " >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Colour</mat-label>
+          <input matInput placeholder="Colour" >
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Order Size</mat-label>
+          <input matInput placeholder="Order Size" >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Cut Size</mat-label>
+          <input matInput placeholder="Cut Size" >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Packing Remark</mat-label>
+          <input matInput placeholder="Packing Remark" >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>No. Pcs.</mat-label>
+          <input matInput placeholder="No.Pcs" >
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>SKU #</mat-label>
+          <input matInput placeholder="SKU #" >
+        </mat-form-field>
+      </div>
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Priority</mat-label>
+          <mat-select [formControl]="priority">
+
+            <mat-option *ngFor="let prioritys of priorityList" [value]="prioritys">{{prioritys}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="col-md-3">
+      <button type="submit" mat-raised-button color="primary" [disabled]="frmByer.invalid">Submit</button>
+    </div>
+
+
+  </form>
+
+</div>

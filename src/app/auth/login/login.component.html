@@ -1,1 +1,44 @@
-<p>login works!</p>
+<div class="container">
+  <form [formGroup]="frmLogin" (ngSubmit)="login()">
+  <div class="row " style="width:50%">
+
+    <div class="col-md-12 text-center">
+      <h4> Login </h4>
+    </div>
+
+
+      <div class="col-md-12">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+      </div>
+
+
+
+
+      
+
+
+
+      <div class="col-md-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Passward</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Passward" formControlName="passward">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-3">
+        <button type="submit" mat-raised-button color="primary" [disabled]="frmLogin.invalid">Login</button>
+      </div>
+
+  </div>
+</form>
+
+</div>
+
