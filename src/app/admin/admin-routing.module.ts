@@ -7,6 +7,7 @@ import { ByerComponent } from './byer/byer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DyingMasterComponent } from './dying-master/dying-master.component';
 import { FinishingLabourLedgerComponent } from './finishing-labour-ledger/finishing-labour-ledger.component';
+import { LedgerAccountComponent } from './ledger-account/ledger-account.component';
 import { RawMaterialComponent } from './raw-material/raw-material.component';
 import { ShaedCardComponent } from './shaed-card/shaed-card.component';
 import { SizeMasterComponent } from './size-master/size-master.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
     {path:'size-master', component:SizeMasterComponent},
     {path:'raw-material', component:RawMaterialComponent},
     {path:'weaving',component:WeavingComponent},
-    {path:'finishing-labour-ledger',component:FinishingLabourLedgerComponent}
+    {path:'finishing-labour-ledger',component:FinishingLabourLedgerComponent},
+    {path:'ledger-account',component:LedgerAccountComponent},
   ]}
 ];
 

@@ -26,12 +26,14 @@ import { BuyerMasterComponent } from './buyer-master/buyer-master.component';
 import { DyingMasterComponent } from './dying-master/dying-master.component';
 
 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ShaedCardComponent } from './shaed-card/shaed-card.component';
 import { SizeMasterComponent } from './size-master/size-master.component';
 import { RawMaterialComponent } from './raw-material/raw-material.component';
 import { WeavingComponent } from './weaving/weaving.component';
 import { FinishingLabourLedgerComponent } from './finishing-labour-ledger/finishing-labour-ledger.component';
+import { LedgerAccountComponent } from './ledger-account/ledger-account.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { FinishingLabourLedgerComponent } from './finishing-labour-ledger/finish
     SizeMasterComponent,
     RawMaterialComponent,
     WeavingComponent,
-    FinishingLabourLedgerComponent
+    FinishingLabourLedgerComponent,
+    LedgerAccountComponent
   ],
   imports: [
     CommonModule,
@@ -64,6 +67,8 @@ import { FinishingLabourLedgerComponent } from './finishing-labour-ledger/finish
     MatDividerModule,
     MatPaginatorModule,
     ColorPickerModule,
+    MatSnackBarModule,
+
   ],
 
 })

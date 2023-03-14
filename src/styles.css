@@ -2,4 +2,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+
+.black-snackbar{
+  background-color: black !important;
+  color: white !important;
+}
+
+.green-snackbar{
+  background-color: rgb(5, 161, 109) !important;
+  color: white !important;
+}

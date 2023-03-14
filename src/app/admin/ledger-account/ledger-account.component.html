@@ -1,0 +1,181 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h4> Ledger Account </h4>
+    </div>
+  </div>
+<form [formGroup]="frmledgerAccount" (ngSubmit)="addLedgerAccount()">
+
+  <div class="row mt-4">
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Code" formControlName="code">
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <label for="formFile" class="form-label">Upload Category Image *</label>
+      <input class="form-control" type="file"  id="formFile" accept="image/*" formControlName="photoNo">
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Party Name</mat-label>
+        <input matInput placeholder="Party Name" formControlName="partyName">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Group Name</mat-label>
+        <input matInput placeholder="Group Name" formControlName="groupName">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Father's Name</mat-label>
+        <input matInput placeholder="Father's Name" formControlName="fatherName">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Address" formControlName="address">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Village</mat-label>
+        <input matInput placeholder="Village" formControlName="village">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Aadhar No.</mat-label>
+        <input matInput placeholder="Aadhar No." formControlName="aadharNo">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Pan No.</mat-label>
+        <input matInput placeholder="Pan No." formControlName="pan">
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="col-lg-6 col-md-6">
+      <label for="formFile" class="form-label">Upload Aadhar Card *</label>
+      <input class="form-control" type="file"  id="formFile" accept="image/*" formControlName="aadharPdf" >
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <label for="formFile" class="form-label">Upload Pan Card *</label>
+      <input class="form-control" type="file"  id="formFile" accept="image/*" formControlName="panPdf" >
+    </div>
+
+
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Guarantor 2</mat-label>
+        <input matInput placeholder="Guarantor 2" formControlName="guarantor2">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Guarantor 1</mat-label>
+        <input matInput placeholder="Guarantor 1" formControlName="guarantor1" >
+      </mat-form-field>
+
+    </div>
+    <div class="col-lg-6 col-md-6">
+    <mat-form-field appearance="outline">
+      <mat-label>Guarantor 2 Father's Name</mat-label>
+      <input matInput placeholder="Guarantor 2 Father's Name" formControlName="guarantor2FatherName">
+    </mat-form-field>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Guarantor 1 Father's Name</mat-label>
+        <input matInput placeholder="Guarantor 1 Father's Name" formControlName="guarantor1FatherName">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label> Guarantor 2 Address</mat-label>
+        <input matInput placeholder="Guarantor 1 Address" formControlName="guarantor2Address">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Guarantor 1 Address</mat-label>
+        <input matInput placeholder="Guarantor 2 Address" formControlName="guarantor1Address">
+      </mat-form-field>
+    </div>
+    <!-- <div class="col-lg-6 col-md-6">
+
+    </div> -->
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile No.</mat-label>
+        <input matInput placeholder="Mobile No." formControlName="mobileNo">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Group</mat-label>
+        <input matInput placeholder="Group" formControlName="group">
+      </mat-form-field>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Folio</mat-label>
+        <input matInput placeholder="Folio" formControlName="folio">
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Tin / Pan</mat-label>
+        <input matInput placeholder="Tin / Pan" formControlName="tinPan">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>GSTIN</mat-label>
+        <input matInput placeholder="GSTIN" formControlName="gstin">
+      </mat-form-field>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <button mat-raised-button color="primary">Add</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+
+</div>
