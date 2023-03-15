@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { response } from 'express';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
@@ -13,18 +14,27 @@ import { global } from 'src/app/shared/global';
 export class LedgerAccountComponent implements OnInit {
   public frmledgerAccount!: FormGroup;
 
-  responseMessage:any;
-  constructor(private _formBulider: FormBuilder, private _snackBarService : SnackBarService,
-      private adminService:AdminMasterService
-    ) {}
+  responseMessage: any;
+  constructor(
+    private _formBulider: FormBuilder,
+    private _snackBarService: SnackBarService,
+    private adminService: AdminMasterService,
+    private _router : Router
+  ) {}
 
   ngOnInit(): void {
     this.frmledgerAccount = this._formBulider.group({
       code: [''],
       photoNo: [''],
-      partyName: ['',[Validators.required,Validators.pattern(global.nameRegex)]],
+      partyName: [
+        '',
+        [Validators.required, Validators.pattern(global.nameRegex)],
+      ],
       groupName: [''],
-      fatherName: ['',[Validators.required,Validators.pattern(global.nameRegex)]],
+      fatherName: [
+        '',
+        [Validators.required, Validators.pattern(global.nameRegex)],
+      ],
       address: [''],
       village: [''],
       aadharNo: [''],
@@ -37,7 +47,10 @@ export class LedgerAccountComponent implements OnInit {
       guarantor2: [''],
       guarantor2FatherName: [''],
       guarantor2Address: [''],
-      mobileNo: ['',[Validators.required,Validators.pattern(global.contactRegex)]],
+      mobileNo: [
+        '',
+        [Validators.required, Validators.pattern(global.contactRegex)],
+      ],
       group: [''],
       folio: [''],
       tinPan: [''],
@@ -46,7 +59,6 @@ export class LedgerAccountComponent implements OnInit {
   }
   addLedgerAccount() {
     const formData = this.frmledgerAccount.value;
-
 
     var data = {
       code: formData.code,
@@ -73,11 +85,24 @@ export class LedgerAccountComponent implements OnInit {
       gstin: formData.gstin,
     };
 
-// this.adminService.ledgerAccount(data).subscribe((response:any)=>{
-// return response
-// });
+    this.adminService.ledgerAccount(data).subscribe(response => {
+      this.responseMessage= response?.message;
+      this._snackBarService.openSnackBar(this.responseMessage,"");
+      this._router.navigate(['/']);
 
 
-    console.log('data',data);
+    },
+    (error:any)=>{
+      if(error.error?.message){
+        this.responseMessage = error.error?.message
+      }
+      else{
+        this.responseMessage= global.genricError
+      }
+      this._snackBarService.openSnackBar(this.responseMessage,global.error);
+    }
+    );
+
+    console.log('data', data);
   }
 }

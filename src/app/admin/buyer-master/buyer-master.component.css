@@ -21,3 +21,33 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+
+fieldset {
+  font-family: sans-serif;
+  border: 2px solid #1F497D;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+fieldset legend {
+  background: #ffffff;
+  color: #000000;
+  padding: 5px 10px ;
+  font-size: 20px;
+  border-radius: 5px;
+  /* box-shadow: 0 0 0 5px #ddd; */
+  margin-left: 20px;
+}
+
+legend {
+  float: left;
+  width: auto;
+  padding: 0;
+  margin-top: -32px;
+
+  margin-bottom: 0.5rem;
+  font-size: calc(1.275rem + .3vw);
+  line-height: inherit;
+}

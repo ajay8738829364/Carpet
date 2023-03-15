@@ -34,6 +34,10 @@ import { RawMaterialComponent } from './raw-material/raw-material.component';
 import { WeavingComponent } from './weaving/weaving.component';
 import { FinishingLabourLedgerComponent } from './finishing-labour-ledger/finishing-labour-ledger.component';
 import { LedgerAccountComponent } from './ledger-account/ledger-account.component';
+import { FieldsetModule } from "primeng/fieldset";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,7 @@ import { LedgerAccountComponent } from './ledger-account/ledger-account.componen
     LedgerAccountComponent
   ],
   imports: [
+    BrowserModule, BrowserAnimationsModule, FieldsetModule,
     CommonModule,
     AdminRoutingModule,
     MatFormFieldModule,
@@ -68,6 +73,9 @@ import { LedgerAccountComponent } from './ledger-account/ledger-account.componen
     MatPaginatorModule,
     ColorPickerModule,
     MatSnackBarModule,
+    HttpClientModule
+
+
 
   ],
 

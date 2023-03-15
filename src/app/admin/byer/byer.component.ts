@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-byer',
   templateUrl: './byer.component.html',
   styleUrls: ['./byer.component.css']
 })
 export class ByerComponent {
+
+
+
+
+
   public frmByer!: FormGroup;
   open:boolean= true;
   hide = true;

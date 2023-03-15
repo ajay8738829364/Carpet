@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -20,6 +22,8 @@ import { AdminModule } from './admin/admin.module';
     BrowserAnimationsModule,
     AuthModule,
     AdminModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

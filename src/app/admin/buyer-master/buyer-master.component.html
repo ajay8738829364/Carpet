@@ -8,7 +8,7 @@
 
     <div class="row">
       <div class="col-6">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Search Buyer Code</mat-label>
           <input matInput placeholder="Search Buyer Code">
         </mat-form-field>
@@ -16,72 +16,79 @@
     </div>
 
 
+<form [formGroup]="frmBuyerMaster" (ngSubmit)="addbuyerMaster()">
+
+
+  <section style="margin: 10px;">
+    <fieldset style="min-height:100px;">
+    <legend><b> Buyer </b> </legend>
+
     <div class="row">
 
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Buyer Name</mat-label>
-          <input matInput placeholder="Buyer Name">
+          <input matInput placeholder="Buyer Name" formControlName="buyerName">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Address</mat-label>
-          <input matInput placeholder="Address">
+          <input matInput placeholder="Address" formControlName="address">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Mobile No.</mat-label>
-          <input matInput placeholder="Mobile No.">
+          <input matInput placeholder="Mobile No." formControlName="mobile">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail">
+          <input matInput placeholder="E-Mail" formControlName="email">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <input matInput placeholder="Country">
+          <input matInput placeholder="Country" formControlName="country">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>State</mat-label>
-          <input matInput placeholder="State">
+          <input matInput placeholder="State" formControlName="state">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <input matInput placeholder="City">
+          <input matInput placeholder="City" formControlName="city">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code">
+          <input matInput placeholder="Zip Code" formControlName="zipCode">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Ship To</mat-label>
-          <input matInput placeholder="Ship TO">
+          <input matInput placeholder="Ship TO" formControlName="shipTo">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Notify</mat-label>
-          <input matInput placeholder="Notify">
+          <input matInput placeholder="Notify" formControlName="notify">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Address</mat-label>
-          <input matInput placeholder="Address">
+          <input matInput placeholder="Address" formControlName="address2">
         </mat-form-field>
       </div>
 
@@ -89,59 +96,60 @@
 
 
 
-
-
-<!-- <div class="containers">
-  <div class="line"><mat-divider></mat-divider></div>
-  <div class="text mat-typography">Hey there</div>
-  <div class="line"><mat-divider></mat-divider></div>
-</div> -->
+    </fieldset>
+    </section>
 
 
 
+    <section style="margin: 10px;" class="mt-5">
+      <fieldset style="min-height:100px;">
+      <legend><b>  Bank Details </b> </legend>
 
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Bank Name</mat-label>
+            <input matInput placeholder="Bank Name" formControlName="bank">
+          </mat-form-field>
+        </div>
 
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Branch</mat-label>
+            <input matInput placeholder="Branch" formControlName="branch">
+          </mat-form-field>
+        </div>
 
-    <div class="row">
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
-          <mat-label>Bank Name</mat-label>
-          <input matInput placeholder="Bank Name">
-        </mat-form-field>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Upload Passbook</mat-label>
+            <input matInput placeholder="Bank Address" formControlName="passbook">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile No.</mat-label>
+            <input matInput placeholder="Mobile No." formControlName="mobile2">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>E-Mail</mat-label>
+            <input matInput placeholder="E-Mail" formControlName="email2">
+          </mat-form-field>
+        </div>
+
       </div>
+</fieldset>
+</section>
 
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
-          <mat-label>Branch</mat-label>
-          <input matInput placeholder="Branch">
-        </mat-form-field>
-      </div>
 
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
-          <mat-label>Upload Passbook</mat-label>
-          <input matInput placeholder="Bank Address">
-        </mat-form-field>
-      </div>
+      <div class="row"><div class="col-lg-3">
+        <button mat-raised-button color="primary">Add</button>
+      </div></div>
 
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
-          <mat-label>Mobile No.</mat-label>
-          <input matInput placeholder="Mobile No.">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="fill">
-          <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail">
-        </mat-form-field>
-      </div>
-
-    </div>
-    <div class="row"><div class="col-lg-3">
-      <button mat-raised-button color="primary">Add</button>
-    </div></div>
-  <!-- </fieldset> -->
+</form>
 
 
 
