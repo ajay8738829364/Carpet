@@ -7,11 +7,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .black-snackbar{
-  background-color: black !important;
+  background-color: rgb(236, 17, 17) !important;
   color: white !important;
 }
 
 .green-snackbar{
   background-color: rgb(5, 161, 109) !important;
   color: white !important;
+}
+
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: rgb(5, 161, 109) !important;
+  border-radius: 8px!important;
 }

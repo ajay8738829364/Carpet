@@ -9,21 +9,23 @@ export class SnackBarService {
   constructor(private _snackBar : MatSnackBar) { }
 
   openSnackBar(message:string, action:string){
+    debugger
     if(action === 'error'){
-      this._snackBar.open(  message,'',{
+      this._snackBar.open(message,'',{
         horizontalPosition:'center',
         verticalPosition:'top',
-        duration:2000,
+        duration:50000,
         panelClass:['black-snackbar']
       });
     }
 
     else{
-      this._snackBar.open(  message,'',{
+      this._snackBar.open(message,'',{
         horizontalPosition:'center',
         verticalPosition:'top',
-        duration:2000,
-        panelClass:['green-snackbar']
+        duration:50000,
+        panelClass: ['green-snackbar']
+
       });
 
     }

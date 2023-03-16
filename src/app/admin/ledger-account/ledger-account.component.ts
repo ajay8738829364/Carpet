@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { response } from 'express';
+// import { response } from 'express';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
@@ -88,7 +88,7 @@ export class LedgerAccountComponent implements OnInit {
     this.adminService.ledgerAccount(data).subscribe(response => {
       this.responseMessage= response?.message;
       this._snackBarService.openSnackBar(this.responseMessage,"");
-      this._router.navigate(['/']);
+     // this._router.navigate(['/']);
 
 
     },

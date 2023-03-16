@@ -70,6 +70,9 @@
             "production": {
               "browserTarget": "carpet:build:production"
             },
+            "options":{
+              "port":1230
+            },
             "development": {
               "browserTarget": "carpet:build:development"
             }
