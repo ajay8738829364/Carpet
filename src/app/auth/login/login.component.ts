@@ -43,6 +43,7 @@ responseMessage:any;
     this.userService.login(data).subscribe((resp)=>{
 
       this.responseMessage = resp.msg;
+      localStorage.setItem('token',resp.token);
       this._snackBar.openSnackBar(this.responseMessage,'');
       this.router.navigate(['/admin/byer']);
 

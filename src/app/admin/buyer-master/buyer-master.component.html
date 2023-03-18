@@ -52,20 +52,35 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <input matInput placeholder="Country" formControlName="country">
+          <mat-select [formControl]="country"  >
+            <!-- formControlName="country" -->
+            <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
+          </mat-select>
         </mat-form-field>
+
+
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>State</mat-label>
-          <input matInput placeholder="State" formControlName="state">
+          <mat-select [formControl]="state" >
+            <!-- formControlName="state" -->
+
+            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
+          </mat-select>
         </mat-form-field>
+
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <input matInput placeholder="City" formControlName="city">
+          <mat-select [formControl]="city"  >
+
+            <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
+          </mat-select>
         </mat-form-field>
+        <!-- formControlName="city" -->
+
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
@@ -121,10 +136,9 @@
         </div>
 
         <div class="col-md-6 col-lg-4">
-          <mat-form-field appearance="outline">
-            <mat-label>Upload Passbook</mat-label>
-            <input matInput placeholder="Bank Address" formControlName="passbook">
-          </mat-form-field>
+          <label for="formFile" class="form-label">Upload Passbook  *</label>
+          <input class="form-control" type="file"  id="formFile" accept="image/*" formControlName="passbook" >
+
         </div>
 
         <div class="col-md-6 col-lg-4">

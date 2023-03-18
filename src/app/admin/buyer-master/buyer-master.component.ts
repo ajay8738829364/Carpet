@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-buyer-master',
@@ -9,6 +9,19 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class BuyerMasterComponent implements OnInit {
   public frmBuyerMaster!: FormGroup;
 
+  country  = new FormControl('');
+
+  countryList: string[] = ['India'];
+
+  state  = new FormControl('');
+
+  stateList: string[] = ['Andhra Pradesh','Arunachal Pradesh',' Assam','Bihar','Chhattisgarh','Goa','Gujarat'
+
+  ];
+
+  city  = new FormControl('');
+
+  cityList: string[] = ['Anantapur','Prakasam'];
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {

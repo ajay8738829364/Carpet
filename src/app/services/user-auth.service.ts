@@ -30,4 +30,17 @@ login(data:any):Observable<any>{
     headers:new HttpHeaders().set('content-type','application/json')
   });
 }
+
+//////////////////////
+/////////// here code for check role  api service
+///////
+////
+
+
+checkRole(){
+  return this.http.get(this.apiUrl+'/checkRole');
+}
+
+
+
 }
