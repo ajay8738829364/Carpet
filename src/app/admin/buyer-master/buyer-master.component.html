@@ -6,14 +6,14 @@
     <legend>Buyer Details</legend> -->
 
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-6">
         <mat-form-field appearance="outline">
           <mat-label>Search Buyer Code</mat-label>
           <input matInput placeholder="Search Buyer Code">
         </mat-form-field>
       </div>
-    </div>
+    </div> -->
 
 
 <form [formGroup]="frmBuyerMaster" (ngSubmit)="addbuyerMaster()">
@@ -33,21 +33,24 @@
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
-          <mat-label>Address</mat-label>
-          <input matInput placeholder="Address" formControlName="address">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>Mobile No.</mat-label>
-          <input matInput placeholder="Mobile No." formControlName="mobile">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
           <input matInput placeholder="E-Mail" formControlName="email">
         </mat-form-field>
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+
+          <input matInput >
+        </mat-form-field> -->
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact No.</mat-label>
+          <input matInput placeholder="Contact No." formControlName="mobile">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <textarea placeholder="Address" ></textarea>
+
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
@@ -88,7 +91,7 @@
           <input matInput placeholder="Zip Code" formControlName="zipCode">
         </mat-form-field>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <!-- <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Ship To</mat-label>
           <input matInput placeholder="Ship TO" formControlName="shipTo">
@@ -105,7 +108,7 @@
           <mat-label>Address</mat-label>
           <input matInput placeholder="Address" formControlName="address2">
         </mat-form-field>
-      </div>
+      </div> -->
 
     </div>
 
@@ -135,11 +138,11 @@
           </mat-form-field>
         </div>
 
-        <div class="col-md-6 col-lg-4">
+        <!-- <div class="col-md-6 col-lg-4">
           <label for="formFile" class="form-label">Upload Passbook  *</label>
           <input class="form-control" type="file"  id="formFile" accept="image/*" formControlName="passbook" >
 
-        </div>
+        </div> -->
 
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">

@@ -7,11 +7,20 @@
 <form [formGroup]="frmledgerAccount" (ngSubmit)="addLedgerAccount()">
 
   <div class="row mt-4">
-    <div class="col-lg-6 col-md-6">
+    <!-- <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Code</mat-label>
         <input matInput placeholder="Code" formControlName="code">
       </mat-form-field>
+
+    </div> -->
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Group Name</mat-label>
+        <input matInput placeholder="Group Name" formControlName="groupName">
+      </mat-form-field>
+
 
     </div>
 
@@ -24,13 +33,6 @@
       <mat-form-field appearance="outline">
         <mat-label>Party Name</mat-label>
         <input matInput placeholder="Party Name" formControlName="partyName">
-      </mat-form-field>
-    </div>
-
-    <div class="col-lg-6 col-md-6">
-      <mat-form-field appearance="outline">
-        <mat-label>Group Name</mat-label>
-        <input matInput placeholder="Group Name" formControlName="groupName">
       </mat-form-field>
     </div>
 
@@ -149,12 +151,12 @@
 
 
 
-    <div class="col-lg-6 col-md-6">
+    <!-- <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Tin / Pan</mat-label>
         <input matInput placeholder="Tin / Pan" formControlName="tinPan">
       </mat-form-field>
-    </div>
+    </div> -->
 
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">

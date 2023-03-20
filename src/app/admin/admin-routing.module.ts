@@ -17,7 +17,7 @@ import { WeavingComponent } from './weaving/weaving.component';
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
     {path:'dashboard',component:DashboardComponent},
-    {path:'byer',component:ByerComponent  },
+    {path:'buyer',component:ByerComponent  },
     {path:'view-byer-list',component:ViewByerListComponent},
     {path:'buyer-master',component:BuyerMasterComponent},
     {path:'dying-master',component:DyingMasterComponent},

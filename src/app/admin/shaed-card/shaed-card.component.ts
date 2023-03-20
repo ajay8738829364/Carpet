@@ -9,7 +9,7 @@ export interface PeriodicElement {
   design: string;
   position: number;
 color:string;
-size:string;
+
 colorCode:string;
 lagat:string;
 colorShaed:string;
@@ -17,7 +17,7 @@ colorShaed:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-{ position:1,design:'xxx',color:'Red',colorCode:'#fffff',colorShaed:'xyz',size:'1 fit',quality:'1 ',lagat:'2000'}
+{ position:1,design:'xxx',color:'Red',colorCode:'#fffff',colorShaed:'xyz',quality:'1 ',lagat:'2000'}
 ];
 
 
@@ -38,7 +38,7 @@ export class ShaedCardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['position', 'quality','design', 'size','color', 'colorCode','colorShaed','lagat'];;
+  displayedColumns: string[] = ['position', 'quality','design','color', 'colorShaed','colorCode','lagat'];;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   ngAfterViewInit() {
