@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -40,6 +41,11 @@ export class ShaedCardComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'quality','design','color', 'colorShaed','colorCode','lagat'];;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  quality = new  FormControl('');
+  qualityList:string[]=['Q1','Q2'];
+  design = new  FormControl('');
+  designList:string[]=['D1','D2'];
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

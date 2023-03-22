@@ -9,7 +9,10 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Material</mat-label>
-          <input matInput placeholder="Material" formControlName="material">
+          <mat-select [formControl]="material" >
+            <mat-option *ngFor="let materials of materialList" [value]="materials">{{materials}}</mat-option>
+          </mat-select>
+          <!-- <input matInput placeholder="Material" formControlName="material"> -->
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-6">
@@ -37,10 +40,33 @@
           <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
         </span>
       </div>
-      <div class="col-md-6 col-lg-6">
+      <!-- <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Dye Reciepe</mat-label>
           <textarea matInput placeholder="Shaed Details" formControlName="shaedDetail"></textarea>
+        </mat-form-field>
+      </div> -->
+
+      <div class="col-md-6 col-lg-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Dye Name</mat-label>
+          <!-- <textarea matInput placeholder="Dye Name" formControlName="shaedDetail"></textarea> -->
+          <input matInput placeholder="Dye Name" >
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Purchager Name</mat-label>
+          <input matInput placeholder="Purchaser Name" >
+
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-lg-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Per Kg.</mat-label>
+          <input matInput placeholder="Per Kg." >
+
         </mat-form-field>
       </div>
 

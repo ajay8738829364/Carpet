@@ -36,6 +36,10 @@ export class DyingMasterComponent implements OnInit {
 
   countList: string[] = ['count 1', 'count 2'];
 
+  material = new FormControl('');
+
+  materialList: string[] = ['material 1', 'material 2'];
+
   shaed = new FormControl('');
 
   shaedList: string[] = ['count 1', 'count 2'];

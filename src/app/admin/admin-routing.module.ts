@@ -4,9 +4,11 @@ import { raw } from 'express';
 import { AdminComponent } from './admin.component';
 import { BuyerMasterComponent } from './buyer-master/buyer-master.component';
 import { ByerComponent } from './byer/byer.component';
+import { ContractorComponent } from './contractor/contractor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DyingMasterComponent } from './dying-master/dying-master.component';
 import { FinishingLabourLedgerComponent } from './finishing-labour-ledger/finishing-labour-ledger.component';
+import { FinishingLedgerComponent } from './finishing-ledger/finishing-ledger.component';
 import { LedgerAccountComponent } from './ledger-account/ledger-account.component';
 import { RawMaterialComponent } from './raw-material/raw-material.component';
 import { ShaedCardComponent } from './shaed-card/shaed-card.component';
@@ -27,6 +29,8 @@ const routes: Routes = [
     {path:'weaving',component:WeavingComponent},
     {path:'finishing-labour-ledger',component:FinishingLabourLedgerComponent},
     {path:'ledger-account',component:LedgerAccountComponent},
+    {path:'contractor',component:ContractorComponent},
+    {path:'finishing-ledger',component:FinishingLedgerComponent}
   ]}
 ];
 

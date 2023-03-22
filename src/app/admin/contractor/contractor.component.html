@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h4> Contractor </h4>
+    </div>
+  </div>
+<form >
+
+  <div class="row mt-4">
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Product</mat-label>
+        <mat-select [formControl]="product" >
+
+          <mat-option *ngFor="let product of productList" [value]="product">{{product}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Group Name</mat-label>
+        <input matInput placeholder="Group Name" >
+      </mat-form-field>
+
+
+    </div>
+
+    <!-- <div class="col-lg-6 col-md-6">
+      <label for="formFile" class="form-label">Upload Category Image *</label>
+      <input class="form-control" type="file"  id="formFile" accept="image/*" >
+    </div> -->
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Viewer Name</mat-label>
+        <input matInput placeholder="Viewer Name" >
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Father's Name</mat-label>
+        <input matInput placeholder="Father's Name" >
+      </mat-form-field>
+    </div> -->
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <!-- <input matInput placeholder="Address" > -->
+        <textarea matInput placeholder="Address"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>State</mat-label>
+        <input matInput placeholder="State" >
+      </mat-form-field>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Zip Code</mat-label>
+        <input matInput placeholder="Zip Code" >
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Aadhar No.</mat-label>
+        <input matInput placeholder="Aadhar No." >
+      </mat-form-field>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <label for="formFile" class="form-label">Upload Aadhar Card *</label>
+      <input class="form-control" type="file"  id="formFile" accept="image/*"  >
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Pan No.</mat-label>
+        <input matInput placeholder="Pan No." >
+      </mat-form-field>
+
+    </div>
+
+
+
+
+    <div class="col-lg-6 col-md-6">
+      <label for="formFile" class="form-label">Upload Pan Card *</label>
+      <input class="form-control" type="file"  id="formFile" accept="image/*"  >
+    </div>
+
+
+
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>P.P.F.T.</mat-label>
+        <input matInput placeholder="P.P.F.T." >
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Guarantor 1</mat-label>
+        <input matInput placeholder="Guarantor 1"  >
+      </mat-form-field>
+
+    </div> -->
+
+
+
+
+
+
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <button mat-raised-button color="primary">Add</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+
+</div>

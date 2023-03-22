@@ -38,6 +38,8 @@ import { FieldsetModule } from "primeng/fieldset";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { ContractorComponent } from './contractor/contractor.component';
+import { FinishingLedgerComponent } from './finishing-ledger/finishing-ledger.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { HttpClientModule } from '@angular/common/http';
     RawMaterialComponent,
     WeavingComponent,
     FinishingLabourLedgerComponent,
-    LedgerAccountComponent
+    LedgerAccountComponent,
+    ContractorComponent,
+    FinishingLedgerComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,
