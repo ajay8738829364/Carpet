@@ -26,22 +26,22 @@
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">
-          <mat-label>Phone Number</mat-label>
-          <input matInput placeholder="Phone Number"  formControlName="mobile">
+          <mat-label>Contact Number</mat-label>
+          <input matInput placeholder="Contact Number"  formControlName="mobile">
         </mat-form-field>
       </div>
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">
-          <mat-label>Passward</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Passward" formControlName="passward">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
       </div>
 
-      <div class="col-md-6">
+     <!-- <div class="col-md-6">
         <mat-label>Select Gender</mat-label> <br>
       <mat-radio-group aria-label="Select an option" formControlName="gender">
 
@@ -56,18 +56,18 @@
           <input matInput placeholder="Image" formControlName="image">
         </mat-form-field>
       </div>
-      <div class="col-md-6 ">
+       <div class="col-md-6 ">
         <mat-form-field appearance="outline">
           <mat-label>Address </mat-label>
           <input matInput placeholder="Image" formControlName="address">
         </mat-form-field>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6"> -->
         <!-- <mat-form-field appearance="outline">
           <mat-label>Type</mat-label>
           <input matInput placeholder="Type" formControlName="type">
-        </mat-form-field> -->
-      </div>
+        </mat-form-field>
+      </div> -->
       <div class="col-md-3">
         <button type="submit" mat-raised-button color="primary" [disabled]="frmRegister.invalid">Register</button>
       </div>

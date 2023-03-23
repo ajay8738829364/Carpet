@@ -33,7 +33,7 @@ export class RegisterComponent {
           Validators.minLength(3),
         ],
       ],
-      passward: [
+      password: [
         '',
         [
           Validators.pattern(
@@ -53,10 +53,10 @@ export class RegisterComponent {
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
-      image: [''],
+      // image: [''],
       // type: [''],
-      address: ['', [Validators.required]],
-      gender: [''],
+      // address: ['', [Validators.required]],
+      // gender: [''],
     });
   }
 
@@ -65,13 +65,10 @@ export class RegisterComponent {
 
     var data = {
       name: formData.name,
-      passward: formData.passward,
+      password: formData.password,
       mobile: formData.mobile,
       email: formData.email,
-      image: formData.image,
-      // type:formData.type,
-      address: formData.address,
-      gender: formData.gender,
+      
     };
 
 

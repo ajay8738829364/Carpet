@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AdminMasterService } from 'src/app/services/admin-master.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { global } from 'src/app/shared/global';
 
 export interface PeriodicElement {
   id: number;
@@ -26,7 +29,9 @@ export class RawMaterialComponent implements OnInit {
 
   public frmRawMaterial!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  responsMessage: any;
+
+  constructor(private _formBuilder: FormBuilder, private adminService : AdminMasterService, private _snackBar : SnackBarService ) {}
   displayedColumns: string[] = [
     'id',
     'materialName',
@@ -47,23 +52,52 @@ export class RawMaterialComponent implements OnInit {
 
   ngOnInit(): void {
     this.frmRawMaterial = this._formBuilder.group({
-      materialName: [''],
+      material_name: [''],
       count: [''],
-      hsnCode: [''],
-      rate: [''],
-      desc: [''],
+      hsn_code: [''],
+      avg_rate: [''],
+      description: [''],
     });
   }
+  // "material_name":"abc",
+	// "hsn_code":"abc",
+	// "count":"abc",
+	// "avg_rate":"100",
+	// "description":"abc    dsadwdwdwdwqdd"
 
   addRawMaterial() {
     const formData = this.frmRawMaterial.value;
     var data = {
-      materialName: formData.materialName,
+      material_name: formData.material_name,
       count: formData.count,
-      hsnCode: formData.hsnCode,
-      rate: formData.rate,
-      desc: formData.desc,
+      hsn_code: formData.hsn_code,
+      avg_rate: formData.avg_rate,
+      description: formData.description,
     };
     console.log(data);
+this.adminService.rawMaterial(data).subscribe((res)=>{
+  debugger;
+  console.log(res);
+
+})
+
+//     this.adminService.rawMaterial(data).subscribe(
+//       (response:any) => {
+//        debugger
+//          this.responsMessage=response.msg;
+//          this._snackBar.openSnackBar(this.responsMessage, '');
+//         //  this.router.navigate(['/']);
+//        },
+//        (error: any) => {
+//  debugger
+//          if (error.error.msg) {
+//            this.responsMessage = error.error.msg;
+//          } else {
+//            this.responsMessage =global.genricError;
+//          }
+//          this._snackBar.openSnackBar(this.responsMessage, global.error);
+//          console.log('data', data);
+//        }
+//      );
   }
 }

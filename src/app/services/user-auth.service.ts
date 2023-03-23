@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserAuthService {
   apiUrl = 'http://127.0.0.1:3000/api';
-
+apiUrl2='http://carpet.emarketking.in/public/api'
   constructor(private http: HttpClient) {}
 //////////////////////
 /////////// here code for sinup api service
@@ -15,7 +15,7 @@ export class UserAuthService {
 ////
   register(data: any): Observable<any> {
     console.log('here data of register user service  ');
-    return this.http.post(this.apiUrl + '/register', data, {
+    return this.http.post(this.apiUrl2 +'/user_register', data, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
     });
   }
@@ -37,8 +37,8 @@ login(data:any):Observable<any>{
 ////
 
 
-checkRole(){
-  return this.http.get(this.apiUrl+'/checkRole');
+checkToken(){
+  return this.http.get(this.apiUrl+'/test');
 }
 
 

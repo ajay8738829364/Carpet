@@ -40,6 +40,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ContractorComponent } from './contractor/contractor.component';
 import { FinishingLedgerComponent } from './finishing-ledger/finishing-ledger.component';
+import { NgParticlesModule } from "ng-particles";
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { FinishingLedgerComponent } from './finishing-ledger/finishing-ledger.co
     MatPaginatorModule,
     ColorPickerModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    NgParticlesModule
 
 
 

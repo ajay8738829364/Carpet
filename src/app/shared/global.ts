@@ -12,5 +12,7 @@ export class global{
 
   public static error:string="error";
 
+  public static unathorize : string ='you are Unathoriz user';
+
 
 }
