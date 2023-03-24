@@ -12,18 +12,18 @@ export class SnackBarService {
     debugger
     if(action === 'error'){
       this._snackBar.open(message,'',{
-        horizontalPosition:'center',
+        horizontalPosition:'right',
         verticalPosition:'top',
-        duration:50000,
+        duration:2000,
         panelClass:['black-snackbar']
       });
     }
 
     else{
       this._snackBar.open(message,'',{
-        horizontalPosition:'center',
+        horizontalPosition:'right',
         verticalPosition:'top',
-        duration:50000,
+        duration:2000,
         panelClass: ['green-snackbar']
 
       });

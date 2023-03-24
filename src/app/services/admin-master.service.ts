@@ -28,6 +28,34 @@ constructor(private http: HttpClient) {}
 return data;
   }
 
+//////////////////////
+/////////// here code for finishing ledger api service
+///////
+////
+
+finishingLedger(data: any):Observable<any>{
+
+  return this.http.post(this.apiUrl2 +'/finishing_ledger_data', data, {
+    headers: new HttpHeaders().set('content-type', 'application/json'),
+  });
+}
+
+
+//////////////////////
+/////////// here code for SizeMaster api service
+///////
+////
+
+sizeMaster(data: any):Observable<any>{
+
+  return this.http.post(this.apiUrl2 +'/master_of_size', data, {
+    headers: new HttpHeaders().set('content-type', 'application/json'),
+  });
+}
+
+getSizeMaster(){
+  return this.http.get(this.apiUrl2+'/size_master');
+}
 
 
 }
