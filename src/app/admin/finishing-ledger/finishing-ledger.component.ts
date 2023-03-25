@@ -10,8 +10,8 @@ import { global } from 'src/app/shared/global';
   styleUrls: ['./finishing-ledger.component.css']
 })
 export class FinishingLedgerComponent  implements OnInit{
-  groupName = new FormControl('');
-  groupNameList : string [] = ['g1','g2'];
+  groupName :any;
+  groupNameList : any= ['q1','q2'] ;
 
   responsMessage:any;
 
@@ -24,44 +24,53 @@ constructor(private _snackBar : SnackBarService, private _formBuilder : FormBuil
 
 ngOnInit(): void {
   this.frmFinishingLedger = this._formBuilder.group({
-  //  groupName:[''],
+   groupName:[''],
    address:[''],
    state:[''],
    zipCode:[''],
    aadharNo:[''],
-   aadharImage:[''],
+   adhar_image:[''],
    panNo:[''],
-   panImage:[''],
+   pan_image:[''],
    contact:[''],
    email:[''],
    passward:[''],
 
   });
 }
+selectImage(event: any) {
+  const file = event.target.files[0];
+  this.frmFinishingLedger.patchValue({ aadhar_image: file });
+}
+selectImage2(event: any) {
+  const file = event.target.files[0];
 
-
+  this.frmFinishingLedger.patchValue({ pan_image: file });
+  console.log( this.frmFinishingLedger.value);
+}
 addFinishingLedger(){
 
-const formData = this.frmFinishingLedger.value;AdminMasterService
+const formData = this.frmFinishingLedger.value;
 var data = {
-  // group_name:formData.groupName,
+   group_name:formData.groupName,
    address:formData.address,
    state:formData.state,
    zip_code:formData.zipCode,
    adhar_no:formData.aadharNo,
-   adhar_image:formData.aadharImage ,
+  adhar_image:formData.adhar_image ,
    pan_no:formData.panNo,
-   pan_image:formData.panImage,
+   pan_image:formData.pan_image,
    contact:formData.contact,
    email:formData.email,
    password:formData.passward,
 }
 
 
-
+console.log(data);
 
   this.adminService.finishingLedger(data).subscribe(
         (resp) => {
+          debugger;
           this.responsMessage = resp.message;
           this._snackBar.openSnackBar(this.responsMessage, '');
         },
@@ -75,6 +84,12 @@ var data = {
 
         }
       );
+    }
+
+    onGroupSelectList(data:any){
+
+      console.log(data);
+console.log(this.frmFinishingLedger.value);
     }
 }
 

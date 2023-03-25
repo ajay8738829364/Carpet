@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AdminMasterService } from 'src/app/services/admin-master.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { global } from 'src/app/shared/global';
+
+
 
 @Component({
   selector: 'app-buyer-master',
@@ -8,6 +13,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class BuyerMasterComponent implements OnInit {
   public frmBuyerMaster!: FormGroup;
+
+  responsMessage:any;
 
   country  = new FormControl('');
 
@@ -22,8 +29,25 @@ export class BuyerMasterComponent implements OnInit {
   city  = new FormControl('');
 
   cityList: string[] = ['Anantapur','Prakasam'];
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private adminService: AdminMasterService,
+    private _snackBar: SnackBarService
+  ) {}
 
+
+  onCountry(data:any){
+console.log(data)
+this.country=data;
+  }
+  onState(data:any){
+    console.log(data)
+    this.state=data;
+  }
+  onCity(data:any){
+    console.log(data)
+    this.city=data;
+  }
   ngOnInit(): void {
     this.frmBuyerMaster = this._formBuilder.group({
       buyerName: [''],
@@ -34,12 +58,11 @@ export class BuyerMasterComponent implements OnInit {
       state: [''],
       city: [''],
       zipCode: [''],
-      shipTo: [''],
-      notify: [''],
-      address2: [''],
+
+
       bank: [''],
       branch: [''],
-      passbook: [''],
+
       mobile2: [''],
       email2: [''],
     });
@@ -51,22 +74,38 @@ export class BuyerMasterComponent implements OnInit {
     const formData = this.frmBuyerMaster.value;
 
     var data = {
-      buyerName: formData.buyerName,
+      name: formData.buyerName,
       address: formData.address,
       mobile: formData.mobile,
       email: formData.email,
       country: formData.country,
       state: formData.state,
       city: formData.city,
-      zipCode: formData.zipCode,
-      shipTo: formData.shipTo,
-      notify: formData.notify,
-      address2: formData.address2,
-      bank: formData.bank,
-      branch: formData.branch,
-      passbook: formData.passbook,
-      mobile2: formData.mobile2,
-      email2: formData.email2,
+      zip_code: formData.zipCode,
+      // shipTo: formData.shipTo,
+      // notify: formData.notify,
+      // address2: formData.address2,
+      bank_name: formData.bank,
+      bank_branch: formData.branch,
+      // passbook: formData.passbook,
+      bank_contact: formData.mobile2,
+      bank_email: formData.email2,
     };
+
+    this.adminService.buyerMaster(data).subscribe(
+      (resp:any) => {
+        this.responsMessage = resp.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+        console.log('data', data);
+      }
+    );
   }
 }

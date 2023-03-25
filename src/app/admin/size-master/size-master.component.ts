@@ -12,8 +12,8 @@ export interface PeriodicElement {
   index: number;
 
   size_in_yard: string;
-  khap_size:string;
-  size_in_meter:string;
+  khap_size: string;
+  size_in_meter: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -35,7 +35,10 @@ export class SizeMasterComponent implements OnInit {
   ) {}
 
   displayedColumns: string[] = [
-   'id','size_in_yard','khap_size','size_in_meter'
+    'id',
+    'size_in_yard',
+    'khap_size',
+    'size_in_meter',
   ];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -74,74 +77,36 @@ export class SizeMasterComponent implements OnInit {
         if (error.error.msg) {
           this.responsMessage = error.error.message;
         } else {
-          this.responsMessage = global.genricError
+          this.responsMessage = global.genricError;
         }
         this._snackBar.openSnackBar(this.responsMessage, global.error);
         console.log('data', data);
       }
     );
+    this.getAllSize();
   }
 
-  getAllSize(){
+  getAllSize() {
     ELEMENT_DATA.length = 0;
 
-    this.adminService.getSizeMaster().subscribe((resp)=>{
-      console.log(resp);
+    this.adminService.getSizeMaster().subscribe((res: any) => {
+      console.log(res.data);
+      if (res.data) {
+        res.data.map((val: any, ind: number) => {
+          ELEMENT_DATA.push({
+            index: ind + 1,
+            id: val._id,
+            size_in_yard: val.size_in_yard,
+            khap_size: val.khap_size,
+            size_in_meter: val.size_in_meter,
+          });
+        });
 
-
-      // if(resp){
-      //   resp.data.map((val : any, ind:any)=>{
-      //     ELEMENT_DATA.push({
-      //                   index: ind + 1,
-      //                   id: val.id,
-      //                   size_in_yard: val.size_in_yard,
-      //                   khap_size:val.khap_size,
-      //                   size_in_meter:val.size_in_meter
-
-
-
-      //                 });
-      //   });
-      // }
+        this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        this.ngAfterViewInit()
+        return;
+      }
     });
   }
-  // getAllSubject() {
-  //   ELEMENT_DATA.length = 0;
-
-  //   this.service.getAdminMethod(this.helper.apiPath.subject)
-  //     .subscribe(res => {
-  //       console.log(res)
-
-  //       if (res.status) {
-  //         this.subjectList = res.data;
-
-  //         res.data.map((val: any, ind: number) => {
-  //
-  //           ELEMENT_DATA.push({
-  //             index: ind + 1,
-  //             id: val._id,
-  //             Name: val.name,
-  //             Image: this.helper.apiPath.baseUrl + val.img,
-  //             Courses: courses,
-  //             Status: val.isActive == 1 ? "Active" : "Not Active"
-
-
-
-  //           });
-  //         })
-
-  //         this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-  //         this.ngAfterViewInit()
-
-
-
-  //         return
-  //       }
-  //       this.helper.showToast(res.message);
-
-  //     }, err => {
-  //       this.helper.showToast('Somthing went wrong.: ' + err, 'danger');
-  //     })
-  // }
 
 }

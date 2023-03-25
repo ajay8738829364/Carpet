@@ -9,7 +9,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Material</mat-label>
-          <mat-select [formControl]="material" >
+          <mat-select formControlName="material_name"  (valueChange)="onMaterial($event)">
             <mat-option *ngFor="let materials of materialList" [value]="materials">{{materials}}</mat-option>
           </mat-select>
           <!-- <input matInput placeholder="Material" formControlName="material"> -->
@@ -18,7 +18,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Count</mat-label>
-          <mat-select [formControl]="count" >
+          <mat-select formControlName="count" (valueChange)="onCount($event)">
             <mat-option *ngFor="let counts of countList" [value]="counts">{{counts}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -26,7 +26,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Shade</mat-label>
-          <mat-select [formControl]="shaed" >
+          <mat-select formControlName="shead_name" (valueChange)="onShead($event)" >
             <mat-option *ngFor="let shaeds of shaedList" [value]="shaeds">{{shaeds}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -34,30 +34,26 @@
       <div class="col-md-6 col-lg-6 d-flex">
         <mat-form-field appearance="outline">
           <mat-label>Color Code</mat-label>
-          <input matInput placeholder="Color Code" [value]="color2" [(colorPicker)]="color2" formControlName="colorCode">
+          <input matInput placeholder="Color Code" [value]="color2" [(colorPicker)]="color2" formControlName="color_code">
         </mat-form-field>
         <span>
           <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
         </span>
       </div>
-      <!-- <div class="col-md-6 col-lg-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Dye Reciepe</mat-label>
-          <textarea matInput placeholder="Shaed Details" formControlName="shaedDetail"></textarea>
-        </mat-form-field>
-      </div> -->
+
+
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Dye Name</mat-label>
-          <!-- <textarea matInput placeholder="Dye Name" formControlName="shaedDetail"></textarea> -->
-          <input matInput placeholder="Dye Name" >
+
+          <input matInput placeholder="Dye Name" formControlName="dye_name" >
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
-          <mat-label>Purchager Name</mat-label>
-          <input matInput placeholder="Purchaser Name" >
+          <mat-label>Purchaser Name</mat-label>
+          <input matInput placeholder="Purchaser Name" formControlName="purchaser_name" >
 
         </mat-form-field>
       </div>
@@ -65,7 +61,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Per Kg.</mat-label>
-          <input matInput placeholder="Per Kg." >
+          <input matInput placeholder="Per Kg." formControlName="weight">
 
         </mat-form-field>
       </div>
@@ -106,31 +102,44 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="material">
+        <ng-container matColumnDef="material_name">
           <th mat-header-cell *matHeaderCellDef> Material </th>
-          <td mat-cell *matCellDef="let element"> {{element.material}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.material_name}} </td>
         </ng-container>
 
+
+        <ng-container matColumnDef="purchaser_name">
+          <th mat-header-cell *matHeaderCellDef> Purchaser </th>
+          <td mat-cell *matCellDef="let element"> {{element.purchaser_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+        </ng-container>
         <!-- Weight Column -->
-        <ng-container matColumnDef="shaedTbl">
-          <th mat-header-cell *matHeaderCellDef> Shaed </th>
-          <td mat-cell *matCellDef="let element"> {{element.shaedTbl}} </td>
+        <ng-container matColumnDef="count">
+          <th mat-header-cell *matHeaderCellDef> count </th>
+          <td mat-cell *matCellDef="let element"> {{element.count}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="countTbl">
-          <th mat-header-cell *matHeaderCellDef> Count </th>
-          <td mat-cell *matCellDef="let element"> {{element.countTbl}} </td>
+        <ng-container matColumnDef="shead_name">
+          <th mat-header-cell *matHeaderCellDef> Shead </th>
+          <td mat-cell *matCellDef="let element"> {{element.shead_name}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
-        <ng-container matColumnDef="colorCode">
+        <ng-container matColumnDef="color_code">
           <th mat-header-cell *matHeaderCellDef> Color Code </th>
-          <td mat-cell *matCellDef="let element"> {{element.colorCode}} </td>
+          <td mat-cell *matCellDef="let element" [style.background]="element.color_code">{{element.color_code}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="shaedDetailTbl">
+        <ng-container matColumnDef="dye_name">
           <th mat-header-cell *matHeaderCellDef> Shaed Detail</th>
-          <td mat-cell *matCellDef="let element"> {{element.shaedDetailTbl}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.dye_name}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -146,12 +155,5 @@
   </div>
 </div>
 
-
-<ng-particles
-    [id]="id"
-    [options]="particlesOptions"
-    [particlesInit]="particlesInit"
-    (particlesLoaded)="particlesLoaded($event)"
-></ng-particles>
 
 

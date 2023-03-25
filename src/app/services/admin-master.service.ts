@@ -24,6 +24,14 @@ constructor(private http: HttpClient) {}
     });
   }
 
+  getRawMaterial(){
+    return this.http.get(this.apiUrl2+'/raw_material');
+  }
+
+
+
+
+
   ledgerAccount( data:any): Observable < any >{
 return data;
   }
@@ -34,9 +42,9 @@ return data;
 ////
 
 finishingLedger(data: any):Observable<any>{
-
+console.log(data);
   return this.http.post(this.apiUrl2 +'/finishing_ledger_data', data, {
-    headers: new HttpHeaders().set('content-type', 'application/json'),
+    headers: new HttpHeaders().set('accept', 'application/json'),
   });
 }
 
@@ -58,4 +66,38 @@ getSizeMaster(){
 }
 
 
+
+
+//////////////////////
+/////////// here code for BuyerMaster api service
+///////
+////
+
+buyerMaster(data:any){
+  console.log(data);
+  return this.http.post(this.apiUrl2 +'/buyer_details', data, {
+    headers: new HttpHeaders().set('accept', 'application/json'),
+  });
+}
+getBuyerMaster(){
+  return this.http.get(this.apiUrl2 +'/buyer');
+  // return this.http.get(this.apiUrl2+'/size_master');
+}
+
+//////////////////////
+/////////// here code for Dying Master api service
+///////
+////
+dyingMaster(data:any){
+  debugger
+  console.log(data);
+  return this.http.post(this.apiUrl2 +'/dying_master', data, {
+    headers: new HttpHeaders().set('content-type', 'application/json'),
+  });
+}
+
+getDyingMaster(){
+  return this.http.get(this.apiUrl2 +'/dying_master_data');
+  // return this.http.get(this.apiUrl2+'/size_master');
+}
 }

@@ -8,7 +8,8 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
 export interface PeriodicElement {
-  id: number;
+  id: string;
+  index: number;
   materialName: string;
   count: string;
   desc: string;
@@ -31,7 +32,11 @@ export class RawMaterialComponent implements OnInit {
 
   responsMessage: any;
 
-  constructor(private _formBuilder: FormBuilder, private adminService : AdminMasterService, private _snackBar : SnackBarService ) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private adminService: AdminMasterService,
+    private _snackBar: SnackBarService
+  ) {}
   displayedColumns: string[] = [
     'id',
     'materialName',
@@ -58,12 +63,10 @@ export class RawMaterialComponent implements OnInit {
       avg_rate: [''],
       description: [''],
     });
+
+    this.getMaterial();
   }
-  // "material_name":"abc",
-	// "hsn_code":"abc",
-	// "count":"abc",
-	// "avg_rate":"100",
-	// "description":"abc    dsadwdwdwdwqdd"
+
 
   addRawMaterial() {
     const formData = this.frmRawMaterial.value;
@@ -75,29 +78,50 @@ export class RawMaterialComponent implements OnInit {
       description: formData.description,
     };
     console.log(data);
-this.adminService.rawMaterial(data).subscribe((res)=>{
-  debugger;
-  console.log(res);
+    this.adminService.rawMaterial(data).subscribe(
+            (response:any) => {
+             debugger
+               this.responsMessage=response.message;
+               this._snackBar.openSnackBar(this.responsMessage, '');
+              //  this.router.navigate(['/']);
+             },
+             (error: any) => {
+       debugger
+               if (error.error.message) {
+                 this.responsMessage = error.error.message;
+               } else {
+                 this.responsMessage =global.genricError;
+               }
+               this._snackBar.openSnackBar(this.responsMessage, global.error);
+               console.log('data', data);
+             }
+           );
+           this.getMaterial();
 
-})
+  }
 
-//     this.adminService.rawMaterial(data).subscribe(
-//       (response:any) => {
-//        debugger
-//          this.responsMessage=response.msg;
-//          this._snackBar.openSnackBar(this.responsMessage, '');
-//         //  this.router.navigate(['/']);
-//        },
-//        (error: any) => {
-//  debugger
-//          if (error.error.msg) {
-//            this.responsMessage = error.error.msg;
-//          } else {
-//            this.responsMessage =global.genricError;
-//          }
-//          this._snackBar.openSnackBar(this.responsMessage, global.error);
-//          console.log('data', data);
-//        }
-//      );
+  getMaterial() {
+    ELEMENT_DATA.length = 0;
+
+    this.adminService.getRawMaterial().subscribe((res: any) => {
+      console.log(res.data);
+      if (res.data) {
+        res.data.map((val: any, ind: number) => {
+          ELEMENT_DATA.push({
+            index: ind + 1,
+            id: val.id,
+            materialName: val.material_name,
+            count: val.count,
+            desc: val.description,
+            rate: val.avg_rate,
+            hsnCode: val.hsn_code,
+          });
+        });
+
+        this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        this.ngAfterViewInit();
+        return;
+      }
+    });
   }
 }
