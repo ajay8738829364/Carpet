@@ -14,7 +14,7 @@ apiUrl2='http://carpet.emarketking.in/public/api'
 ///////
 ////
   register(data: any): Observable<any> {
-    console.log('here data of register user service  ');
+    console.log('here data of register user service');
     return this.http.post(this.apiUrl2 +'/user_register', data, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
     });
