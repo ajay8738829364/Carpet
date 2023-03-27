@@ -68,7 +68,7 @@ export class RegisterComponent {
       password: formData.password,
       mobile: formData.mobile,
       email: formData.email,
-      
+
     };
 
 
@@ -77,14 +77,14 @@ export class RegisterComponent {
     this.userService.register(data).subscribe(
      (response:any) => {
       debugger
-        this.responsMessage=response.msg;
+        this.responsMessage=response.message;
         this._snackBar.openSnackBar(this.responsMessage, '');
-        this.router.navigate(['/']);
+        this.router.navigate(['/auth/login']);
       },
       (error: any) => {
 debugger
-        if (error.error.msg) {
-          this.responsMessage = error.error.msg;
+        if (error.error.message) {
+          this.responsMessage = error.error.message;
         } else {
           this.responsMessage =global.genricError;
         }

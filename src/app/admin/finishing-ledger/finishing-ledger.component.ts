@@ -13,6 +13,9 @@ export class FinishingLedgerComponent  implements OnInit{
   groupName :any;
   groupNameList : any= ['q1','q2'] ;
 
+
+  aadharFile!:File;
+  panFile!:File;
   responsMessage:any;
 
 
@@ -40,12 +43,18 @@ ngOnInit(): void {
 }
 selectImage(event: any) {
   const file = event.target.files[0];
-  this.frmFinishingLedger.patchValue({ aadhar_image: file });
+  // this.frmFinishingLedger.patchValue({ aadhar_image: file });
+  this.aadharFile = file;
+  console.log(this.aadharFile)
+    console.log( this.frmFinishingLedger.value);
 }
 selectImage2(event: any) {
   const file = event.target.files[0];
 
-  this.frmFinishingLedger.patchValue({ pan_image: file });
+  this.panFile=file;
+  console.log(this.panFile);
+
+  // this.frmFinishingLedger.patchValue({ pan_image: file });
   console.log( this.frmFinishingLedger.value);
 }
 addFinishingLedger(){

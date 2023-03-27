@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,9 +23,9 @@ responseMessage:any;
   ngOnInit(): void {
     this.frmLogin = this._formBuilder.group({
 
-      passward: ['',[Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}')]],
+      password: ['',[Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}')]],
 
-      email: ['',[Validators.required, Validators.email,Validators.pattern(global.emailRegex)]],
+      mobile: ['',[Validators.required]],
 
     });
   }
@@ -35,22 +36,24 @@ responseMessage:any;
 
     const formData = this.frmLogin.value;
     var data={
-      passward :formData.passward,
-      email:formData.email
+      password :formData.password,
+      mobile:formData.mobile
     }
 
 
-    this.userService.login(data).subscribe((resp)=>{
+    this.userService.login(data).subscribe((resp:any)=>{
 
-      this.responseMessage = resp.msg;
+      this.responseMessage = resp.message;
       localStorage.setItem('token',resp.token);
+      var to = localStorage.getItem('token');
+      console.log(to);
       this._snackBar.openSnackBar(this.responseMessage,'');
-      this.router.navigate(['/admin/byer']);
+      this.router.navigate(['/admin/dashboard']);
 
     },    (error: any) => {
       debugger
-              if (error.error.msg) {
-                this.responseMessage = error.error.msg;
+              if (error.error.message) {
+                this.responseMessage = error.error.message;
               } else {
                 this.responseMessage =global.genricError;
               }

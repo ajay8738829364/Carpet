@@ -26,7 +26,7 @@ apiUrl2='http://carpet.emarketking.in/public/api'
 ////
 
 login(data:any):Observable<any>{
-  return this.http.post(this.apiUrl+'/login',data,{
+  return this.http.post(this.apiUrl2+'/loginData',data,{
     headers:new HttpHeaders().set('content-type','application/json')
   });
 }
@@ -38,7 +38,7 @@ login(data:any):Observable<any>{
 
 
 checkToken(){
-  return this.http.get(this.apiUrl+'/test');
+  return this.http.get('');
 }
 
 
