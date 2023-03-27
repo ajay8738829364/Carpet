@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-12">
+    <div class="table-responsive">
+      <div class="col">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell mat-sort-header *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+                </ng-container>
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="group_name">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Group Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.group_name}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="address">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="state">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> state </th>
+            <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="adhar_no">
+            <th mat-header-cell *matHeaderCellDef> Adhar No </th>
+            <td mat-cell *matCellDef="let element"> {{element.adhar_no}} </td>
+          </ng-container>
+           <!-- Symbol Column -->
+           <ng-container matColumnDef="adhar_image">
+            <th mat-header-cell *matHeaderCellDef> Adhar Image </th>
+            <td mat-cell *matCellDef="let element">
+              <img src="{{img+element.adhar_image}}" alt="">
+
+                 </td>
+          </ng-container>
+          <ng-container matColumnDef="pan_no">
+            <th mat-header-cell *matHeaderCellDef> Pan No </th>
+            <td mat-cell *matCellDef="let element"> {{element.pan_no}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="pan_image">
+            <th mat-header-cell *matHeaderCellDef> Pan Image </th>
+            <td mat-cell *matCellDef="let element"> {{element.pan_image}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="contact">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Contact No </th>
+            <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="zip_code">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Zip Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.zip_code}} </td>
+          </ng-container>
+
+
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+  </mat-paginator>
+
+      </div>
+    </div>
+  </div>
+</div>

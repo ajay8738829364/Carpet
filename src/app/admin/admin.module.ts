@@ -41,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ContractorComponent } from './contractor/contractor.component';
 import { FinishingLedgerComponent } from './finishing-ledger/finishing-ledger.component';
 import { NgParticlesModule } from "ng-particles";
-
+import { ViewFinishingLedgerComponent } from './view-finishing-ledger/view-finishing-ledger.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -57,7 +58,8 @@ import { NgParticlesModule } from "ng-particles";
     FinishingLabourLedgerComponent,
     LedgerAccountComponent,
     ContractorComponent,
-    FinishingLedgerComponent
+    FinishingLedgerComponent,
+    ViewFinishingLedgerComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,
@@ -79,7 +81,8 @@ import { NgParticlesModule } from "ng-particles";
     ColorPickerModule,
     MatSnackBarModule,
     HttpClientModule,
-    NgParticlesModule
+    NgParticlesModule,
+    GoogleChartsModule
 
 
 

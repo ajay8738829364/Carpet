@@ -13,11 +13,9 @@ export class FinishingLedgerComponent  implements OnInit{
   groupName :any;
   groupNameList : any= ['q1','q2'] ;
 
-
-  aadharFile!:File;
-  panFile!:File;
   responsMessage:any;
-
+adharImage!:File;
+panImage!:File;
 
 
 
@@ -42,20 +40,14 @@ ngOnInit(): void {
   });
 }
 selectImage(event: any) {
-  const file = event.target.files[0];
-  // this.frmFinishingLedger.patchValue({ aadhar_image: file });
-  this.aadharFile = file;
-  console.log(this.aadharFile)
-    console.log( this.frmFinishingLedger.value);
+  this.adharImage = event.target.files[0];
+  console.log( this.adharImage);
 }
 selectImage2(event: any) {
-  const file = event.target.files[0];
+  this.panImage= event.target.files[0];
 
-  this.panFile=file;
-  console.log(this.panFile);
 
-  // this.frmFinishingLedger.patchValue({ pan_image: file });
-  console.log( this.frmFinishingLedger.value);
+  console.log( this.panImage);
 }
 addFinishingLedger(){
 
@@ -66,9 +58,9 @@ var data = {
    state:formData.state,
    zip_code:formData.zipCode,
    adhar_no:formData.aadharNo,
-  adhar_image:formData.adhar_image ,
+  // adhar_image:formData.adhar_image ,
    pan_no:formData.panNo,
-   pan_image:formData.pan_image,
+  //  pan_image:formData.pan_image,
    contact:formData.contact,
    email:formData.email,
    password:formData.passward,
@@ -77,7 +69,7 @@ var data = {
 
 console.log(data);
 
-  this.adminService.finishingLedger(data).subscribe(
+  this.adminService.finishingLedger(data,this.adharImage,this.panImage).subscribe(
         (resp) => {
           debugger;
           this.responsMessage = resp.message;

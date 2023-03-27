@@ -12,4 +12,7 @@ export class ContractorComponent {
   product = new FormControl('');
 
   productList: string[] = []
+  onGroupSelectList(event:any){
+
+  }
 }

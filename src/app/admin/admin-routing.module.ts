@@ -14,6 +14,7 @@ import { RawMaterialComponent } from './raw-material/raw-material.component';
 import { ShaedCardComponent } from './shaed-card/shaed-card.component';
 import { SizeMasterComponent } from './size-master/size-master.component';
 import { ViewByerListComponent } from './view-byer-list/view-byer-list.component';
+import { ViewFinishingLedgerComponent } from './view-finishing-ledger/view-finishing-ledger.component';
 import { WeavingComponent } from './weaving/weaving.component';
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
     {path:'finishing-labour-ledger',component:FinishingLabourLedgerComponent},
     {path:'ledger-account',component:LedgerAccountComponent},
     {path:'contractor',component:ContractorComponent},
-    {path:'finishing-ledger',component:FinishingLedgerComponent}
+    {path:'finishing-ledger',component:FinishingLedgerComponent},
+    {path:'view-finishing-ledger',component:ViewFinishingLedgerComponent},
   ]}
 ];
 
