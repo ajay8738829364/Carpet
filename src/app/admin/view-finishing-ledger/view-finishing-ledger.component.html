@@ -43,7 +43,7 @@
            <ng-container matColumnDef="adhar_image">
             <th mat-header-cell *matHeaderCellDef> Adhar Image </th>
             <td mat-cell *matCellDef="let element">
-              <img src="{{img+element.adhar_image}}" alt="">
+              <img src="{{img+element.adhar_image}}" height="100px" width="100px" alt="">
 
                  </td>
           </ng-container>
@@ -54,7 +54,9 @@
 
           <ng-container matColumnDef="pan_image">
             <th mat-header-cell *matHeaderCellDef> Pan Image </th>
-            <td mat-cell *matCellDef="let element"> {{element.pan_image}} </td>
+            <td mat-cell *matCellDef="let element">
+              <img src="{{img+element.pan_image}}" height="100px" width="100px" alt="">
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="contact">

@@ -1,0 +1,25 @@
+
+section {
+    width: 100%;
+    height: calc(100vh);
+    /* border: 1px solid #2d2d2d; */
+    margin-bottom: 12px;
+  }
+  
+  div {
+    color: #fff;
+     
+    padding: 12px;
+    margin-right: 4px;
+    display: inline-block;
+
+  }
+  h1 {font-size: 55px;}
+  
+  /* center items */
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

@@ -9,29 +9,33 @@ export class FinishingLabourLedgerComponent {
 
   @ViewChild('pieChart') pieChart!: ElementRef
 
-  drawChart = () => {
+  mixColumnChart = () => {
 
   const data = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['Work', 11],
-    ['Eat', 2],
-    ['Commute', 2],
-    ['Watch TV', 2],
-    ['Sleep', 7]
+    ['Mystery/Crime', 'General',
+    'Western', 'Literature',  ],
+   ['2010', 32, 18, 5 ],
+   ['2020', 30, 16, 9 ],
+   ['2030',  30, 12, 13]
   ]);
 
-  const options = {
-    title: 'My Daily Activities',
-    legend: {position: 'top'}
+
+  var options = {
+    width: 600,
+    height: 400,
+    colors: ['#109618', '#DC3912', '#3366CC'],
+    legend: { position: 'top', maxLines: 3 },
+    bar: { groupWidth: '75%' },
+    isStacked: true,
   };
 
-  const chart = new google.visualization.PieChart(this.pieChart.nativeElement);
+  const chart = new google.visualization.ColumnChart(this.pieChart.nativeElement);
 
   chart.draw(data, options);
 }
 
   ngAfterViewInit() {
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(this.drawChart);
+    google.charts.setOnLoadCallback(this.mixColumnChart);
   }
 }
