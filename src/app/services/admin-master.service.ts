@@ -33,7 +33,7 @@ constructor(private http: HttpClient) {}
 ///////
 ////
   addContractors( data: any,adharImage:File,panImage:File): Observable < any >{
-
+debugger
     const formData = new FormData();
     formData.append('product_name',data.product_name);
     formData.append('group_name',data.group_name);
@@ -43,12 +43,12 @@ constructor(private http: HttpClient) {}
     formData.append('adhar_no',data.adhar_no);
     formData.append('adhar_image',adharImage,adharImage.name);
     formData.append('pan_no',data.pan_no);
-    formData.append(' pan_image',panImage,panImage.name);
-    formData.append('contact',data.contact);
+    formData.append('pan_image',panImage,panImage.name);
+    // formData.append('contact',data.contact);
     formData.append('ppft',data.ppft);
-    formData.append('adhar_no',data.adhar_no);
+    // formData.append('adhar_no',data.adhar_no);
     formData.append('viewer_name',data.viewer_name);
-
+debugger
     return this.http.post(this.apiUrl2 +'/contractor_data', formData, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
     });
