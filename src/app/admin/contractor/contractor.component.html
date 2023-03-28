@@ -4,13 +4,13 @@
       <h4> Contractor </h4>
     </div>
   </div>
-<form >
+<form  [formGroup]="frmContractor" (ngSubmit)="addContractor()">
 
   <div class="row mt-4">
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Product</mat-label>
-        <mat-select  formControlName="product" (valueChange)="onGroupSelectList($event)" >
+        <mat-select  formControlName="product_name" (valueChange)="onProductSelectList($event)" >
 
           <mat-option *ngFor="let product of productList" [value]="product">{{product}}</mat-option>
         </mat-select>
@@ -21,66 +21,68 @@
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Group Name</mat-label>
-        <input matInput placeholder="Group Name" >
+        <mat-select  formControlName="group_name" (valueChange)="onGroupSelectList($event)">
+
+          <mat-option *ngFor="let groupNames of groupNameList" [value]="groupNames">{{groupNames}}</mat-option>
+        </mat-select>
       </mat-form-field>
 
 
     </div>
 
-    <!-- <div class="col-lg-6 col-md-6">
-      <label for="formFile" class="form-label">Upload Category Image *</label>
-      <input class="form-control" type="file"  id="formFile" accept="image/*" >
-    </div> -->
 
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Viewer Name</mat-label>
-        <input matInput placeholder="Viewer Name" >
+        <input matInput placeholder="Viewer Name"  formControlName="viewer_name">
       </mat-form-field>
     </div>
 
-    <!-- <div class="col-lg-6 col-md-6">
-      <mat-form-field appearance="outline">
-        <mat-label>Father's Name</mat-label>
-        <input matInput placeholder="Father's Name" >
-      </mat-form-field>
-    </div> -->
+
 
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Address</mat-label>
         <!-- <input matInput placeholder="Address" > -->
-        <textarea matInput placeholder="Address"></textarea>
+        <textarea matInput placeholder="Address" formControlName="address"></textarea>
       </mat-form-field>
     </div>
+
+
+
+
+
+
+
 
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>State</mat-label>
-        <input matInput placeholder="State" >
+        <input matInput placeholder="State" formControlName="state">
       </mat-form-field>
     </div>
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Zip Code</mat-label>
-        <input matInput placeholder="Zip Code" >
+        <input matInput placeholder="Zip Code" formControlName="zip_code" >
       </mat-form-field>
     </div>
 
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Aadhar No.</mat-label>
-        <input matInput placeholder="Aadhar No." >
+        <input matInput placeholder="Aadhar No." formControlName="adhar_no">
       </mat-form-field>
     </div>
     <div class="col-lg-6 col-md-6">
       <label for="formFile" class="form-label">Upload Aadhar Card *</label>
-      <input class="form-control" type="file"  id="formFile" accept="image/*"  >
+      <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
+      <input class="form-control" type="file"  id="formFile" accept="image/*"  (change)="selectImage($event)" formControlName="adhar_image" >
     </div>
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Pan No.</mat-label>
-        <input matInput placeholder="Pan No." >
+        <input matInput placeholder="Pan No." formControlName="pan_no">
       </mat-form-field>
 
     </div>
@@ -90,7 +92,8 @@
 
     <div class="col-lg-6 col-md-6">
       <label for="formFile" class="form-label">Upload Pan Card *</label>
-      <input class="form-control" type="file"  id="formFile" accept="image/*"  >
+      <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
+      <input class="form-control" type="file"  id="formFile" accept=".jpeg, jpg" (change)="selectImage2($event)" formControlName="pan_image">
     </div>
 
 
@@ -98,7 +101,7 @@
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>P.P.F.T.</mat-label>
-        <input matInput placeholder="P.P.F.T." >
+        <input matInput placeholder="P.P.F.T." formControlName="ppft" >
       </mat-form-field>
     </div>
 
