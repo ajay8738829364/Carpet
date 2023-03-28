@@ -43,6 +43,9 @@ import { FinishingLedgerComponent } from './finishing-ledger/finishing-ledger.co
 import { NgParticlesModule } from "ng-particles";
 import { ViewFinishingLedgerComponent } from './view-finishing-ledger/view-finishing-ledger.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { AdminFooterComponent } from './admin-footer/admin-footer.component';
+import { AdminSidebarsComponent } from './admin-sidebars/admin-sidebars.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -59,7 +62,10 @@ import { GoogleChartsModule } from 'angular-google-charts';
     LedgerAccountComponent,
     ContractorComponent,
     FinishingLedgerComponent,
-    ViewFinishingLedgerComponent
+    ViewFinishingLedgerComponent,
+    AdminHeaderComponent,
+    AdminFooterComponent,
+    AdminSidebarsComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,

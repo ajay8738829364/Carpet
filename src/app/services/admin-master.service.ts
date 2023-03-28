@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AdminMasterService {
 
 
-apiUrl='http://127.0.0.1:3000/api'
+// apiUrl='http://127.0.0.1:3000/api'
 apiUrl2='http://carpet.emarketking.in/public/api'
 
 

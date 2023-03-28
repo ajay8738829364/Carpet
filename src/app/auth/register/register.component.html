@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <form [formGroup]="frmRegister" (ngSubmit)="register()">
   <div class="row " style="width:50%">
 
@@ -41,33 +41,7 @@
         </mat-form-field>
       </div>
 
-     <!-- <div class="col-md-6">
-        <mat-label>Select Gender</mat-label> <br>
-      <mat-radio-group aria-label="Select an option" formControlName="gender">
-
-        <mat-radio-button value="male">Male</mat-radio-button>
-        <mat-radio-button value="female">Female</mat-radio-button>
-      </mat-radio-group>
-      </div>
-
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Image </mat-label>
-          <input matInput placeholder="Image" formControlName="image">
-        </mat-form-field>
-      </div>
-       <div class="col-md-6 ">
-        <mat-form-field appearance="outline">
-          <mat-label>Address </mat-label>
-          <input matInput placeholder="Image" formControlName="address">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6"> -->
-        <!-- <mat-form-field appearance="outline">
-          <mat-label>Type</mat-label>
-          <input matInput placeholder="Type" formControlName="type">
-        </mat-form-field>
-      </div> -->
+      
       <div class="col-md-3">
         <button type="submit" mat-raised-button color="primary" [disabled]="frmRegister.invalid">Register</button>
       </div>
@@ -75,5 +49,92 @@
   </div>
 </form>
 
+</div> -->
+
+
+<!-- signup -->
+
+
+<div id="main-wrapper" class="oxyy-login-register">
+  <div class="hero-wrap d-flex align-items-center">
+    <div class="hero-mask opacity-4 bg-secondary"></div>
+    <div class="hero-bg hero-bg-scroll" style="background-image:url('assets/auth-assets/images/login-bg-3.jpg');"></div>
+    <div class="hero-content w-100">
+      <div class="container">
+        <div class="row g-0 min-vh-100">
+          <!-- Welcome Text
+            ========================= -->
+          <div class="col-md-4 d-flex flex-column">
+            <div class="row g-0 my-auto">
+              <div class="col-11 col-sm-10 col-lg-9 mx-auto text-center">
+                <div class="logo mt-5 mb-3">   </div>
+                <h1 class="text-5 fw-400 text-white mb-5">RACHIN EXPORTS</h1>
+                <h2 class="text-white line-height-3 mb-5">Join our group in few minutes! Sign up with your details to
+                  get started</h2>
+              </div>
+            </div>
+          </div>
+          <!-- Welcome Text End -->
+
+          <!-- Register Form
+            ========================= -->
+          <div class="col-md-8 d-flex align-items-center py-5">
+            <div class="container my-auto py-4 shadow-lg bg-white">
+              <div class="row">
+                <div class="col-11 col-lg-10 mx-auto">
+                  <h3 class="text-9 fw-600 text-center my-3">Create an Account</h3>
+                  <p class="text-center mb-4">Already have an account? <a routerLink="../login"><u>Sign In</u></a></p>
+                  <form [formGroup]="frmRegister" (ngSubmit)="register()">
+                    <div class="row">
+                      <div class="mb-3 col-md-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>User Name</mat-label>
+                          <input matInput placeholder="User Name" formControlName="name">
+                        </mat-form-field>
+                      </div>
+                      <div class="mb-3 col-md-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>E-mail</mat-label>
+                          <input matInput placeholder="E-mail" formControlName="email">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-3 col-md-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Contact Number</mat-label>
+                          <input matInput placeholder="Contact Number"  formControlName="mobile">
+                        </mat-form-field>
+                      </div>
+                      <div class="mb-3 col-md-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Password</mat-label>
+                          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password">
+                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                        </mat-form-field>
+                    </div>
+                     </div>
+                    <div class="d-grid my-4">
+                      <button type="submit" mat-raised-button color="primary" [disabled]="frmRegister.invalid">Register</button>
+
+                    </div>
+                    <p class="text-center text-muted text-2 mb-0">I agree to the <a routerLink="#">Terms of
+                        Service and Privacy Policy</a></p>
+                  </form>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Register Form End -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
