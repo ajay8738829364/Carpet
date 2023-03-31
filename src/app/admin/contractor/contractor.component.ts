@@ -56,7 +56,7 @@ export class ContractorComponent implements OnInit {
   }
 
   onProductSelectList(data:any){
-
+    console.log(data);
   }
 
   selectImage(event: any) {

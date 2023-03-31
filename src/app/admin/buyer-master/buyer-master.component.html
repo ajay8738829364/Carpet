@@ -17,56 +17,22 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Buyer Name</mat-label>
-          <input matInput placeholder="Buyer Name" formControlName="buyerName">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail" formControlName="email">
-        </mat-form-field>
+          <input matInput placeholder="Buyer Name" formControlName="buyerName" autofocus  (keyup.enter)="addressFocus.focus()">
 
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>Contact No.</mat-label>
-          <input matInput placeholder="Contact No." formControlName="mobile">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Address"  formControlName="address"></textarea>
+          <textarea matInput placeholder="Address" #addressFocus  formControlName="address" autofocus  (keyup.enter)="cityFocus.focus()"></textarea>
         </mat-form-field>
 
-
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>Country</mat-label>
-          <mat-select   formControlName="country" (valueChange)="onCountry($event)">
-            <!-- formControlName="country" -->
-            <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>State</mat-label>
-          <mat-select  formControlName="state" (valueChange)="onState($event)" >
-            <!-- formControlName="state" -->
-
-            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
-          </mat-select>
-        </mat-form-field>
 
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <mat-select   formControlName="city" (valueChange)="onCity($event)" >
+          <mat-select   formControlName="city" (valueChange)="onCity($event)" #cityFocus autofocus  (keyup.enter)="countryFocus.focus()" >
 
             <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
           </mat-select>
@@ -76,32 +42,51 @@
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <mat-select   formControlName="country" (valueChange)="onCountry($event)" #countryFocus  autofocus  (keyup.enter)="stateFocus.focus()">
+            <!-- formControlName="country" -->
+            <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+      </div>
+
+
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus autofocus  (keyup.enter)="zipCodeFocus.focus()">
+            <!-- formControlName="state" -->
+
+            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code" formControlName="zipCode">
+          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus autofocus  (keyup.enter)="contactFocus.focus()">
         </mat-form-field>
       </div>
-      <!-- <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>Ship To</mat-label>
-          <input matInput placeholder="Ship TO" formControlName="shipTo">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>Notify</mat-label>
-          <input matInput placeholder="Notify" formControlName="notify">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>Address</mat-label>
-          <input matInput placeholder="Address" formControlName="address2">
-        </mat-form-field>
-      </div> -->
 
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact No.</mat-label>
+          <input matInput placeholder="Contact No." formControlName="mobile" #contactFocus autofocus  (keyup.enter)="emailFocus.focus()">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>E-Mail</mat-label>
+          <input matInput placeholder="E-Mail" #emailFocus formControlName="email" autofocus  (keyup.enter)="bankName.focus()" >
+        </mat-form-field>
+      </div>
     </div>
-
-
 
     </fieldset>
     </section>
@@ -116,33 +101,29 @@
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
             <mat-label>Bank Name</mat-label>
-            <input matInput placeholder="Bank Name" formControlName="bank">
+            <input matInput placeholder="Bank Name" formControlName="bank" #bankName autofocus  (keyup.enter)="bankAddressFocus.focus()">
           </mat-form-field>
         </div>
 
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
-            <mat-label>Branch</mat-label>
-            <input matInput placeholder="Branch" formControlName="branch">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Branch" formControlName="branch" #bankAddressFocus autofocus  (keyup.enter)="bankMobile.focus()">
           </mat-form-field>
         </div>
 
-        <!-- <div class="col-md-6 col-lg-4">
-          <label for="formFile" class="form-label">Upload Passbook  *</label>
-          <input class="form-control" type="file"  id="formFile" accept="image/*" formControlName="passbook" >
 
-        </div> -->
 
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
             <mat-label>Mobile No.</mat-label>
-            <input matInput placeholder="Mobile No." formControlName="mobile2">
+            <input matInput placeholder="Mobile No." formControlName="mobile2" #bankMobile autofocus  (keyup.enter)="bankEmail.focus()">
           </mat-form-field>
         </div>
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
             <mat-label>E-Mail</mat-label>
-            <input matInput placeholder="E-Mail" formControlName="email2">
+            <input matInput placeholder="E-Mail" formControlName="email2" #bankEmail>
           </mat-form-field>
         </div>
 
@@ -152,7 +133,7 @@
 
 
       <div class="row"><div class="col-lg-3">
-        <button mat-raised-button color="primary">Add</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="frmBuyerMaster.invalid">Add</button>
       </div></div>
 
 </form>

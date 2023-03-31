@@ -10,6 +10,8 @@ import { DyingMasterComponent } from './dying-master/dying-master.component';
 import { FinishingLabourLedgerComponent } from './finishing-labour-ledger/finishing-labour-ledger.component';
 import { FinishingLedgerComponent } from './finishing-ledger/finishing-ledger.component';
 import { LedgerAccountComponent } from './ledger-account/ledger-account.component';
+import { PurchaserDetailsComponent } from './purchaser-details/purchaser-details.component';
+import { RawMaterialGroupComponent } from './raw-material-group/raw-material-group.component';
 import { RawMaterialComponent } from './raw-material/raw-material.component';
 import { ShaedCardComponent } from './shaed-card/shaed-card.component';
 import { SizeMasterComponent } from './size-master/size-master.component';
@@ -33,6 +35,8 @@ const routes: Routes = [
     {path:'contractor',component:ContractorComponent},
     {path:'finishing-ledger',component:FinishingLedgerComponent},
     {path:'view-finishing-ledger',component:ViewFinishingLedgerComponent},
+    {path:'raw-material-group',component:RawMaterialGroupComponent},
+    {path:'purchaser-details',component:PurchaserDetailsComponent},
   ]}
 ];
 

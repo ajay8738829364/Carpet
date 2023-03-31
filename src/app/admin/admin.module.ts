@@ -46,6 +46,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { AdminFooterComponent } from './admin-footer/admin-footer.component';
 import { AdminSidebarsComponent } from './admin-sidebars/admin-sidebars.component';
+import { RawMaterialGroupComponent } from './raw-material-group/raw-material-group.component';
+import { PurchaserDetailsComponent } from './purchaser-details/purchaser-details.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -65,7 +67,9 @@ import { AdminSidebarsComponent } from './admin-sidebars/admin-sidebars.componen
     ViewFinishingLedgerComponent,
     AdminHeaderComponent,
     AdminFooterComponent,
-    AdminSidebarsComponent
+    AdminSidebarsComponent,
+    RawMaterialGroupComponent,
+    PurchaserDetailsComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,
