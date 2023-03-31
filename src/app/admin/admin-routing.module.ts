@@ -18,6 +18,8 @@ import { SizeMasterComponent } from './size-master/size-master.component';
 import { ViewByerListComponent } from './view-byer-list/view-byer-list.component';
 import { ViewFinishingLedgerComponent } from './view-finishing-ledger/view-finishing-ledger.component';
 import { WeavingComponent } from './weaving/weaving.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { QualityComponent } from './quality/quality.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -37,6 +39,8 @@ const routes: Routes = [
     {path:'view-finishing-ledger',component:ViewFinishingLedgerComponent},
     {path:'raw-material-group',component:RawMaterialGroupComponent},
     {path:'purchaser-details',component:PurchaserDetailsComponent},
+    {path:'employee-details',component:EmployeeDetailsComponent},
+    {path:'quality',component:QualityComponent},
   ]}
 ];
 

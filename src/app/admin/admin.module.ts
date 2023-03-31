@@ -48,6 +48,8 @@ import { AdminFooterComponent } from './admin-footer/admin-footer.component';
 import { AdminSidebarsComponent } from './admin-sidebars/admin-sidebars.component';
 import { RawMaterialGroupComponent } from './raw-material-group/raw-material-group.component';
 import { PurchaserDetailsComponent } from './purchaser-details/purchaser-details.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { QualityComponent } from './quality/quality.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -69,7 +71,9 @@ import { PurchaserDetailsComponent } from './purchaser-details/purchaser-details
     AdminFooterComponent,
     AdminSidebarsComponent,
     RawMaterialGroupComponent,
-    PurchaserDetailsComponent
+    PurchaserDetailsComponent,
+    EmployeeDetailsComponent,
+    QualityComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,
