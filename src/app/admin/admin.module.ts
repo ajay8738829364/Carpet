@@ -55,6 +55,8 @@ import { ColourCodeDyeingDetailComponent } from './colour-code-dyeing-detail/col
 import { ColourShadeCardComponent } from './colour-shade-card/colour-shade-card.component';
 import { FinishingHeadComponent } from './finishing-head/finishing-head.component';
 import { FinishingProcessComponent } from './finishing-process/finishing-process.component';
+import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
+import { PurchaseBillComponent } from './purchase-bill/purchase-bill.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -83,7 +85,9 @@ import { FinishingProcessComponent } from './finishing-process/finishing-process
     ColourCodeDyeingDetailComponent,
     ColourShadeCardComponent,
     FinishingHeadComponent,
-    FinishingProcessComponent
+    FinishingProcessComponent,
+    BuyerOrderComponent,
+    PurchaseBillComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,

@@ -25,6 +25,8 @@ import { ColourCodeDyeingDetailComponent } from './colour-code-dyeing-detail/col
 import { ColourShadeCardComponent } from './colour-shade-card/colour-shade-card.component';
 import { FinishingHeadComponent } from './finishing-head/finishing-head.component';
 import { FinishingProcessComponent } from './finishing-process/finishing-process.component';
+import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
+import { PurchaseBillComponent } from './purchase-bill/purchase-bill.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -51,6 +53,9 @@ const routes: Routes = [
     {path:'colour-shade-card',component:ColourShadeCardComponent},
     {path:'finishing-head',component:FinishingHeadComponent},
     {path:'finishing-process',component:FinishingProcessComponent},
+    {path:'buyer-order',component:BuyerOrderComponent},
+    {path:'purchase-bill',component:PurchaseBillComponent}
+
   ]}
 ];
 

@@ -1,0 +1,175 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      Purchase Bill
+    </div>
+  </div>
+
+
+
+
+  <form action="">
+<div class="row">
+  <div class="col-md-6">
+    <mat-form-field appearance="outline">
+      <mat-label>Buyer </mat-label>
+      <input matInput placeholder="Buyer">
+
+    </mat-form-field>
+  </div>
+  <div class="col-md-6">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Chalan Date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <div class="col-md-6">
+    <mat-form-field appearance="outline">
+      <mat-label>Chalan No</mat-label>
+      <mat-select [formControl]="chalanNo" multiple>
+
+        <mat-option *ngFor="let chalanNo of chalanNoList" [value]="chalanNo">{{chalanNo}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-6">
+    <mat-form-field appearance="outline">
+      <mat-label>Bill No. </mat-label>
+      <input matInput placeholder="Bill No.">
+
+    </mat-form-field>
+  </div>
+
+
+  <div class="col-md-6">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Bill Date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sr. No.</th>
+      <th scope="col">Lot No.</th>
+      <th scope="col">Item</th>
+      <th scope="col">Colour</th>
+
+      <th scope="col">Count</th>
+      <th scope="col">Bales</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Rate</th>
+      <th scope="col">Value of </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      <td>1</td>
+      <td>2</td>
+      <td>@woolean</td>
+      <td>red</td>
+      <td>3</td>
+      <td>xyz</td>
+      <td>2kg</td>
+      <td>200</td>
+      <td>abc</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+<div class="row mt-4">
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>GST % </mat-label>
+      <input matInput placeholder="GST %">
+
+    </mat-form-field>
+  </div>
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>CGST % </mat-label>
+      <input matInput placeholder="CGST %">
+
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>IGST % </mat-label>
+      <input matInput placeholder="IGST %">
+
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>SGST % </mat-label>
+      <input matInput placeholder="SGST %">
+
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>VAT % </mat-label>
+      <input matInput placeholder="VAT %">
+
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>Freight </mat-label>
+      <input matInput placeholder="Freight">
+
+    </mat-form-field>
+  </div>
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>Other Charges </mat-label>
+      <input matInput placeholder="Other Charges">
+
+    </mat-form-field>
+  </div>
+  <div class="col-md-3">
+    <mat-form-field appearance="outline">
+      <mat-label>Net Amount </mat-label>
+      <input matInput placeholder="Net Amount">
+
+    </mat-form-field>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-1">
+    <button mat-raised-button color="primary" type="submit">Add</button>
+  </div>
+
+  <div class="col-lg-3">
+    <button mat-raised-button color="primary" type="submit">Print</button>
+  </div>
+</div>
+  </form>
+
+
+
+
+</div>
