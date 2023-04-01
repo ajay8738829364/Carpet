@@ -1,0 +1,13 @@
+.row{
+  margin: auto;
+}
+.mat-mdc-form-field{
+  width: 100%;
+}
+
+.btnPrd{
+  margin-top: -58px;
+    padding-right: 5px;
+  float: right;
+}
+
