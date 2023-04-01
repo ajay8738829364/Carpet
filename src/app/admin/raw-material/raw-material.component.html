@@ -31,12 +31,16 @@
 
 
 
-      <div class="col-lg-6 col-md-6 ">
+      <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
-          <mat-label>Avg. Rate</mat-label>
-          <input matInput placeholder="Rate"  formControlName="avg_rate">
+          <mat-label>Color Code</mat-label>
+          <input matInput placeholder="Color Code" [value]="color2" [(colorPicker)]="color2" formControlName="colorCode">
         </mat-form-field>
-      </div>
+        <span>
+          <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
+        </span>
+
+        </div>
       <div class="col-lg-6 col-md-6 ">
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
@@ -84,9 +88,9 @@
           <td mat-cell *matCellDef="let element"> {{element.count}} </td>
         </ng-container>
  <!-- Name Column -->
- <ng-container matColumnDef="rate">
-  <th mat-header-cell *matHeaderCellDef> Rate </th>
-  <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+ <ng-container matColumnDef="colourCode">
+  <th mat-header-cell *matHeaderCellDef> Colour Code </th>
+  <td mat-cell *matCellDef="let element"> {{element.colourCode}} </td>
 </ng-container>
 
 <!-- Weight Column -->

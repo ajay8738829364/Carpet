@@ -13,7 +13,7 @@ export interface PeriodicElement {
   materialName: string;
   count: string;
   desc: string;
-  rate: string;
+  colourCode: string;
   hsnCode: string;
 }
 
@@ -25,6 +25,17 @@ const ELEMENT_DATA: PeriodicElement[] = [];
   styleUrls: ['./raw-material.component.css'],
 })
 export class RawMaterialComponent implements OnInit {
+
+
+  public arrayColors: any = {
+
+    color2: '#e920e9',
+
+  };
+
+  public color2: string = '';
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -41,7 +52,7 @@ export class RawMaterialComponent implements OnInit {
     'id',
     'materialName',
     'count',
-    'rate',
+    'colourCode',
     'hsnCode',
     'desc',
   ];
@@ -60,7 +71,7 @@ export class RawMaterialComponent implements OnInit {
       material_name: [''],
       count: [''],
       hsn_code: [''],
-      avg_rate: [''],
+      colourCode: [''],
       description: [''],
     });
 
@@ -74,7 +85,7 @@ export class RawMaterialComponent implements OnInit {
       material_name: formData.material_name,
       count: formData.count,
       hsn_code: formData.hsn_code,
-      avg_rate: formData.avg_rate,
+      colourCode: formData.colourCode,
       description: formData.description,
     };
     console.log(data);
@@ -113,7 +124,7 @@ export class RawMaterialComponent implements OnInit {
             materialName: val.material_name,
             count: val.count,
             desc: val.description,
-            rate: val.avg_rate,
+            colourCode: val.colourCode,
             hsnCode: val.hsn_code,
           });
         });
