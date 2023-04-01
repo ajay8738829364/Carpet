@@ -50,6 +50,11 @@ import { RawMaterialGroupComponent } from './raw-material-group/raw-material-gro
 import { PurchaserDetailsComponent } from './purchaser-details/purchaser-details.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { QualityComponent } from './quality/quality.component';
+import { DesignComponent } from './design/design.component';
+import { ColourCodeDyeingDetailComponent } from './colour-code-dyeing-detail/colour-code-dyeing-detail.component';
+import { ColourShadeCardComponent } from './colour-shade-card/colour-shade-card.component';
+import { FinishingHeadComponent } from './finishing-head/finishing-head.component';
+import { FinishingProcessComponent } from './finishing-process/finishing-process.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -73,7 +78,12 @@ import { QualityComponent } from './quality/quality.component';
     RawMaterialGroupComponent,
     PurchaserDetailsComponent,
     EmployeeDetailsComponent,
-    QualityComponent
+    QualityComponent,
+    DesignComponent,
+    ColourCodeDyeingDetailComponent,
+    ColourShadeCardComponent,
+    FinishingHeadComponent,
+    FinishingProcessComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,

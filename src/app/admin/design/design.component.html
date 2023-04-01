@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col">
+      Design
+    </div>
+  </div>
+
+
+  <form >
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Production Quality</mat-label>
+          <input matInput placeholder="Production Quality">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Export Quality</mat-label>
+          <mat-select [formControl]="exportQuality" >
+
+            <mat-option *ngFor="let exportQuality of exportQualityList" [value]="exportQuality">{{exportQuality}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Design</mat-label>
+          <input matInput placeholder="Design">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Ground</mat-label>
+          <input matInput placeholder="Ground">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Border</mat-label>
+          <input matInput placeholder="Border">
+        </mat-form-field>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <button mat-raised-button color="primary">Add</button>
+      </div>
+    </div>
+
+  </form>
+
+
+
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search" #input autocomplete="off" (keyup)="applyFilter($event)">
+      </mat-form-field>
+    </div>
+    <div class="col-lg-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="productionQuality">
+          <th mat-header-cell *matHeaderCellDef> Production Quality </th>
+          <td mat-cell *matCellDef="let element"> {{element.productionQuality}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="exportQuality">
+          <th mat-header-cell *matHeaderCellDef> Export Quality </th>
+          <td mat-cell *matCellDef="let element"> {{element.exportQuality}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="design">
+          <th mat-header-cell *matHeaderCellDef> Design </th>
+          <td mat-cell *matCellDef="let element"> {{element.design}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ground">
+          <th mat-header-cell *matHeaderCellDef> Ground </th>
+          <td mat-cell *matCellDef="let element"> {{element.ground}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="border">
+          <th mat-header-cell *matHeaderCellDef> border </th>
+          <td mat-cell *matCellDef="let element"> {{element.border}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+
+      <mat-paginator [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page">
+</mat-paginator>
+    </div>
+  </div>
+</div>

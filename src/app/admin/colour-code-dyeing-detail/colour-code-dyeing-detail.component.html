@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col">
+      Colour Code with Dyeing Details
+    </div>
+  </div>
+
+<form action="">
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label> Quality</mat-label>
+        <mat-select [formControl]="exportQuality" >
+
+          <mat-option *ngFor="let exportQuality of exportQualityList" [value]="exportQuality">{{exportQuality}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Color Name</mat-label>
+        <input matInput placeholder="Color Name">
+      </mat-form-field>
+    </div>
+
+    <div class="col-lg-6 col-md-6 d-flex">
+      <mat-form-field appearance="outline">
+        <mat-label>Color Code</mat-label>
+        <input matInput placeholder="Color Code" [value]="color2" [(colorPicker)]="color2" formControlName="colorCode">
+      </mat-form-field>
+      <span>
+        <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
+      </span>
+
+      </div>
+      <div class="col-md-6">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Recipe</mat-label>
+          <input matInput placeholder="Recipe">
+        </mat-form-field>
+      </div>
+      <span class="diplayColor" [style.background]="color2"></span>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <button mat-raised-button color="primary">Add</button>
+    </div>
+  </div>
+</form>
+
+
+</div>

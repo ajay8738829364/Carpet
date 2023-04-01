@@ -20,6 +20,11 @@ import { ViewFinishingLedgerComponent } from './view-finishing-ledger/view-finis
 import { WeavingComponent } from './weaving/weaving.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { QualityComponent } from './quality/quality.component';
+import { DesignComponent } from './design/design.component';
+import { ColourCodeDyeingDetailComponent } from './colour-code-dyeing-detail/colour-code-dyeing-detail.component';
+import { ColourShadeCardComponent } from './colour-shade-card/colour-shade-card.component';
+import { FinishingHeadComponent } from './finishing-head/finishing-head.component';
+import { FinishingProcessComponent } from './finishing-process/finishing-process.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -41,6 +46,11 @@ const routes: Routes = [
     {path:'purchaser-details',component:PurchaserDetailsComponent},
     {path:'employee-details',component:EmployeeDetailsComponent},
     {path:'quality',component:QualityComponent},
+    {path:'design',component:DesignComponent},
+    {path:'colour-code-dyeing-detail',component:ColourCodeDyeingDetailComponent},
+    {path:'colour-shade-card',component:ColourShadeCardComponent},
+    {path:'finishing-head',component:FinishingHeadComponent},
+    {path:'finishing-process',component:FinishingProcessComponent},
   ]}
 ];
 

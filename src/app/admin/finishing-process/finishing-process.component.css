@@ -1,0 +1,19 @@
+.row {
+  margin: auto;
+}
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.colorPic {
+  height: 24px;
+    margin-top: 18px;
+    border-radius: 50%;
+    width: 23px;
+}
+.diplayColor{
+  height: 200px;
+  width: 200px;
+  border-radius: 12px;
+}
+
