@@ -42,7 +42,7 @@ export class EmployeeDetailsComponent {
 
   group =new FormControl('');
 
-  groupList : string [] = ['STAFF','VIEWER','FINISHER'];
+  groupList : string [] = ['STAFF','VIEWER','FINISHER','OTHERS 1','OTHERS 2'];
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 

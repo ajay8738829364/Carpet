@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
@@ -12,6 +12,10 @@ import { global } from 'src/app/shared/global';
   styleUrls: ['./buyer-master.component.css'],
 })
 export class BuyerMasterComponent implements OnInit {
+
+
+  @ViewChild('addressFocus')addressFocus!:ElementRef;
+@ViewChild('#cityFocus')cityFocus!:ElementRef;
   public frmBuyerMaster!: FormGroup;
 
   responsMessage:any;
@@ -35,6 +39,19 @@ export class BuyerMasterComponent implements OnInit {
     private _snackBar: SnackBarService
   ) {}
 
+
+  onEnterBuyerName(event:any):void{
+    if (event.which === 13) {
+      this.addressFocus.nativeElement.focus();
+    }
+
+  }
+
+  onAddressFocus(event:any){
+    if(event.which===13){
+      this.cityFocus.nativeElement.focus();
+    }
+  }
 
   onCountry(data:any){
 console.log(data)

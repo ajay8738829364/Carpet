@@ -5,34 +5,36 @@
     </div>
   </div>
 
-<form action="">
-  <div class="row">
-    <div class="col-md-6">
-      <mat-form-field appearance="outline">
-        <mat-label> Quality</mat-label>
-        <mat-select [formControl]="exportQuality" >
+  <form action="">
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label> Quality</mat-label>
+          <mat-select [formControl]="exportQuality">
 
-          <mat-option *ngFor="let exportQuality of exportQualityList" [value]="exportQuality">{{exportQuality}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+            <mat-option *ngFor="let exportQuality of exportQualityList"
+              [value]="exportQuality">{{exportQuality}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-    <div class="col-md-6">
+      <div class="col-md-4">
 
-      <mat-form-field appearance="outline">
-        <mat-label>Color Name</mat-label>
-        <input matInput placeholder="Color Name">
-      </mat-form-field>
-    </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Color Name</mat-label>
+          <input matInput placeholder="Color Name">
+        </mat-form-field>
+      </div>
 
-    <div class="col-lg-6 col-md-6 d-flex">
-      <mat-form-field appearance="outline">
-        <mat-label>Color Code</mat-label>
-        <input matInput placeholder="Color Code" [value]="color2" [(colorPicker)]="color2" formControlName="colorCode">
-      </mat-form-field>
-      <span>
-        <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
-      </span>
+      <div class="col-lg-4 col-md-4 d-flex">
+        <mat-form-field appearance="outline" style="width: 70%;">
+          <mat-label>Color Code</mat-label>
+          <input matInput placeholder="Color Code" [value]="color2" [(colorPicker)]="color2"
+            formControlName="colorCode">
+        </mat-form-field>
+        <span>
+          <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
+        </span>
 
       </div>
       <div class="col-md-6">
@@ -45,71 +47,126 @@
       <span class="diplayColor" [style.background]="color2"></span>
 
 
-  </div>
-
-  <div class="row">
-    <div class="col-lg-3">
-      <button mat-raised-button color="primary">Add</button>
     </div>
-  </div>
-</form>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tabble-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sr. No.</th>
+                <th scope="col">Chemical Name</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Vendor Name</th>
 
 
-<div class="row mt-4">
-  <div class="col-md-6">
-    <mat-form-field appearance="outline">
-      <mat-label>Search</mat-label>
-      <input matInput placeholder="Search" #input autocomplete="off" (keyup)="applyFilter($event)">
-    </mat-form-field>
-  </div>
-  <div class="col-lg-12">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              </tr>
+            </thead>
+            <tbody>
 
-      <!--- Note that these columns can be defined in any order.
+              <tr>
+                <th scope="row">1</th>
+                <td><input type="text" class="formControl" placeholder="Chemical Name"></td>
+                <td><input type="text"  class="formControl" placeholder="Weight .000"></td>
+                <td><input type="text" class="formControl" placeholder="Vendor Name"></td>
+
+
+
+              </tr>
+
+            </tbody>
+          </table>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sr. No.</th>
+
+
+                <th scope="col">Dyes Name </th>
+                <th scope="col">Weight</th>
+                <th scope="col">Vendor Name</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <th scope="row">1</th>
+
+                <td><input type="text" class="formControl" placeholder="Dyes Name"></td>
+                <td><input type="text" class="formControl" placeholder="Weight"></td>
+                <td><input type="text" class="formControl" placeholder="Vendor Name"></td>
+
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <button mat-raised-button color="primary">Add</button>
+      </div>
+    </div>
+  </form>
+
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search" #input autocomplete="off" (keyup)="applyFilter($event)">
+      </mat-form-field>
+    </div>
+    <div class="col-lg-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.index}} </td>
-      </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+        </ng-container>
 
-      <!-- Name Column -->
-
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="quality">
-        <th mat-header-cell *matHeaderCellDef> Quality </th>
-        <td mat-cell *matCellDef="let element"> {{element.quality}} </td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="colourName">
-        <th mat-header-cell *matHeaderCellDef> Colour Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.colourName}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="clolurCode">
-        <th mat-header-cell *matHeaderCellDef>Colour Code </th>
-        <td mat-cell *matCellDef="let element"> {{element.clolurCode}} </td>
-      </ng-container>
-      <ng-container matColumnDef="reciepeDetails">
-        <th mat-header-cell *matHeaderCellDef>Reciepe Details </th>
-        <td mat-cell *matCellDef="let element"> {{element.reciepeDetails}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <!-- Name Column -->
 
 
+        <!-- Weight Column -->
+        <ng-container matColumnDef="quality">
+          <th mat-header-cell *matHeaderCellDef> Quality </th>
+          <td mat-cell *matCellDef="let element"> {{element.quality}} </td>
+        </ng-container>
 
-    <mat-paginator [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Select page">
-</mat-paginator>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="colourName">
+          <th mat-header-cell *matHeaderCellDef> Colour Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.colourName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="clolurCode">
+          <th mat-header-cell *matHeaderCellDef>Colour Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.clolurCode}} </td>
+        </ng-container>
+        <ng-container matColumnDef="reciepeDetails">
+          <th mat-header-cell *matHeaderCellDef>Reciepe Details </th>
+          <td mat-cell *matCellDef="let element"> {{element.reciepeDetails}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+      </mat-paginator>
+    </div>
   </div>
-</div>
 
 </div>

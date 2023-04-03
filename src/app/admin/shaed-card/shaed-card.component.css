@@ -5,8 +5,18 @@
   width: 100%;
 }
 .colorPic {
-  height: 24px;
-  margin-top: 18px;
+
+  height: 61px;
+  margin-top: -3px;
   border-radius: 50%;
-  width: 23px;
+  width: 65px;
+
+}
+.diplayColor{
+  height: 200px;
+  width: 200px;
+  border-radius: 12px;
+}
+span{
+  padding-left: 10px;
 }

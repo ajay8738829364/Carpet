@@ -17,14 +17,14 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Buyer Name</mat-label>
-          <input matInput placeholder="Buyer Name" formControlName="buyerName" autofocus  (keyup.enter)="addressFocus.focus()">
+          <input matInput placeholder="Buyer Name" formControlName="buyerName"   (keydown)="onEnterBuyerName($event)">
 
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Address" #addressFocus  formControlName="address" autofocus  (keyup.enter)="cityFocus.focus()"></textarea>
+          <textarea matInput placeholder="Address" #addressFocus (keydown)="onAddressFocus($event)"  formControlName="address" ></textarea>
         </mat-form-field>
 
 
@@ -40,6 +40,20 @@
         <!-- formControlName="city" -->
 
       </div>
+
+
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus autofocus  (keyup.enter)="zipCodeFocus.focus()">
+            <!-- formControlName="state" -->
+
+            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
@@ -55,17 +69,7 @@
 
 
 
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>State</mat-label>
-          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus autofocus  (keyup.enter)="zipCodeFocus.focus()">
-            <!-- formControlName="state" -->
 
-            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-      </div>
 
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">

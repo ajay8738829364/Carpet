@@ -67,8 +67,11 @@
     <div class="col-md-6">
 
       <mat-form-field appearance="outline">
-        <mat-label>Color </mat-label>
-        <input matInput placeholder="Color ">
+        <mat-label> Colour Name</mat-label>
+        <mat-select [formControl]="colour" >
+
+          <mat-option *ngFor="let colour of colourList" [value]="colour">{{colour}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
@@ -77,8 +80,11 @@
 
     <div class="col-lg-6 col-md-6 d-flex">
       <mat-form-field appearance="outline">
-        <mat-label>Color No.</mat-label>
-        <input matInput placeholder="Color No." >
+        <mat-label> Colour Code</mat-label>
+        <mat-select [formControl]="colourNo" >
+
+          <mat-option *ngFor="let colourNo of colourNoList" [value]="colourNo">{{colourNo}}</mat-option>
+        </mat-select>
       </mat-form-field>
 
 
@@ -100,13 +106,13 @@
         </mat-form-field>
       </div>
 
-      <!-- <div class="col-md-6">
+      <div class="col-md-6">
 
         <mat-form-field appearance="outline">
           <mat-label>Colour Display</mat-label>
           <input matInput placeholder="Colour Display">
         </mat-form-field>
-      </div> -->
+      </div>
 
 
   </div>

@@ -27,6 +27,12 @@ export class DesignComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+
+  productionQuality=new FormControl('');
+
+  productionQualityList : string[]=['productionQuality 1','productionQuality 2']
+
+
   exportQuality = new FormControl('');
 
   exportQualityList: string[] = ['q1','q2'];

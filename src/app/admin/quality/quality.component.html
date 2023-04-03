@@ -29,12 +29,17 @@
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6 d-flex">
+
         <mat-form-field appearance="outline">
+          <mat-label>Category </mat-label>
+          <input matInput placeholder="Category ">
+        </mat-form-field>
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Category</mat-label>
           <mat-select (valueChange)="onCategory($event)">
             <mat-option *ngFor="let categorys of categoryList" [value]="categorys">{{categorys}}</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
 
     </div>

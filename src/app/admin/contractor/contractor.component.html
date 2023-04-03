@@ -1,23 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h4> Contractor </h4>
+      <h4> Contractor Name </h4>
     </div>
   </div>
 <form  [formGroup]="frmContractor" (ngSubmit)="addContractor()">
 
+
   <div class="row mt-4">
-    <div class="col-lg-6 col-md-6">
-      <mat-form-field appearance="outline">
-        <mat-label>Product</mat-label>
-        <mat-select  formControlName="product_name" (valueChange)="onProductSelectList($event)" >
-
-          <mat-option *ngFor="let product of productList" [value]="product">{{product}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-    </div>
-
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
         <mat-label>Group Name</mat-label>
@@ -29,12 +19,28 @@
 
 
     </div>
+    <div class="col-lg-6 col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Product</mat-label>
+        <input matInput placeholder="Product"  >
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline">
+        <mat-label>Product</mat-label>
+        <mat-select  formControlName="product_name" (valueChange)="onProductSelectList($event)" >
+
+          <mat-option *ngFor="let product of productList" [value]="product">{{product}}</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+    </div>
+
+
 
 
     <div class="col-lg-6 col-md-6">
       <mat-form-field appearance="outline">
-        <mat-label>Viewer Name</mat-label>
-        <input matInput placeholder="Viewer Name"  formControlName="viewer_name">
+        <mat-label>Weaver Name</mat-label>
+        <input matInput placeholder="weaver Name"  formControlName="weaver_name">
       </mat-form-field>
     </div>
 
