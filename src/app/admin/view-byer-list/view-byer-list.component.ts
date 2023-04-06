@@ -44,7 +44,8 @@ export class ViewByerListComponent implements OnInit {
     'bank_name',
     'bank_branch',
     'bank_contact',
-    'bank_email'
+    'bank_email',
+    'action'
 
 
   ];
@@ -76,17 +77,17 @@ ngOnInit(): void {
           ELEMENT_DATA.push({
             index: ind + 1,
             id: val._id,
-            name:val.name,
-            email:val.email,
-            mobile:val.mobile,
+            name:val.byr_name,
+            email:val.byr_email,
+            mobile:val.contact_no,
             address:val.address,
             country:val.country,
             state:val.state,
             city:val.city,
             zip_code:val.zip_code,
             bank_name:val.bank_name,
-            bank_branch:val.bank_branch,
-            bank_contact:val.bank_contact,
+            bank_branch:val.bank_address,
+            bank_contact:val.bank_mobile,
             bank_email:val.bank_email
           });
         });

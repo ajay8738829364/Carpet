@@ -59,6 +59,40 @@ debugger
 return data;
   }
 
+
+//////////////////////
+/////////// here code for Raw material group api service
+///////
+////
+
+
+
+  rawMaterialGroup(data:any,matImg : File):Observable<any>{
+
+
+  const formData = new FormData();
+
+
+  formData.append('item_name',data.item_name);
+  formData.append('description',data.description);
+  formData.append('count',data.count);
+  formData.append('colour',data.colour);
+  formData.append('details',data.details);
+  formData.append('mat_image',matImg,matImg.name);
+
+    return this.http.post(this.apiUrl2 +'/raw_material_data', formData, {
+      headers: new HttpHeaders().set('accept', 'application/json'),
+    });
+  }
+
+
+
+  getRawMaterialGropu(){
+    return this.http.get(this.apiUrl2+'/raw_material');
+  }
+
+
+
 //////////////////////
 /////////// here code for finishing ledger api service
 ///////
@@ -121,9 +155,11 @@ getSizeMaster(){
 ////
 
 buyerMaster(data:any){
+
+  debugger;
   console.log(data);
   return this.http.post(this.apiUrl2 +'/buyer_details', data, {
-    headers: new HttpHeaders().set('accept', 'application/json'),
+    headers: new HttpHeaders().set('ContentType', 'application/json'),
   });
 }
 getBuyerMaster(){
@@ -147,4 +183,54 @@ getDyingMaster(){
   return this.http.get(this.apiUrl2 +'/dying_master_data');
   // return this.http.get(this.apiUrl2+'/size_master');
 }
+
+
+
+tokens:any='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiIxOTk2YWpheXBhdGVsOTkzQGdtYWlsLmNvbSIsImFwaV90b2tlbiI6IkF1WG5GakVTNDNOcWJkT0Rab2MxYW5MdHBPOW9wXzlIc0E3aHFVNTZISm94bGJiTnJNc1VBem1zcDZjcW9aMEhoV1EifSwiZXhwIjoxNjgwODU3MzI2fQ.wgGkhZTF1aNdRdT4PDicRRwQTtIdJpGXD7lq5U8G25c';
+citie(){
+ return this.http.get('https://www.universal-tutorial.com/api/cities/bihar',{
+  headers: new HttpHeaders().set('Authorization', `Bearer ${this.tokens}`),
+});
+
+}
+
+
+
+//////////////////////
+/////////// here code for purchaser Ledger api service
+///////
+////
+
+
+purchser( data:any){
+  return this.http.post(this.apiUrl2 + '/contractor_staff_fn_ledger',data,{
+
+    headers:new HttpHeaders().set('Content-Type', 'application/json')
+
+  });
+
+}
+
+
+
+
+//////////////////////
+/////////// here code for Add Quality api service
+///////
+////
+
+quality(data:any){
+  return this.http.post(this.apiUrl2+'/quality_data',data,{
+headers: new HttpHeaders().set('Content-Type','application/json')
+
+  });
+}
+
+getQuality(){
+  return this.http.get(this.apiUrl2+'/quality');
+}
+
+
+
+
 }

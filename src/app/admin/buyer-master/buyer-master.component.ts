@@ -67,6 +67,8 @@ this.country=data;
   }
   ngOnInit(): void {
     this.frmBuyerMaster = this._formBuilder.group({
+
+
       buyerName: [''],
       address: [''],
       mobile: [''],
@@ -78,7 +80,7 @@ this.country=data;
 
 
       bank: [''],
-      branch: [''],
+      bank_address: [''],
 
       mobile2: [''],
       email2: [''],
@@ -87,28 +89,26 @@ this.country=data;
 
   addbuyerMaster() {
     console.log(this.frmBuyerMaster.value);
-
+debugger
     const formData = this.frmBuyerMaster.value;
 
     var data = {
-      name: formData.buyerName,
+      byr_name: formData.buyerName,
       address: formData.address,
-      mobile: formData.mobile,
-      email: formData.email,
+      contact_no: formData.mobile,
+      byr_email: formData.email,
       country: formData.country,
       state: formData.state,
       city: formData.city,
       zip_code: formData.zipCode,
-      // shipTo: formData.shipTo,
-      // notify: formData.notify,
-      // address2: formData.address2,
+
       bank_name: formData.bank,
-      bank_branch: formData.branch,
-      // passbook: formData.passbook,
-      bank_contact: formData.mobile2,
+      bank_address: formData.bank_address,
+
+      bank_mobile: formData.mobile2,
       bank_email: formData.email2,
     };
-
+debugger
     this.adminService.buyerMaster(data).subscribe(
       (resp:any) => {
         this.responsMessage = resp.message;

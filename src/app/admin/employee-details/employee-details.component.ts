@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -32,7 +32,7 @@ const ELEMENT_DATA: PeriodicElement[] = [];
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.css']
 })
-export class EmployeeDetailsComponent {
+export class EmployeeDetailsComponent implements OnInit {
 
 
   displayedColumns: string[] = ['id','group','address','country','state','city','zipCode','aadharNo','aadharImage','panNo','panImage','email','esicNo','epfoNo','password'];
@@ -85,6 +85,27 @@ export class EmployeeDetailsComponent {
     private _snackBar: SnackBarService
   ) {}
 
+  ngOnInit(): void {
+    this.frmEmployeeDetails = this._formBuilder.group({
+      groupName: [''],
+      name: [''],
+      address: [''],
+      state: [''],
+      city: [''],
+      country: [''],
+      zipCode: [''],
+      adharNo: [''],
+      adharImage: [''],
+      panNo: [''],
+      panImage: [''],
+      epfoNo:[''],
+      epfoSheet:[''],
+      esicNo:[''],
+      esicSheet:[''],
+      email:[''],
+      password:['']
+    });
+  }
 
   onCountry(data:any){
 console.log(data)
@@ -103,6 +124,48 @@ this.country=data;
 
 addEmployeeDetails(){
 
+  console.log(this.frmEmployeeDetails.value);
+  const formData=this.frmEmployeeDetails.value;
+
+
+  var data ={
+    groupName:formData.groupName,
+    name:formData.name,
+    address:formData.address,
+    state:formData.state,
+    city:formData.city,
+    country:formData.country,
+    zipCode:formData.zipCode,
+    adharNo:formData.adharNo,
+    adharImage:formData.adharImage,
+    panNo:formData.panNo,
+    panImage:formData.panImage,
+    epfoNo:formData.epfoNo,
+    epfoSheet:formData.epfoSheet,
+    esicNo:formData.esicNo,
+    esicSheet:formData.esicSheet,
+    email:formData.email,
+    password:formData.password
+  }
+
+
+
+
+  // this._service.quality(data).subscribe(
+  //   (resp: any) => {
+  //     this.responsMessage = resp.message;
+
+  //     this._snackBar.openSnackBar(this.responsMessage, '');
+  //   },
+  //   (error) => {
+  //     if (error.error.msg) {
+  //       this.responsMessage = error.error.message;
+  //     } else {
+  //       this.responsMessage = global.genricError;
+  //     }
+  //     this._snackBar.openSnackBar(this.responsMessage, global.error);
+  //   }
+  // );
   }
 }
 

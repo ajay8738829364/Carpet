@@ -20,7 +20,7 @@ export class RouteGaurdService {
   ) {}
   canActivate(router: ActivatedRouteSnapshot): boolean {
     let expectedRoleArray :any = router.data;
-    // expectedRoleArray = expectedRoleArray.exp
+    expectedRoleArray = expectedRoleArray.expectedRole
     const token: any = localStorage.getItem('token');
     var tokenPayload: any;
     try {

@@ -12,7 +12,7 @@
       <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
           <mat-label>Group</mat-label>
-          <mat-select (valueChange)="onGroup($event)">
+          <mat-select (valueChange)="onGroup($event)" formControlName="groupName">
             <mat-option *ngFor="let groups of groupList" [value]="groups">{{groups}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -21,7 +21,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Name">
+          <input matInput placeholder="Name" formControlName="name">
         </mat-form-field>
       </div>
 
@@ -29,7 +29,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Address" #addressFocus autofocus (keyup.enter)="cityFocus.focus()"></textarea>
+          <textarea matInput placeholder="Address" #addressFocus autofocus (keyup.enter)="cityFocus.focus()" formControlName="address"></textarea>
         </mat-form-field>
 
 
@@ -37,7 +37,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <mat-select (valueChange)="onCity($event)" #cityFocus autofocus (keyup.enter)="countryFocus.focus()">
+          <mat-select (valueChange)="onCity($event)" formControlName="city" #cityFocus autofocus (keyup.enter)="countryFocus.focus()">
 
             <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
           </mat-select>
@@ -48,7 +48,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>State</mat-label>
-          <mat-select (valueChange)="onState($event)" #stateFocus autofocus (keyup.enter)="zipCodeFocus.focus()">
+          <mat-select (valueChange)="onState($event)" formControlName="state" #stateFocus autofocus (keyup.enter)="zipCodeFocus.focus()">
             <!-- formControlName="state" -->
 
             <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
@@ -59,7 +59,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <mat-select (valueChange)="onCountry($event)" #countryFocus autofocus (keyup.enter)="stateFocus.focus()">
+          <mat-select (valueChange)="onCountry($event)" formControlName="country" #countryFocus autofocus (keyup.enter)="stateFocus.focus()">
             <!-- formControlName="country" -->
             <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
           </mat-select>
@@ -76,72 +76,81 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code" #zipCodeFocus autofocus>
+          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus autofocus>
         </mat-form-field>
       </div>
 <div class="col-md-6 col-lg-6"></div>
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Aadhar No.</mat-label>
-          <input matInput placeholder="Aadhar No." #zipCodeFocus autofocus>
+          <input matInput placeholder="Aadhar No." formControlName="adharNo" #zipCodeFocus autofocus>
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload Aadhar Card *</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" id="formFile" accept="image/*">
+        <input class="form-control" type="file" id="formFile" accept="image/*" formControlName="adharImage">
       </div>
+
+
+
+
+
+
+
+
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Pan Card No.</mat-label>
-          <input matInput placeholder="Pan Card No." #zipCodeFocus autofocus>
+          <input matInput placeholder="Pan Card No." formControlName="panNo" #zipCodeFocus autofocus>
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload Pan Card *</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg">
+        <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg" formControlName="panImage">
       </div>
 
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>E.P.F.O. No.</mat-label>
-          <input matInput placeholder="E.P.F.O. No." #zipCodeFocus autofocus>
+          <input matInput placeholder="E.P.F.O. No." #zipCodeFocus autofocus formControlName="epfoNo">
         </mat-form-field>
       </div>
 
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload E.P.F.O. Sheet</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" id="formFile" accept="image/*">
+        <input class="form-control" type="file" id="formFile" accept="image/*" formControlName="epfoSheet">
       </div>
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>E.S.I.C. No.</mat-label>
-          <input matInput placeholder="E.P.F.O. No." #zipCodeFocus autofocus>
+          <input matInput placeholder="E.P.F.O. No." #zipCodeFocus autofocus formControlName="esicNo">
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload E.S.I.C. Sheet</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" id="formFile" accept="image/*">
+        <input class="form-control" type="file" id="formFile" accept="image/*" formControlName="esicSheet">
       </div>
 
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail" #emailFocus>
+          <input matInput placeholder="E-Mail" #emailFocus formControlName="email">
         </mat-form-field>
       </div>
+
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" #emailFocus>
+          <input matInput placeholder="Password" #emailFocus formControlName="password">
         </mat-form-field>
       </div>
 

@@ -12,7 +12,7 @@
       <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
           <mat-label>Group</mat-label>
-          <mat-select  (valueChange)="onGroup($event)">
+          <mat-select  (valueChange)="onGroup($event)" formControlName="groupName">
             <mat-option *ngFor="let groups of groupList" [value]="groups">{{groups}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -21,13 +21,29 @@
       <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
           <mat-label>Material</mat-label>
-          <mat-select  (valueChange)="onMaterial($event)">
+          <mat-select  (valueChange)="onMaterial($event)" formControlName="name">
             <mat-option *ngFor="let materials of materialList" [value]="materials">{{materials}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
 
+      name
+      address
+      state
+      city
+      country
+      zipCode
+      adharNo
+      adharImage
+      panNo
+      panImage
+      epfoNo
+      epfoSheet
+      esicNo
+      esicSheet:
+      email
+      password
 
       <div class="col-lg-6 col-md-6">
         <mat-form-field appearance="outline">
