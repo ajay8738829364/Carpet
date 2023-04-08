@@ -15,7 +15,18 @@ export class BuyerMasterComponent implements OnInit {
 
 
   @ViewChild('addressFocus')addressFocus!:ElementRef;
-@ViewChild('#cityFocus')cityFocus!:ElementRef;
+@ViewChild('cityFocus')cityFocus!:ElementRef;
+@ViewChild('stateFocus')stateFocus!:ElementRef;
+@ViewChild('countryFocus')countryFocus!:ElementRef;
+@ViewChild('zipCodeFocus')zipCodeFocus!:ElementRef;
+@ViewChild('contactFocus')contactFocus!:ElementRef;
+
+@ViewChild('emailFocus')emailFocus!:ElementRef;
+@ViewChild('bankName')bankName!:ElementRef;
+@ViewChild('bankAddressFocus')bankAddressFocus!:ElementRef;
+@ViewChild('bankMobile')bankMobile!:ElementRef;
+@ViewChild('bankEmail')bankEmail!:ElementRef;
+
   public frmBuyerMaster!: FormGroup;
 
   responsMessage:any;
@@ -47,11 +58,42 @@ export class BuyerMasterComponent implements OnInit {
 
   }
 
-  onAddressFocus(event:any){
+  onAddressFocus(event:any):void{
     if(event.which===13){
       this.cityFocus.nativeElement.focus();
     }
   }
+
+  onCityFocus(event : any):void{
+    if(event.which===13){
+      this.stateFocus.nativeElement.focus();
+    }
+  }
+  onStateFocus(event:any):void{
+    if(event.which===13){
+      this.countryFocus.nativeElement.focus();
+    }
+  }
+  onCountryFocus(event:any):void{
+    if(event.which === 13 ) {
+
+      this.zipCodeFocus.nativeElement.focus();
+    }
+  }
+
+  onZipCodeFocus(event:any):void{
+    if(event.which===13){
+this.contactFocus.nativeElement.focus();
+    }
+  }
+  onContactNo(event:any):void{
+    if(event.which===13){
+      this.emailFocus.nativeElement.focus();
+          }
+  }
+
+
+
 
   onCountry(data:any){
 console.log(data)

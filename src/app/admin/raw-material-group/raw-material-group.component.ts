@@ -8,6 +8,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { HelperService } from 'src/app/helper/helper.service';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
@@ -20,6 +21,7 @@ export interface PeriodicElement {
   colour: string;
   description: string;
   details: string;
+  image:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -37,6 +39,7 @@ export class RawMaterialGroupComponent implements OnInit {
     'colour',
     'description',
     'details',
+    'image',
     'action'
   ];
 
@@ -48,11 +51,15 @@ export class RawMaterialGroupComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private adminService: AdminMasterService,
-    private _snackBar: SnackBarService
+    private _snackBar: SnackBarService,
+    private _helper : HelperService
   ) {}
 
   // 'item_name','description','count','colour','details','mat_image'
   responsMessage: any;
+
+
+
   public frmRawMaterialGroup!: FormGroup;
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -138,6 +145,8 @@ export class RawMaterialGroupComponent implements OnInit {
             colour: val.colour,
             description: val.description,
             details: val.details,
+            image: this._helper.apiPath.baseUrl+'/raw_material/'+val.mat_image,
+
           });
         });
 

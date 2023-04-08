@@ -6,16 +6,22 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { global } from 'src/app/shared/global';
 
 export interface PeriodicElement {
   id: string;
   index: number;
-  item: string;
-  count: string;
-  colour: string;
-  description: string;
-  details: string;
+  groupName : string;
+materialName : string;
+count : string;
+partyName : string;
+gstNo : string;
+address : string;
+contactNo: string;
+
+
 }
+
 
 const ELEMENT_DATA: PeriodicElement[] = [];
 @Component({
@@ -26,11 +32,14 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class PurchaserDetailsComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
-    'item',
+    'groupName',
+    'materialName',
     'count',
-    'colour',
-    'description',
-    'details',
+    'partyName',
+    'gstNo',
+    'address',
+    'contactNo',
+    'action'
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -42,14 +51,14 @@ export class PurchaserDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   group = new FormControl('');
 
-  groupList: string[] = ['group 1', 'group 1'];
+  groupList:any[] = [];
   count = new FormControl('');
-
-  countList: string[] = ['count 1', 'count 2'];
+groupName?:string;
+  countList: any[] = [];
 
   material_name = new FormControl('');
 
-  materialList: string[] = ['material 1', 'material 2'];
+  materialList: any[] = [];
 
   constructor(
     private _serviceList: AllselectlistService,
@@ -66,7 +75,17 @@ export class PurchaserDetailsComponent implements OnInit {
     this.dataSource.filter = $event.target.value;
   }
   onMaterial(data: any) {
-    console.log(data);
+debugger;
+
+    this._serviceList.getCountList(data).subscribe((res:any)=>{
+      console.log(res);
+
+      this.countList=res.data;
+
+    });
+
+
+    console.log( 'here my on change event  material ', data);
     this.material_name = data;
   }
   onCount(data: any) {
@@ -77,13 +96,120 @@ export class PurchaserDetailsComponent implements OnInit {
   onGroup(data: any) {
     this.group = data;
   }
-  // groupName','name','address','state','city','country','zipCode','adharNo','adharImage','panNo','panImage','epfoNo','epfoSheet','esicNo','esicSheet','email','password'
+  // groupName','materialName','count','partyName','gstNo','address','contactNo
   ngOnInit(): void {
     this.frmPurchaserDetails = this._formBuilder.group({
-     
+      groupName:[''],
+      materialName:[''],
+      count:[''],
+      partyName:[''],
+      gstNo:[''],
+      address:[''],
+      contactNo:['']
+
+
+    });
+
+    this.getGroup();
+    this.getMaterial();
+    this.getRawMaterial();
+  }
+
+
+
+  getMaterial(){
+    this._serviceList.getAllMaterialItem().subscribe((res:any)=>{
+      console.log(res.data);
+      this.materialList=res.data;
 
     });
   }
 
-  addPurchaserDetails() {}
+
+
+
+  getGroup(){
+    this._serviceList.getGroupList().subscribe((res :any)=>{
+      console.log( res.data )
+
+      this.groupList =res.data;
+      console.log(res);
+
+console.log(this.groupList);
+    });
+  }
+
+
+  ///////////////////////////
+  //////////
+  /////// here code for ngintlInput
+  ////
+
+
+  addPurchaserDetails() {
+
+
+    const formData = this.frmPurchaserDetails.value;
+
+    var data={
+      groupName:formData.groupName,
+materialName:formData.materialName,
+count:formData.count,
+partyName:formData.partyName,
+gstNo:formData.gstNo,
+address:formData.address,
+contactNo:formData.contactNo
+    }
+    console.log(this.frmPurchaserDetails.value);
+
+    console.log(data);
+
+
+
+    this._service.addPurchaseAccount(data).subscribe((res:any)=>{
+      this.responsMessage = res.message;
+        this._snakBarService.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global;
+        }
+        this._snakBarService.openSnackBar(this.responsMessage, global.error);
+      });
+
+      this.getRawMaterial();
+  }
+
+
+  getRawMaterial() {
+    ELEMENT_DATA.length = 0;
+    this._service.getPurchaseLedger().subscribe((resp: any) => {
+      debugger;
+      console.log(resp);
+      if (resp.data) {
+        resp.data.map((val: any, ind: number) => {
+          ELEMENT_DATA.push({
+            index: ind + 1,
+            id: val.id,
+
+            groupName:val.groupName,
+            materialName:val.materialName,
+            count:val.count,
+            partyName:val.partyName,
+            gstNo:val.gstNo,
+            address:val.address,
+            contactNo:val.contactNo
+
+
+          });
+        });
+
+        this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        this.ngAfterViewInit();
+        return;
+      }
+    });
+  }
 }

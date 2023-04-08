@@ -32,7 +32,7 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <mat-select   formControlName="city" (valueChange)="onCity($event)" #cityFocus autofocus  (keyup.enter)="countryFocus.focus()" >
+          <mat-select   formControlName="city" (valueChange)="onCity($event)" #cityFocus (keydown)="onCityFocus($event)" >
 
             <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
           </mat-select>
@@ -45,7 +45,7 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>State</mat-label>
-          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus autofocus  (keyup.enter)="zipCodeFocus.focus()">
+          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus   (keydown)="onStateFocus($event)">
             <!-- formControlName="state" -->
 
             <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
@@ -57,7 +57,7 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <mat-select   formControlName="country" (valueChange)="onCountry($event)" #countryFocus  autofocus  (keyup.enter)="stateFocus.focus()">
+          <mat-select   formControlName="country" (valueChange)="onCountry($event)" #countryFocus  (keydown)="onCountryFocus($event)">
             <!-- formControlName="country" -->
             <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
           </mat-select>
@@ -74,20 +74,20 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus autofocus  (keyup.enter)="contactFocus.focus()">
+          <input matInput placeholder="Zip Code" formControlName="zipCode" autocomplete="false" #zipCodeFocus (keydown)="onZipCodeFocus($event)">
         </mat-form-field>
       </div>
 
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Contact No.</mat-label>
-          <input matInput placeholder="Contact No." formControlName="mobile" #contactFocus autofocus  (keyup.enter)="emailFocus.focus()">
+          <input matInput placeholder="Contact No." formControlName="mobile" autocomplete="false" #contactFocus (keydown)="onContactNo($event)">
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail" #emailFocus formControlName="email" autofocus  (keyup.enter)="bankName.focus()" >
+          <input matInput placeholder="E-Mail" #emailFocus formControlName="email"  >
         </mat-form-field>
       </div>
     </div>
