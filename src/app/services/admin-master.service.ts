@@ -273,4 +273,21 @@ export class AdminMasterService {
   getPurchaseLedger(){
     return this.http.get(this.apiUrl2+'/purchase_ledger');
   }
+
+  //////////////////////////
+  ////////////
+  ////// here i am use this api for Design master
+  ////
+
+
+  addDesign(data : any){
+    return this.http.post(this.apiUrl2+'/design_data',data,{
+      headers:new HttpHeaders().set('Accept', 'application/json')
+    })
+  }
+
+  getDesignList(){
+    return this.http.get(this.apiUrl2+'/design');
+  }
+
 }

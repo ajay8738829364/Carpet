@@ -22,4 +22,11 @@ getGroupList(){
 getCountList(data:any){
   return this.http.get(this.selectListApiUrl+'/get_material_data/'+data);
 }
+
+getProductionQuality(){
+  return this.http.get(this.selectListApiUrl+'/productionQuality');
+}
+getExportQuality(){
+  return this.http.get(this.selectListApiUrl+'/exportQuality');
+}
 }
