@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, VERSION, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -9,6 +9,8 @@ import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
+
+import { Country, State, City }  from 'country-state-city';
 export interface PeriodicElement {
   id: string;
   index: number;
@@ -32,15 +34,12 @@ export class DesignComponent implements OnInit {
 
   frmProductionQuality!: FormGroup;
 
-  productionQualityList: any[] = [
-    'productionQuality 1',
-    'productionQuality 2',
-  ];
+  productionQualityList: any[] = ['productionQuality 1', 'productionQuality 2'];
 
-  prodQty=new FormControl('');
-  expQty= new FormControl('');
+  prodQty = new FormControl('');
+  expQty = new FormControl('');
 
-  exportQualityList:any[] = ['q1', 'q2'];
+  exportQualityList: any[] = ['q1', 'q2'];
 
   displayedColumns: string[] = [
     'id',
@@ -49,6 +48,7 @@ export class DesignComponent implements OnInit {
     'ground',
     'border',
     'design',
+    'action'
   ];
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -72,6 +72,7 @@ export class DesignComponent implements OnInit {
     });
     this.getProductQuality();
     this.getExportQuality();
+    this.getAllDesignList();
   }
 
   ngAfterViewInit() {
@@ -93,42 +94,111 @@ export class DesignComponent implements OnInit {
       border: formData.border,
     };
 
-    this._service.addDesign(data).subscribe((res:any)=>{
-      this.responsMessage = res.message;
-      this._matSnackBar.openSnackBar(this.responsMessage, '');
-    },
-    (error) => {
-      if (error.error.msg) {
-        this.responsMessage = error.error.message;
-      } else {
-        this.responsMessage = global.genricError;
+    this._service.addDesign(data).subscribe(
+      (res: any) => {
+        this.responsMessage = res.message;
+        this._matSnackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._matSnackBar.openSnackBar(this.responsMessage, global.error);
+        console.log('data', data);
       }
-      this._matSnackBar.openSnackBar(this.responsMessage, global.error);
-      console.log('data', data);
-    });
+    );
+    this.getAllDesignList();
   }
 
-getProductQuality(){
-this._serviceSelectList.getProductionQuality().subscribe((resp:any)=>{
-
-  console.log(resp.data);
-  this.productionQualityList=resp.data;
-
-});
-}
-  onChangeProdQuality(event:any){
-    this.prodQty=event;
-  }
-
-  getExportQuality(){
-    this._serviceSelectList.getExportQuality().subscribe((resp:any)=>{
-
+  getProductQuality() {
+    this._serviceSelectList.getProductionQuality().subscribe((resp: any) => {
       console.log(resp.data);
-      this.exportQualityList=resp.data;
+      this.productionQualityList = resp.data;
+    });
+  }
+  onChangeProdQuality(event: any) {
+    this.prodQty = event;
+  }
+
+  getExportQuality() {
+    this._serviceSelectList.getExportQuality().subscribe((resp: any) => {
+      console.log(resp.data);
+      this.exportQualityList = resp.data;
+    });
+  }
+  onChangeExpQuality(event: any) {
+    this.expQty = event;
+  }
+
+  getAllDesignList(){
+    this._service.getDesignList().subscribe((resp:any)=>{
+
+      if (resp.data) {
+        resp.data.map((val: any, ind: number) => {
+          ELEMENT_DATA.push({
+            index: ind + 1,
+            id: val.id,
+            productionQuality:val.prodQty,
+            exportQuality:val.expQty,
+            ground:val.ground,
+            border:val.border,
+            design:val.design
+          });
+        });
+
+        this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        this.ngAfterViewInit();
+        return;
+      }
 
     });
+
+  }
+  @ViewChild('country') country!: ElementRef
+  @ViewChild('city') city!: ElementRef
+  @ViewChild('state') state!: ElementRef
+  name = 'Angular ' + VERSION.major;
+  countries = Country.getAllCountries();
+  states :any= null;
+  cities :any= null;
+
+  selectedCountry:any;
+  selectedState:any;
+  selectedCity:any;
+
+
+  onCountryChange($event:any): void {
+    this.states = State.getStatesOfCountry(JSON.parse(this.country.nativeElement.value).isoCode);
+    this.selectedCountry = JSON.parse(this.country.nativeElement.value);
+    this.cities = this.selectedState = this.selectedCity = null;
+  }
+
+  onStateChange($event:any): void {
+    this.cities = City.getCitiesOfState(JSON.parse(this.country.nativeElement.value).isoCode, JSON.parse(this.state.nativeElement.value).isoCode)
+    this.selectedState = JSON.parse(this.state.nativeElement.value);
+    this.selectedCity = null;
+
+  }
+
+  onCityChange($event:any): void {
+    this.selectedCity = JSON.parse(this.city.nativeElement.value)
+  }
+
+  clear(type: string): void {
+    switch(type) {
+      case 'country':
+        this.selectedCountry = this.country.nativeElement.value = this.states = this.cities = this.selectedState = this.selectedCity = null;
+        break;
+      case 'state':
+        this.selectedState = this.state.nativeElement.value = this.cities = this.selectedCity = null;
+        break;
+      case 'city':
+        this.selectedCity = this.city.nativeElement.value = null;
+        break;
     }
-      onChangeExpQuality(event:any){
-        this.expQty=event;
-      }
+  }
+
+
 }

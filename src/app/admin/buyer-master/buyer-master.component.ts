@@ -4,7 +4,7 @@ import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
-
+import { Country, State, City }  from 'country-state-city';
 
 @Component({
   selector: 'app-buyer-master',
@@ -167,4 +167,8 @@ debugger
       }
     );
   }
+
+
+
+  
 }

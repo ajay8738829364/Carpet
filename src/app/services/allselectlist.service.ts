@@ -29,4 +29,25 @@ getProductionQuality(){
 getExportQuality(){
   return this.http.get(this.selectListApiUrl+'/exportQuality');
 }
+
+// getQuality(){
+//   return this.http.get(this.selectListApiUrl+'/productionQuality');
+// }
+
+getDesignByQtyId(_qtyId:any){
+  debugger
+  console.log(_qtyId);
+  return this.http.get(this.selectListApiUrl+'/shead_card_qty/'+_qtyId);
+}
+
+
+getGroundBorder(_designTxt:any){
+ console.log(_designTxt);
+  return this.http.get(this.selectListApiUrl+'/shead_card_design/'+_designTxt);
+}
+
+
+
+
+
 }

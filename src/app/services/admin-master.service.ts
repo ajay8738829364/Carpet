@@ -128,7 +128,9 @@ export class AdminMasterService {
   ////
 
   sizeMaster(data: any): Observable<any> {
-    return this.http.post(this.apiUrl2 + '/master_of_size', data, {
+
+    debugger;
+    return this.http.post(this.apiUrl2 + '/size_master_data', data, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
     });
   }
@@ -290,4 +292,38 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2+'/design');
   }
 
+  //////////////////////////
+  ////////////
+  ////// here i am use this api for Shade Card master
+  ////
+
+
+
+  addShadeCard(data:any){
+    debugger
+    return this.http.post(this.apiUrl2+'/shead_card_data',data,{
+      headers:new HttpHeaders().set('Accept', 'application/json')
+    })
+  }
+
+  getShadeCardList(){
+    return this.http.get(this.apiUrl2+'/shead_card');
+  }
+
+//////////////////////////
+  ////////////
+  ////// here i am use this api for Finishing Head
+  ////
+  addFinishingHead(data:any){
+    debugger
+    return this.http.post(this.apiUrl2+'/job_name_data',data,{
+      headers:new HttpHeaders().set('Accept', 'application/json')
+    })
+  }
+  getFinishingHeadList(){
+    return this.http.get(this.apiUrl2+'/job_name');
+  }
+
 }
+
+
