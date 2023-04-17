@@ -1,3 +1,12 @@
 .row{
   margin: auto;
 }
+.fa-edit{
+  color: rgb(118, 103, 250);
+}
+
+
+
+.fa-trash{
+  color: rgb(235, 28, 28);
+}

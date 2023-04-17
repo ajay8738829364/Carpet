@@ -7,5 +7,13 @@ export class HelperService {
 
   constructor() { }
 
-  imageApiUrl='https://carpet.emarketking.in/public/images/contractor/';
+
+  MaterialImage:any;
+
+
+  public apiPath={
+    baseUrl:'https://carpet.emarketking.in/public/images',
+    MaterialImage:'/raw_material/'
+
+  }
 }

@@ -17,14 +17,14 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Buyer Name</mat-label>
-          <input matInput placeholder="Buyer Name" formControlName="buyerName" autofocus  (keyup.enter)="addressFocus.focus()">
+          <input matInput placeholder="Buyer Name" formControlName="buyerName"   (keydown)="onEnterBuyerName($event)">
 
         </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Address" #addressFocus  formControlName="address" autofocus  (keyup.enter)="cityFocus.focus()"></textarea>
+          <textarea matInput placeholder="Address" #addressFocus (keydown)="onAddressFocus($event)"  formControlName="address" ></textarea>
         </mat-form-field>
 
 
@@ -32,7 +32,7 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
-          <mat-select   formControlName="city" (valueChange)="onCity($event)" #cityFocus autofocus  (keyup.enter)="countryFocus.focus()" >
+          <mat-select   formControlName="city" (valueChange)="onCity($event)" #cityFocus (keydown)="onCityFocus($event)" >
 
             <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
           </mat-select>
@@ -40,10 +40,24 @@
         <!-- formControlName="city" -->
 
       </div>
+<!-- <input type="tel" id="phone">
+<input type="tel" ng2TelInput [ng2TelInputOptions]="{initialCountry: 'in'}" /> -->
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus   (keydown)="onStateFocus($event)">
+            <!-- formControlName="state" -->
+
+            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <mat-select   formControlName="country" (valueChange)="onCountry($event)" #countryFocus  autofocus  (keyup.enter)="stateFocus.focus()">
+          <mat-select   formControlName="country" (valueChange)="onCountry($event)" #countryFocus  (keydown)="onCountryFocus($event)">
             <!-- formControlName="country" -->
             <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
           </mat-select>
@@ -55,35 +69,44 @@
 
 
 
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>State</mat-label>
-          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus autofocus  (keyup.enter)="zipCodeFocus.focus()">
-            <!-- formControlName="state" -->
 
-            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-      </div>
 
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus autofocus  (keyup.enter)="contactFocus.focus()">
+          <input matInput placeholder="Zip Code" formControlName="zipCode" autocomplete="false" #zipCodeFocus (keydown)="onZipCodeFocus($event)">
         </mat-form-field>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
+        <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [preferredCountries]="preferredCountries"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [phoneValidation]="true"
+        [separateDialCode]="separateDialCode"
+        [numberFormat]="PhoneNumberFormat.National"
+        name="mobile"
+        formControlName="mobile"
+      >
+      </ngx-intl-tel-input>
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Contact No.</mat-label>
-          <input matInput placeholder="Contact No." formControlName="mobile" #contactFocus autofocus  (keyup.enter)="emailFocus.focus()">
-        </mat-form-field>
+          <input matInput placeholder="Contact No." formControlName="mobile" autocomplete="false" #contactFocus (keydown)="onContactNo($event)">
+        </mat-form-field> -->
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail" #emailFocus formControlName="email" autofocus  (keyup.enter)="bankName.focus()" >
+          <input matInput placeholder="E-Mail" #emailFocus formControlName="email"  >
         </mat-form-field>
       </div>
     </div>
@@ -108,17 +131,36 @@
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
-            <input matInput placeholder="Branch" formControlName="branch" #bankAddressFocus autofocus  (keyup.enter)="bankMobile.focus()">
+            <input matInput placeholder="Branch" formControlName="bank_address" #bankAddressFocus autofocus >
           </mat-form-field>
         </div>
 
 
 
         <div class="col-md-6 col-lg-4">
-          <mat-form-field appearance="outline">
+          <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [preferredCountries]="preferredCountries"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [phoneValidation]="true"
+        [separateDialCode]="separateDialCode"
+        [numberFormat]="PhoneNumberFormat.National"
+        name="mobile2"
+        formControlName="mobile2"
+      >
+      </ngx-intl-tel-input>
+          <!-- <mat-form-field appearance="outline">
             <mat-label>Mobile No.</mat-label>
-            <input matInput placeholder="Mobile No." formControlName="mobile2" #bankMobile autofocus  (keyup.enter)="bankEmail.focus()">
-          </mat-form-field>
+            <input matInput placeholder="Mobile No." >
+          </mat-form-field> -->
         </div>
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
@@ -141,3 +183,60 @@
 
 
 </div>
+<!-- <section>
+  <div class="wrapper">
+    <input type="checkbox" [(ngModel)]="separateDialCode" />
+    <label>&nbsp;Separate Dial Code?</label>
+  </div>
+
+  <form #f="ngForm" [formGroup]="phoneForm">
+    <div class="wrapper">
+      <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [preferredCountries]="preferredCountries"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [phoneValidation]="true"
+        [separateDialCode]="separateDialCode"
+        [numberFormat]="PhoneNumberFormat.National"
+        name="phone"
+        formControlName="phone"
+      >
+      </ngx-intl-tel-input>
+      <div style="margin-top: 20px; margin-bottom: 10px">
+        <small
+          class="alert alert-danger"
+          *ngIf="
+            !phoneForm.controls['phone'].valid &&
+            phoneForm.controls['phone'].touched
+          "
+        >
+          <span *ngIf="phoneForm.controls['phone'].errors?.['required']">
+            Phone number is required.
+          </span>
+          <span *ngIf="phoneForm.controls['phone'].errors">
+            Phone number need to have 10 character
+          </span>
+        </small>
+      </div>
+    </div>
+    <div class="wrapper">
+      <button class="btn btn-success" (click)="f.reset()">Reset</button>
+    </div>
+  </form>
+  <div>
+    <strong>Form value:</strong>
+    <pre>{{ f.form.value | json }}</pre>
+  </div>
+  <div>
+    <strong>Form validation errors:</strong>
+    <pre>{{ f.form.controls["phone"].errors | json }}</pre>
+  </div>
+</section> -->

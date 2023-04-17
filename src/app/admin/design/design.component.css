@@ -11,3 +11,12 @@
     border-radius: 50%;
     width: 23px;
 }
+.fa-edit{
+  color: rgb(118, 103, 250);
+}
+
+
+
+.fa-trash{
+  color: rgb(235, 28, 28);
+}

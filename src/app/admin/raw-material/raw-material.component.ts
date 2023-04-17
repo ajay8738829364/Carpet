@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -32,6 +32,12 @@ export class RawMaterialComponent implements OnInit {
     color2: '#e920e9',
 
   };
+
+
+  items= new FormControl('');
+  itemsList : string[]=['item 12','item 3'];
+
+
 
   public color2: string = '';
 

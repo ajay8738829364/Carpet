@@ -6,87 +6,89 @@
   </div>
 
 
-  <div class="row">
-    <div class="col-lg-3 col-md-3">
+  <form [formGroup]="frmShadeCard"   (ngSubmit)="onAddShade()">
+    <div class="row">
+      <div class="col-lg-4 col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Quality</mat-label>
+          <mat-select formControlName="qty" (valueChange)="onDesign($event)" >
+            <mat-option *ngFor="let qualitys of qualityList" [value]="qualitys.qualityName">{{qualitys.qualityName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Design</mat-label>
+          <mat-select formControlName="design" (valueChange)="onGroundBorder($event)">
+            <mat-option *ngFor="let designs of designList" [value]="designs.design">{{designs.design}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
+
+
+
+
+
+
+      <div class="col-lg-4 col-md-4 d-flex">
+        <mat-form-field appearance="outline">
+          <mat-label>Ground Color</mat-label>
+          <input matInput placeholder="Ground"   [value]="groundColours">
+         </mat-form-field>
+
+         <mat-form-field appearance="outline">
+          <mat-label>Border Color</mat-label>
+          <input matInput placeholder="Border"  [value]="borderColours">
+         </mat-form-field>
+      </div>
+      <!-- <div class="col-lg-3 col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Size</mat-label>
+          <input matInput placeholder="size" >
+        </mat-form-field>
+      </div>-->
+      <!-- <div class="col-lg-3 col-md-3 ">
+        <mat-form-field appearance="outline">
+          <mat-label>Size Per Square Yard / Fit.</mat-label>
+          <input matInput placeholder="size" >
+        </mat-form-field>
+      </div> -->
+      <div class="col-lg-4 col-md-4 ">
+        <mat-form-field appearance="outline">
+          <mat-label>Color Shaed</mat-label>
+          <input matInput placeholder="Color Shaed" formControlName="colourShead">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-4 d-flex">
       <mat-form-field appearance="outline">
-        <mat-label>Quality</mat-label>
-        <mat-select [formControl]="quality">
-
-          <mat-option *ngFor="let qualitys of qualityList" [value]="qualitys">{{qualitys}}</mat-option>
-        </mat-select>
+        <mat-label>Color Code</mat-label>
+        <input matInput placeholder="Color Code"[value]="color2" [(colorPicker)]="color2" formControlName="color2" >
       </mat-form-field>
-
-
+      <span>
+        <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
+      </span>
+      </div>
+      <div class="col-lg-4 col-md-4 ">
+        <mat-form-field appearance="outline">
+          <mat-label>Weight %</mat-label>
+          <input matInput placeholder="Weight %" formControlName="weight">
+        </mat-form-field>
     </div>
-
-    <div class="col-lg-3 col-md-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Design</mat-label>
-        <mat-select [formControl]="design">
-
-          <mat-option *ngFor="let designs of designList" [value]="designs">{{designs}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="col-lg-4 col-md-4 ">
+        <mat-form-field appearance="outline">
+          <mat-label>Lagat</mat-label>
+          <input matInput placeholder="Lagat" formControlName="lagat" >
+        </mat-form-field>
+      </div>
+      <span class="diplayColor" [style.background]="color2"></span>
     </div>
-
-
-    <div class="col-lg-3 col-md-3 d-flex">
-      <mat-form-field appearance="outline">
-        <mat-label>Ground Color</mat-label>
-        <input matInput placeholder="Ground" >
-       </mat-form-field>
-       <mat-form-field appearance="outline">
-        <mat-label>Border Color</mat-label>
-        <input matInput placeholder="Border" >
-       </mat-form-field>
+    <div class="row">
+      <div class="col-lg-3 col-md-3">
+        <button mat-raised-button color="primary">Add</button>
+      </div>
     </div>
-
-    <!-- <div class="col-lg-3 col-md-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Size</mat-label>
-        <input matInput placeholder="size" >
-      </mat-form-field>
-    </div>-->
-
-    <!-- <div class="col-lg-3 col-md-3 ">
-      <mat-form-field appearance="outline">
-        <mat-label>Size Per Square Yard / Fit.</mat-label>
-        <input matInput placeholder="size" >
-      </mat-form-field>
-    </div> -->
-
-    <div class="col-lg-3 col-md-3 ">
-      <mat-form-field appearance="outline">
-        <mat-label>Color Shaed</mat-label>
-        <input matInput placeholder="Color Shaed" >
-      </mat-form-field>
-    </div>
-    <div class="col-lg-3 col-md-3 d-flex">
-    <mat-form-field appearance="outline">
-      <mat-label>Color Code</mat-label>
-      <input matInput placeholder="Color Code" [value]="color2" [(colorPicker)]="color2" formControlName="colorCode">
-    </mat-form-field>
-    <span>
-      <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
-    </span>
-    </div>
-
-
-
-    <div class="col-lg-3 col-md-3 ">
-      <mat-form-field appearance="outline">
-        <mat-label>Lagat</mat-label>
-        <input matInput placeholder="Lagat" >
-      </mat-form-field>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-lg-3 col-md-3">
-      <button mat-raised-button color="primary">Add</button>
-    </div>
-  </div>
+  </form>
 
 
 
@@ -106,15 +108,14 @@
               The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Position Column -->
-        <ng-container matColumnDef="position">
+        <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.index}} </td>
         </ng-container>
-
         <!-- Name Column -->
-        <ng-container matColumnDef="quality">
+        <ng-container matColumnDef="qty">
           <th mat-header-cell *matHeaderCellDef> Quality </th>
-          <td mat-cell *matCellDef="let element"> {{element.quality}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
         </ng-container>
 
         <!-- Weight Column -->
@@ -123,30 +124,42 @@
           <td mat-cell *matCellDef="let element"> {{element.design}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="action" >
+          <th mat-header-cell *matHeaderCellDef>Action </th>
+          <td mat-cell *matCellDef="let element" class="d-flex">
+            <a><i class="fa fa-pencil-square-o fa-lg fa-edit" aria-hidden="true"></i></a>
+            &nbsp;
+            <a><i class="fa fa-trash-o fa-lg fa-trash" aria-hidden="true"></i></a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="borderColour">
+          <th mat-header-cell *matHeaderCellDef>Border Colour </th>
+          <td mat-cell *matCellDef="let element"> {{element.borderColour}} </td>
+        </ng-container>
         <!-- Symbol Column -->
-        <ng-container matColumnDef="color">
+        <ng-container matColumnDef="groundColour">
           <th mat-header-cell *matHeaderCellDef>Color Gr/Br </th>
-          <td mat-cell *matCellDef="let element"> {{element.color}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.groundColour}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="colorCode">
+        <ng-container matColumnDef="colourCode">
           <th mat-header-cell *matHeaderCellDef>Color Code </th>
-          <td mat-cell *matCellDef="let element"> {{element.colorCode}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.colourCode}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="colorShaed">
+        <ng-container matColumnDef="colourShead">
           <th mat-header-cell *matHeaderCellDef>Color Shaed </th>
-          <td mat-cell *matCellDef="let element"> {{element.colorShaed}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.colourShead}} </td>
         </ng-container>
 
         <ng-container matColumnDef="lagat">
           <th mat-header-cell *matHeaderCellDef>Lagat Per Sq Yaard </th>
           <td mat-cell *matCellDef="let element"> {{element.lagat}} </td>
         </ng-container>
-        <!-- <ng-container matColumnDef="size">
-          <th mat-header-cell *matHeaderCellDef>Size </th>
-          <td mat-cell *matCellDef="let element"> {{element.size}} </td>
-        </ng-container> -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef>Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -14,5 +14,5 @@ export class global{
 
   public static unathorize : string ='you are Unathoriz user';
 
-  public static imageApiUrl='https://carpet.emarketking.in/public/images/finishing_ledger/';
+  public static imageApiUrl='https://carpet.emarketking.in/public/images/raw_material/';
 }

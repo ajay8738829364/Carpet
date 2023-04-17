@@ -11,7 +11,7 @@ import { global } from 'src/app/shared/global';
 })
 export class ContractorComponent implements OnInit {
   group_name: any;
-  groupNameList: any = ['q1', 'q2'];
+  groupNameList: any = ['Staff', 'Weaver','Finisher','Others'];
 
 
   product_name: any;

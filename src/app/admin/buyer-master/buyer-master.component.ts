@@ -1,52 +1,141 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
+import { Country, State, City } from 'country-state-city';
 
+import {
+  SearchCountryField,
+  CountryISO,
+  PhoneNumberFormat,
+} from 'ngx-intl-tel-input';
 
+import * as intlTelInput from 'intl-tel-input';
 @Component({
   selector: 'app-buyer-master',
   templateUrl: './buyer-master.component.html',
   styleUrls: ['./buyer-master.component.css'],
 })
 export class BuyerMasterComponent implements OnInit {
+  separateDialCode = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+
+  preferredCountries: CountryISO[] = [  ];
+
+  // separateDialCode2 = true;
+  // SearchCountryField2 = SearchCountryField;
+  // CountryISO2 = CountryISO;
+  // PhoneNumberFormat2 = PhoneNumberFormat;
+
+  // preferredCountries2: CountryISO[] = [
+
+  // ];
+
+  // phoneForm = new FormGroup({
+  //    phone: new FormControl(undefined, [Validators.required])
+  //  });
+
+  @ViewChild('addressFocus') addressFocus!: ElementRef;
+  @ViewChild('cityFocus') cityFocus!: ElementRef;
+  @ViewChild('stateFocus') stateFocus!: ElementRef;
+  @ViewChild('countryFocus') countryFocus!: ElementRef;
+  @ViewChild('zipCodeFocus') zipCodeFocus!: ElementRef;
+  @ViewChild('contactFocus') contactFocus!: ElementRef;
+
+  @ViewChild('emailFocus') emailFocus!: ElementRef;
+  @ViewChild('bankName') bankName!: ElementRef;
+  @ViewChild('bankAddressFocus') bankAddressFocus!: ElementRef;
+  // @ViewChild('bankMobile') bankMobile!: ElementRef;
+  @ViewChild('bankEmail') bankEmail!: ElementRef;
+
   public frmBuyerMaster!: FormGroup;
 
-  responsMessage:any;
+  responsMessage: any;
 
-  country  = new FormControl('');
+  country = new FormControl('');
 
   countryList: string[] = ['India'];
 
-  state  = new FormControl('');
+  state = new FormControl('');
 
-  stateList: string[] = ['Andhra Pradesh','Arunachal Pradesh',' Assam','Bihar','Chhattisgarh','Goa','Gujarat'
-
+  stateList: string[] = [
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    ' Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
   ];
 
-  city  = new FormControl('');
+  city = new FormControl('');
 
-  cityList: string[] = ['Anantapur','Prakasam'];
+  cityList: string[] = ['Anantapur', 'Prakasam'];
   constructor(
     private _formBuilder: FormBuilder,
     private adminService: AdminMasterService,
     private _snackBar: SnackBarService
   ) {}
 
+  onEnterBuyerName(event: any): void {
+    if (event.which === 13) {
+      this.addressFocus.nativeElement.focus();
+    }
+  }
 
-  onCountry(data:any){
-console.log(data)
-this.country=data;
+  onAddressFocus(event: any): void {
+    if (event.which === 13) {
+      this.cityFocus.nativeElement.focus();
+    }
   }
-  onState(data:any){
-    console.log(data)
-    this.state=data;
+
+  onCityFocus(event: any): void {
+    if (event.which === 13) {
+      this.stateFocus.nativeElement.focus();
+    }
   }
-  onCity(data:any){
-    console.log(data)
-    this.city=data;
+  onStateFocus(event: any): void {
+    if (event.which === 13) {
+      this.countryFocus.nativeElement.focus();
+    }
+  }
+  onCountryFocus(event: any): void {
+    if (event.which === 13) {
+      this.zipCodeFocus.nativeElement.focus();
+    }
+  }
+
+  onZipCodeFocus(event: any): void {
+    if (event.which === 13) {
+      this.contactFocus.nativeElement.focus();
+    }
+  }
+  onContactNo(event: any): void {
+    if (event.which === 13) {
+      this.emailFocus.nativeElement.focus();
+    }
+  }
+
+  onCountry(data: any) {
+    console.log(data);
+    this.country = data;
+  }
+  onState(data: any) {
+    console.log(data);
+    this.state = data;
+  }
+  onCity(data: any) {
+    console.log(data);
+    this.city = data;
   }
   ngOnInit(): void {
     this.frmBuyerMaster = this._formBuilder.group({
@@ -59,41 +148,52 @@ this.country=data;
       city: [''],
       zipCode: [''],
 
-
       bank: [''],
-      branch: [''],
+      bank_address: [''],
 
       mobile2: [''],
       email2: [''],
     });
+
+    //   const intInput = document.getElementById('#phone');
+    //   if(intInput){
+    //     intlTelInput(intInput,{
+    //       initialCountry:'US',
+    //       separateDialCode:true,
+    //       utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js'
+    //     })
+    //   }
   }
 
   addbuyerMaster() {
     console.log(this.frmBuyerMaster.value);
+    const p: any = this.frmBuyerMaster.value.mobile;
+    console.log(p.internationalNumber);
 
+    debugger;
+    const p2: any = this.frmBuyerMaster.value.mobile2;
+    console.log(p2.internationalNumber);
     const formData = this.frmBuyerMaster.value;
 
     var data = {
-      name: formData.buyerName,
+      byr_name: formData.buyerName,
       address: formData.address,
-      mobile: formData.mobile,
-      email: formData.email,
+      contact_no: p.internationalNumber,
+      byr_email: formData.email,
       country: formData.country,
       state: formData.state,
       city: formData.city,
       zip_code: formData.zipCode,
-      // shipTo: formData.shipTo,
-      // notify: formData.notify,
-      // address2: formData.address2,
+
       bank_name: formData.bank,
-      bank_branch: formData.branch,
-      // passbook: formData.passbook,
-      bank_contact: formData.mobile2,
+      bank_address: formData.bank_address,
+
+      bank_mobile: p2.internationalNumber,
       bank_email: formData.email2,
     };
-
+    debugger;
     this.adminService.buyerMaster(data).subscribe(
-      (resp:any) => {
+      (resp: any) => {
         this.responsMessage = resp.message;
         this._snackBar.openSnackBar(this.responsMessage, '');
       },

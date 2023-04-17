@@ -32,6 +32,12 @@ export class ColourShadeCardComponent {
 
 
 
+  colour = new FormControl('');
+  colourList:string[]=['colour 1','colour 2'];
+
+  colourNo = new FormControl('');
+  colourNoList:string[]=['colour no 1','colour no 2'];
+
   exportQuality = new FormControl('');
 
   exportQualityList: string[] = ['q1','q2'];

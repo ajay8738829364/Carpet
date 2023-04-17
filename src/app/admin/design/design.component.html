@@ -6,43 +6,47 @@
   </div>
 
 
-  <form >
+  <form [formGroup]="frmProductionQuality" (ngSubmit)="onSubmitDesign()">
 
     <div class="row">
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Production Quality</mat-label>
-          <input matInput placeholder="Production Quality">
-        </mat-form-field>
-      </div>
+          <mat-select (valueChange)="onChangeProdQuality($event)" formControlName="prodQty"  >
 
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Export Quality</mat-label>
-          <mat-select [formControl]="exportQuality" >
-
-            <mat-option *ngFor="let exportQuality of exportQualityList" [value]="exportQuality">{{exportQuality}}</mat-option>
+            <mat-option *ngFor="let productionQuality of productionQualityList" [value]="productionQuality.id">{{productionQuality.qualityName}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">
-          <mat-label>Design</mat-label>
-          <input matInput placeholder="Design">
-        </mat-form-field>
-      </div>
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Ground</mat-label>
-          <input matInput placeholder="Ground">
+          <mat-label>Export Quality</mat-label>
+          <mat-select formControlName="expQty" (valueChange)="onChangeExpQuality($event)">
+
+            <mat-option *ngFor="let exportQuality of exportQualityList" [value]="exportQuality.id">{{exportQuality.exportQuality
+            }}</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Design</mat-label>
+          <input matInput placeholder="Design" formControlName="design">
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Ground</mat-label>
+          <input matInput placeholder="Ground" formControlName="ground">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Border</mat-label>
-          <input matInput placeholder="Border">
+          <input matInput placeholder="Border" formControlName="border">
         </mat-form-field>
       </div>
 
@@ -78,6 +82,7 @@
           <td mat-cell *matCellDef="let element"> {{element.productionQuality}} </td>
         </ng-container>
 
+
         <!-- Name Column -->
         <ng-container matColumnDef="exportQuality">
           <th mat-header-cell *matHeaderCellDef> Export Quality </th>
@@ -99,7 +104,14 @@
           <th mat-header-cell *matHeaderCellDef> Ground </th>
           <td mat-cell *matCellDef="let element"> {{element.ground}} </td>
         </ng-container>
-
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action </th>
+          <td mat-cell *matCellDef="let element">
+            <a><i class="fa fa-pencil-square-o fa-lg fa-edit" aria-hidden="true"></i></a>
+            &nbsp;
+            <a><i class="fa fa-trash-o fa-lg fa-trash" aria-hidden="true"></i></a>
+          </td>
+        </ng-container>
         <!-- Symbol Column -->
         <ng-container matColumnDef="border">
           <th mat-header-cell *matHeaderCellDef> border </th>
@@ -119,4 +131,68 @@
 </mat-paginator>
     </div>
   </div>
+
 </div>
+<section class="csc-section">
+  <div class="display-container">
+    <h2 *ngIf="selectedCountry">
+      Country: {{selectedCountry.flag}}&nbsp;&nbsp;{{ selectedCountry.name }}
+      <span (click)="clear('country')">&#8855;</span>
+    </h2>
+    <h2 *ngIf="selectedState">
+      State: {{ selectedState.name }}
+      <span (click)="clear('state')">&#8855;</span>
+    </h2>
+    <h2 *ngIf="selectedCity">
+      City: {{ selectedCity.name }} <span (click)="clear('city')">&#8855;</span>
+    </h2>
+  </div>
+
+  <form>
+    <fieldset>
+      <label for="country">Country:</label><br /><br />
+      <select
+        #country
+        name="country"
+        id="country"
+        (change)="onCountryChange($event)"
+      >
+        <option [value]="null">-- Select Your Country --</option>
+        <option *ngFor="let country of countries" [value]="country | json">
+          {{ country.flag }}&nbsp;&nbsp;{{ country.name }}
+        </option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <label for="state">State:</label><br /><br />
+      <select
+        *ngIf="states"
+        #state
+        name="state"
+        id="state"
+        (change)="onStateChange($event)"
+      >
+        <option [value]="null">-- Select Your State --</option>
+        <option *ngFor="let state of states" [value]="state | json">
+          {{ state.name }}
+        </option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <label for="city">City:</label><br /><br />
+      <select
+        *ngIf="cities"
+        #city
+        name="city"
+        id="city"
+        (change)="onCityChange($event)"
+      >
+        <option [value]="null">-- Select Your City --</option>
+        <option *ngFor="let city of cities" [value]="city | json">
+          {{ city.name }}
+        </option>
+      </select>
+    </fieldset>
+  </form>
+</section>

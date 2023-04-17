@@ -7,12 +7,12 @@
 
 
 
-  <form action="">
+  <form  [formGroup]="frmFinishingProcess" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Job Name</mat-label>
-          <mat-select [formControl]="job" multiple>
+          <mat-select formControlName="jobName">
 
             <mat-option *ngFor="let job of jobList" [value]="job">{{job}}</mat-option>
           </mat-select>
@@ -22,43 +22,46 @@
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label> Quality</mat-label>
-          <mat-select [formControl]="exportQuality" >
-
-            <mat-option *ngFor="let exportQuality of exportQualityList" [value]="exportQuality">{{exportQuality}}</mat-option>
+          <mat-select formControlName="qty" (valueChange)="onDesign($event)" >
+            <mat-option *ngFor="let qualitys of exportQualityList" [value]="qualitys.qualityName">{{qualitys.qualityName}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+
+
+
+
+
 
 
 
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label> Design</mat-label>
-          <mat-select [formControl]="design" >
-
-            <mat-option *ngFor="let design of designList" [value]="design">{{design}}</mat-option>
+          <mat-select formControlName="design" (valueChange)="setDesignValue($event)">
+            <mat-option *ngFor="let designs of designList" [value]="designs.design">{{designs.design}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
 
-<div class="col-md-6">
+<div class="col-md-3">
   <mat-form-field appearance="outline">
     <mat-label>From Date</mat-label>
-    <input matInput [matDatepicker]="picker">
+    <input matInput [matDatepicker]="picker" formControlName="fromDate">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-3">
   <mat-form-field appearance="outline">
     <mat-label>To Date</mat-label>
-    <input matInput [matDatepicker]="picker">
+    <input matInput [matDatepicker]="picker2" formControlName="toDate">
     <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
 </div>
 
@@ -68,11 +71,13 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Rate</mat-label>
-          <input matInput placeholder="Rate"    >
+          <input matInput placeholder="Rate"  formControlName="rate"   >
         </mat-form-field>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-lg-3"><button mat-raised-button color="primary">Add</button></div>
+    </div>
   </form>
   <div class="row mt-4">
     <div class="col-md-6">

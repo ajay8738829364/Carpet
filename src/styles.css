@@ -17,7 +17,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+/* .mat-mdc-snack-bar-container .mdc-snackbar__surface {
   background-color: rgb(5, 161, 109) !important;
   border-radius: 8px!important;
+} */
+
+
+.sidebar-nav-wrapper .sidebar-nav ul .nav-item.nav-item-has-children ul li a {
+
+  text-decoration: none !important;
+
+}
+
+.mat-mdc-form-field{
+  text-transform: capitalize;
+}
+.iti input{
+    height: 60px !important;
+    width: 295px;
 }

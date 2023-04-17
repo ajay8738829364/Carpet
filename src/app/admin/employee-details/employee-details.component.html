@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 text-center">
-      Employee Ledger Account
+      Contractor / Staff / Finisher Ledger Account
     </div>
   </div>
 
@@ -12,109 +12,157 @@
       <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
           <mat-label>Group</mat-label>
-          <mat-select  (valueChange)="onGroup($event)">
+          <mat-select (valueChange)="onGroup($event)" formControlName="groupName">
             <mat-option *ngFor="let groups of groupList" [value]="groups">{{groups}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
-
+      <div class="col-md-6 col-lg-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+      </div>
 
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Address" #addressFocus   autofocus  (keyup.enter)="cityFocus.focus()"></textarea>
+          <textarea matInput placeholder="Address" #addressFocus  formControlName="address"></textarea>
         </mat-form-field>
 
 
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
-          <mat-label>City</mat-label>
-          <mat-select    (valueChange)="onCity($event)" #cityFocus autofocus  (keyup.enter)="countryFocus.focus()" >
-
-            <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
+          <mat-label>Country</mat-label>
+          <mat-select  formControlName="country" #countryFocus (valueChange)="countryById($event)">
+            <mat-option *ngFor="let countrys of countryList" [value]="countrys.id">{{countrys.name}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+
+
         <!-- formControlName="city" -->
 
       </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>Country</mat-label>
-          <mat-select    (valueChange)="onCountry($event)" #countryFocus  autofocus  (keyup.enter)="stateFocus.focus()">
-            <!-- formControlName="country" -->
-            <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="col-md-6 col-lg-6">
 
-
-      </div>
-
-
-
-
-      <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>State</mat-label>
-          <mat-select   (valueChange)="onState($event)" #stateFocus autofocus  (keyup.enter)="zipCodeFocus.focus()">
-            <!-- formControlName="state" -->
+          <mat-select (valueChange)="onStateById($event)" formControlName="state" #stateFocus >
 
-            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
+
+            <mat-option *ngFor="let states of stateList" [value]="states.id">{{states.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <div class="col-md-6 col-lg-6">
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>City</mat-label>
+          <mat-select  formControlName="city" #cityFocus >
+
+            <mat-option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
       </div>
 
-      <div class="col-md-6 col-lg-4">
+
+
+
+
+
+
+
+
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code"  #zipCodeFocus autofocus  >
+          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus >
         </mat-form-field>
       </div>
-
-      <div class="col-md-6 col-lg-4">
+<div class="col-md-6 col-lg-6"></div>
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Aadhar No.</mat-label>
-          <input matInput placeholder="Aadhar No."  #zipCodeFocus autofocus  >
+          <input matInput placeholder="Aadhar No." formControlName="adharNo" #zipCodeFocus >
         </mat-form-field>
       </div>
+      <div class="col-lg-6 col-md-6">
+        <label for="formFile" class="form-label">Upload Aadhar Card *</label>
+        <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
+        <input class="form-control" type="file" id="formFile" accept="image/*" (change)="selectImageAdhar($event)" formControlName="adharImage">
+      </div>
 
-      <div class="col-md-6 col-lg-4">
+
+
+
+
+
+
+
+
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Pan Card No.</mat-label>
-          <input matInput placeholder="Pan Card No."  #zipCodeFocus autofocus  >
+          <input matInput placeholder="Pan Card No." formControlName="panNo" #zipCodeFocus autofocus>
         </mat-form-field>
       </div>
+      <div class="col-lg-6 col-md-6">
+        <label for="formFile" class="form-label">Upload Pan Card *</label>
+        <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
+        <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)" formControlName="panImage">
+      </div>
 
-      <div class="col-md-6 col-lg-4">
+
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>E.P.F.O. No.</mat-label>
-          <input matInput placeholder="E.P.F.O. No."  #zipCodeFocus autofocus  >
+          <input matInput placeholder="E.P.F.O. No." #zipCodeFocus autofocus formControlName="epfoNo">
         </mat-form-field>
       </div>
 
-      <div class="col-md-6 col-lg-4">
+      <div class="col-lg-6 col-md-6">
+        <label for="formFile" class="form-label">Upload E.P.F.O. Sheet</label>
+        <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
+        <input class="form-control" type="file" id="formFile" accept="image/*" (change)="selectImageEpfo($event)" formControlName="epfoSheet">
+      </div>
+
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>E.S.I.C. No.</mat-label>
-          <input matInput placeholder="E.P.F.O. No."  #zipCodeFocus autofocus  >
+          <input matInput placeholder="E.P.F.O. No."  #zipCodeFocus autofocus formControlName="esicNo">
         </mat-form-field>
       </div>
+      <div class="col-lg-6 col-md-6">
+        <label for="formFile" class="form-label">Upload E.S.I.C. Sheet</label>
+        <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
+        <input class="form-control" type="file" (change)="selectImageEsic($event)" id="formFile" accept="image/*" formControlName="esicSheet">
+      </div>
 
-      <div class="col-md-6 col-lg-4">
+
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail" #emailFocus  >
+          <input matInput placeholder="E-Mail" #emailFocus formControlName="email">
         </mat-form-field>
       </div>
 
-      <div class="col-md-6 col-lg-4">
+
+      <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" #emailFocus  >
+          <input matInput placeholder="Password" #emailFocus formControlName="password">
         </mat-form-field>
       </div>
+
+    </div>
+    <div class="row">
       <div class="col-lg-3"><button mat-raised-button color="primary">Add</button></div>
     </div>
   </form>
@@ -130,7 +178,7 @@
         <input matInput placeholder="Search" #input autocomplete="off" (keyup)="applyFilter($event)">
       </mat-form-field>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-12 table-responsive">
 
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -142,7 +190,7 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="group">
-          <th mat-header-cell *matHeaderCellDef>   Group Name </th>
+          <th mat-header-cell *matHeaderCellDef> Group Name </th>
           <td mat-cell *matCellDef="let element"> {{element.group}} </td>
         </ng-container>
 
@@ -172,7 +220,7 @@
 
         <ng-container matColumnDef="panImage">
           <th mat-header-cell mat-sort-header *matHeaderCellDef> Pan Image </th>
-          <td mat-cell *matCellDef="let element"> {{element.panImage}} </td>
+          <td mat-cell *matCellDef="let element"> <img src="{{element.panImage}}" alt="">  </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
@@ -181,22 +229,22 @@
         </ng-container>
 
         <ng-container matColumnDef="panNo">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef>  Pan No </th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Pan No </th>
           <td mat-cell *matCellDef="let element"> {{element.panNo}} </td>
         </ng-container>
         <ng-container matColumnDef="aadharImage">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Aadhar Image  </th>
-          <td mat-cell *matCellDef="let element"> {{element.aadharImage}} </td>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Aadhar Image </th>
+          <td mat-cell *matCellDef="let element"> <img src="{{element.aadharImage}}" alt="">  </td>
         </ng-container>
 
 
 
 
 
-<ng-container matColumnDef="aadharNo">
-  <th mat-header-cell mat-sort-header *matHeaderCellDef> Zip Code  </th>
-  <td mat-cell *matCellDef="let element"> {{element.aadharNo}} </td>
-</ng-container>
+        <ng-container matColumnDef="aadharNo">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Aadhar No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.aadharNo}} </td>
+        </ng-container>
 
 
 
@@ -211,12 +259,25 @@
           <td mat-cell *matCellDef="let element"> {{element.country}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="esicSheet">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Esic Sheet </th>
+          <td mat-cell *matCellDef="let element"> <img src="{{element.esicSheet}}" alt="">  </td>
+        </ng-container>
+
+        <ng-container matColumnDef="epfoSheet">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Epfo Sheet  </th>
+          <td mat-cell *matCellDef="let element"> <img src="{{element.epfoSheet}}" alt=""> </td>
+        </ng-container>
+
+
+
+
         <ng-container matColumnDef="state">
           <th mat-header-cell mat-sort-header *matHeaderCellDef> State </th>
           <td mat-cell *matCellDef="let element"> {{element.state}} </td>
         </ng-container>
         <ng-container matColumnDef="city">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> City  </th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> City </th>
           <td mat-cell *matCellDef="let element"> {{element.city}} </td>
         </ng-container>
 
@@ -224,21 +285,17 @@
 
 
 
-<ng-container matColumnDef="zipCode">
-  <th mat-header-cell mat-sort-header *matHeaderCellDef> Zip Code  </th>
-  <td mat-cell *matCellDef="let element"> {{element.zip_code}} </td>
-</ng-container>
+        <ng-container matColumnDef="zipCode">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Zip Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.zip_code}} </td>
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
-
-
-
-      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
-      </mat-paginator>
-
     </div>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    </mat-paginator>
   </div>
 </div>

@@ -12,56 +12,88 @@
       <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
           <mat-label>Group</mat-label>
-          <mat-select  (valueChange)="onGroup($event)">
-            <mat-option *ngFor="let groups of groupList" [value]="groups">{{groups}}</mat-option>
+
+          <mat-select  (valueChange)="onGroup($event)" formControlName="groupName">
+
+
+
+            <mat-option *ngFor="let groups of groupList" [value]="groups.id">{{groups.groupName}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
+
+
+
+
+
+
       <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
           <mat-label>Material</mat-label>
-          <mat-select  (valueChange)="onMaterial($event)">
-            <mat-option *ngFor="let materials of materialList" [value]="materials">{{materials}}</mat-option>
+          <mat-select  (valueChange)="onMaterial($event)" formControlName="materialName">
+            <mat-option *ngFor="let materials of materialList" [value]="materials.item_name">{{materials.item_name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+
 
 
 
       <div class="col-lg-6 col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Count</mat-label>
-          <mat-select  (valueChange)="onCount($event)">
-            <mat-option *ngFor="let counts of countList" [value]="counts">{{counts}}</mat-option>
+          <mat-select  (valueChange)="onCount($event)" formControlName="count">
+            <mat-option *ngFor="let counts of countList" [value]="counts.id">{{counts.count}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Party Name </mat-label>
-          <input matInput placeholder="Party Name ">
+          <input matInput placeholder="Party Name " formControlName="partyName">
         </mat-form-field>
       </div>
 
       <div class="col-lg-6 col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Gst No. </mat-label>
-          <input matInput placeholder="Gst No.">
+          <input matInput placeholder="Gst No." formControlName="gstNo">
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Address </mat-label>
-          <input matInput placeholder="Address">
+          <input matInput placeholder="Address" formControlName="address">
         </mat-form-field>
       </div>
 
       <div class="col-lg-6 col-md-6">
+        <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [preferredCountries]="preferredCountries"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [phoneValidation]="true"
+        [separateDialCode]="separateDialCode"
+        [numberFormat]="PhoneNumberFormat.National"
+        name="contactNo"
+        formControlName="contactNo"
+      >
+      </ngx-intl-tel-input>
+        <!-- <input type="text" name="tel" ng-model="tel" ng-intl-tel-input data-default-country="gb">
+
         <mat-form-field appearance="outline">
           <mat-label>Contact No. </mat-label>
-          <input matInput placeholder="Contact No.">
-        </mat-form-field>
+          <input matInput placeholder="Contact No."formControlName="contactNo">
+        </mat-form-field> -->
       </div>
       <div class="col-lg-3"><button mat-raised-button color="primary">Add</button></div>
     </div>
@@ -93,9 +125,9 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="item">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Item </th>
-          <td mat-cell *matCellDef="let element"> {{element.item}} </td>
+        <ng-container matColumnDef="groupName">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Group Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.groupName}} </td>
         </ng-container>
 
 
@@ -103,13 +135,26 @@
 
 
 
-        <ng-container matColumnDef="description">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Description </th>
-          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+
+
+
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
         </ng-container>
-        <ng-container matColumnDef="details">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Details </th>
-          <td mat-cell *matCellDef="let element"> {{element.details}} </td>
+        <ng-container matColumnDef="contactNo">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Contact No </th>
+          <td mat-cell *matCellDef="let element"> {{element.contactNo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="materialName">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Material Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.materialName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="partyName">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Party Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.partyName}} </td>
         </ng-container>
         <!-- Weight Column -->
         <ng-container matColumnDef="count">
@@ -118,9 +163,17 @@
         </ng-container>
 
         <!-- Symbol Column -->
-        <ng-container matColumnDef="colour">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Colour </th>
-          <td mat-cell *matCellDef="let element"> {{element.colour}} </td>
+        <ng-container matColumnDef="gstNo">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> GstNo </th>
+          <td mat-cell *matCellDef="let element"> {{element.gstNo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action </th>
+          <td mat-cell *matCellDef="let element">
+            <a><i class="fa fa-pencil-square-o fa-lg fa-edit" aria-hidden="true"></i></a>
+            &nbsp;
+            <a><i class="fa fa-trash-o fa-lg fa-trash" aria-hidden="true"></i></a>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
