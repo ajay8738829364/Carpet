@@ -7,7 +7,11 @@ import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
-
+import {
+  SearchCountryField,
+  CountryISO,
+  PhoneNumberFormat,
+} from 'ngx-intl-tel-input';
 export interface PeriodicElement {
   id: string;
   index: number;
@@ -30,6 +34,18 @@ const ELEMENT_DATA: PeriodicElement[] = [];
   styleUrls: ['./purchaser-details.component.css'],
 })
 export class PurchaserDetailsComponent implements OnInit {
+
+  separateDialCode = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+
+  preferredCountries: CountryISO[] = [  ];
+
+
+
+
+
   displayedColumns: string[] = [
     'id',
     'groupName',
@@ -150,15 +166,17 @@ console.log(this.groupList);
 
 
     const formData = this.frmPurchaserDetails.value;
-
+const telData =  this.frmPurchaserDetails.value.contactNo;
+console.log(telData.internationalNumber);
     var data={
-      groupName:formData.groupName,
+
+groupName:formData.groupName,
 materialName:formData.materialName,
 count:formData.count,
 partyName:formData.partyName,
 gstNo:formData.gstNo,
 address:formData.address,
-contactNo:formData.contactNo
+contactNo:telData.internationalNumber
     }
     console.log(this.frmPurchaserDetails.value);
 

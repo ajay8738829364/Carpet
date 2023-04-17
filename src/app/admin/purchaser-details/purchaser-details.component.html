@@ -69,12 +69,31 @@
       </div>
 
       <div class="col-lg-6 col-md-6">
-        <input type="text" name="tel" ng-model="tel" ng-intl-tel-input data-default-country="gb">
+        <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [preferredCountries]="preferredCountries"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [phoneValidation]="true"
+        [separateDialCode]="separateDialCode"
+        [numberFormat]="PhoneNumberFormat.National"
+        name="contactNo"
+        formControlName="contactNo"
+      >
+      </ngx-intl-tel-input>
+        <!-- <input type="text" name="tel" ng-model="tel" ng-intl-tel-input data-default-country="gb">
 
         <mat-form-field appearance="outline">
           <mat-label>Contact No. </mat-label>
           <input matInput placeholder="Contact No."formControlName="contactNo">
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
       <div class="col-lg-3"><button mat-raised-button color="primary">Add</button></div>
     </div>

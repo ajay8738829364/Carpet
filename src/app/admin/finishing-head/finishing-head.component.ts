@@ -34,7 +34,9 @@ export class FinishingHeadComponent implements OnInit {
     console.log(this.frmFinishingHead.value);
 
 
-    const formData = this.frmFinishingHead.value;
+    const formData = this.frmFinishingHead.value.jobName;
+    const dd =formData.charAt(0).toUpperCase() + formData.substring(1);
+    console.log(dd);
     var data={
       jobName : formData.jobName
     }

@@ -28,3 +28,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   text-decoration: none !important;
 
 }
+
+.mat-mdc-form-field{
+  text-transform: capitalize;
+}
+.iti input{
+    height: 60px !important;
+    width: 295px;
+}

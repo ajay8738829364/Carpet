@@ -3,8 +3,13 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+
 import { HelperService } from 'src/app/helper/helper.service';
+import { City } from 'src/app/model/city';
+import { Country } from 'src/app/model/country';
+import { State } from 'src/app/model/state';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
+import { CountryStateCitysService } from 'src/app/services/country-state-citys.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
@@ -24,10 +29,8 @@ export interface PeriodicElement {
   email: string;
   esicNo: string;
   epfoNo: string;
-  esicSheet:string;
-  epfoSheet:string;
-
-
+  esicSheet: string;
+  epfoSheet: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -53,9 +56,11 @@ export class EmployeeDetailsComponent implements OnInit {
     'esicNo',
     'epfoNo',
     'esicSheet',
-    'epfoSheet'
+    'epfoSheet',
     // 'password',
   ];
+
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -84,7 +89,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   country = new FormControl('');
 
-  countryList: string[] = ['India'];
+  countryList: any;
 
   state = new FormControl('');
 
@@ -93,24 +98,17 @@ export class EmployeeDetailsComponent implements OnInit {
   epfoFile!: File;
   esicFile!: File;
 
-  stateList: string[] = [
-    'Andhra Pradesh',
-    'Arunachal Pradesh',
-    ' Assam',
-    'Bihar',
-    'Chhattisgarh',
-    'Goa',
-    'Gujarat',
-  ];
+  stateList: any
 
   city = new FormControl('');
 
-  cityList: string[] = ['Anantapur', 'Prakasam'];
+  cityList:any;
   constructor(
     private _formBuilder: FormBuilder,
     private adminService: AdminMasterService,
     private _snackBar: SnackBarService,
-    private _helper : HelperService
+    private _helper: HelperService,
+    private countrystatecityService: CountryStateCitysService
   ) {}
 
   ngOnInit(): void {
@@ -134,22 +132,36 @@ export class EmployeeDetailsComponent implements OnInit {
       password: [''],
     });
 
-
     this.getEmployeeDetails();
+
+    this.onCountry();
   }
 
-  onCountry(data: any) {
-    console.log(data);
-    this.country = data;
+
+  onCountry() {
+    debugger
+    this.countrystatecityService.getCountry().subscribe((data: any) => {
+      this.countryList = data.data;
+
+      console.log('Countries fetched', this.countryList);
+    });
   }
-  onState(data: any) {
-    console.log(data);
-    this.state = data;
+  countryById(event:any){
+this.countrystatecityService.getState(event).subscribe((res:any)=>{
+  this.stateList = res.data;
+  console.log('state by country id ', this.stateList);
+});
   }
-  onCity(data: any) {
-    console.log(data);
-    this.city = data;
-  }
+  onStateById(data: any) {
+    debugger
+    this.countrystatecityService.getCity(data).subscribe((res:any)=>{
+
+
+    console.log(res);
+    this.cityList = res.data;
+  });
+}
+ 
 
   selectImageAdhar(event: any) {
     this.adharFile = event.target.files[0];
@@ -215,8 +227,6 @@ export class EmployeeDetailsComponent implements OnInit {
       );
   }
 
-
-
   getEmployeeDetails() {
     ELEMENT_DATA.length = 0;
     this.adminService.getContractor().subscribe((resp: any) => {
@@ -228,22 +238,33 @@ export class EmployeeDetailsComponent implements OnInit {
             index: ind + 1,
             id: val.id,
 
-            group:val.group,
-address:val.address,
-country:val.country,
-state: val.state,
-city:val.city,
-zipCode:val.zipCode,
-aadharNo:val.aadharNo,
-aadharImage:this._helper.apiPath.baseUrl+'/contractotStaffFinishing_ledger/'+val.adharImage,
-panNo:val.panNo,
-panImage:this._helper.apiPath.baseUrl+'/contractotStaffFinishing_ledger/'+val.panImage,
-email:val.email,
-esicNo:val.esicNo,
-epfoNo:val.epfoNo,
-esicSheet:this._helper.apiPath.baseUrl+'/contractotStaffFinishing_ledger/'+val.esicSheet,
-epfoSheet :this._helper.apiPath.baseUrl+'/contractotStaffFinishing_ledger/'+ val.epfoSheet,
-
+            group: val.group,
+            address: val.address,
+            country: val.country,
+            state: val.state,
+            city: val.city,
+            zipCode: val.zipCode,
+            aadharNo: val.aadharNo,
+            aadharImage:
+              this._helper.apiPath.baseUrl +
+              '/contractotStaffFinishing_ledger/' +
+              val.adharImage,
+            panNo: val.panNo,
+            panImage:
+              this._helper.apiPath.baseUrl +
+              '/contractotStaffFinishing_ledger/' +
+              val.panImage,
+            email: val.email,
+            esicNo: val.esicNo,
+            epfoNo: val.epfoNo,
+            esicSheet:
+              this._helper.apiPath.baseUrl +
+              '/contractotStaffFinishing_ledger/' +
+              val.esicSheet,
+            epfoSheet:
+              this._helper.apiPath.baseUrl +
+              '/contractotStaffFinishing_ledger/' +
+              val.epfoSheet,
           });
         });
 

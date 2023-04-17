@@ -324,6 +324,41 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2+'/job_name');
   }
 
+//////////////////////////
+  ////////////
+  ////// here i am use this api for colour code with dyeing details
+  ////
+
+
+  colourCodeDyingDetails(data: any): Observable<any> {
+
+    debugger;
+    return this.http.post(this.apiUrl2 + '/colour_code_dyis_data', data, {
+      headers: new HttpHeaders().set('content-type', 'application/json'),
+    });
+  }
+  colourCodeDyingReciepeDetails(data: any): Observable<any> {
+
+    debugger;
+    console.log(data.frmReciepeArray)
+    return this.http.post(this.apiUrl2 + '/colour_code_dyieng_data_details', data, {
+      headers: new HttpHeaders().set('content-type', 'application/json'),
+    });
+  }
+
+
+  //////////////////////////
+  ////////////
+  ////// here i am use this api for finishing process
+  ////
+
+  addFinishingProcess(data:any){
+    debugger
+    return this.http.post(this.apiUrl2+'/finishing_process_data',data,{
+      headers:new HttpHeaders().set('Accept', 'application/json')
+    })
+  }
+
 }
 
 

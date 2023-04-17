@@ -29,44 +29,51 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Address" #addressFocus autofocus (keyup.enter)="cityFocus.focus()" formControlName="address"></textarea>
+          <textarea matInput placeholder="Address" #addressFocus  formControlName="address"></textarea>
         </mat-form-field>
 
-
-      </div>
-      <div class="col-md-6 col-lg-6">
-        <mat-form-field appearance="outline">
-          <mat-label>City</mat-label>
-          <mat-select (valueChange)="onCity($event)" formControlName="city" #cityFocus autofocus (keyup.enter)="countryFocus.focus()">
-
-            <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!-- formControlName="city" -->
-
-      </div>
-      <div class="col-md-6 col-lg-6">
-        <mat-form-field appearance="outline">
-          <mat-label>State</mat-label>
-          <mat-select (valueChange)="onState($event)" formControlName="state" #stateFocus autofocus (keyup.enter)="zipCodeFocus.focus()">
-            <!-- formControlName="state" -->
-
-            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
-          </mat-select>
-        </mat-form-field>
 
       </div>
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <mat-select (valueChange)="onCountry($event)" formControlName="country" #countryFocus autofocus (keyup.enter)="stateFocus.focus()">
-            <!-- formControlName="country" -->
-            <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
+          <mat-select  formControlName="country" #countryFocus (valueChange)="countryById($event)">
+            <mat-option *ngFor="let countrys of countryList" [value]="countrys.id">{{countrys.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
 
+
+        <!-- formControlName="city" -->
+
       </div>
+      <div class="col-md-6 col-lg-6">
+
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select (valueChange)="onStateById($event)" formControlName="state" #stateFocus >
+
+
+            <mat-option *ngFor="let states of stateList" [value]="states.id">{{states.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <div class="col-md-6 col-lg-6">
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>City</mat-label>
+          <mat-select  formControlName="city" #cityFocus >
+
+            <mat-option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+
+
 
 
 
@@ -76,14 +83,14 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus autofocus>
+          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus >
         </mat-form-field>
       </div>
 <div class="col-md-6 col-lg-6"></div>
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Aadhar No.</mat-label>
-          <input matInput placeholder="Aadhar No." formControlName="adharNo" #zipCodeFocus autofocus>
+          <input matInput placeholder="Aadhar No." formControlName="adharNo" #zipCodeFocus >
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
