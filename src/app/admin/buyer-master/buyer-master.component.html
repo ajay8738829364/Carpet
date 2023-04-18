@@ -29,43 +29,40 @@
 
 
       </div>
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>City</mat-label>
-          <mat-select   formControlName="city" (valueChange)="onCity($event)" #cityFocus (keydown)="onCityFocus($event)" >
-
-            <mat-option *ngFor="let city of cityList" [value]="city">{{city}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!-- formControlName="city" -->
-
-      </div>
-<!-- <input type="tel" id="phone">
-<input type="tel" ng2TelInput [ng2TelInputOptions]="{initialCountry: 'in'}" /> -->
-      <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
-          <mat-label>State</mat-label>
-          <mat-select  formControlName="state" (valueChange)="onState($event)" #stateFocus   (keydown)="onStateFocus($event)">
-            <!-- formControlName="state" -->
-
-            <mat-option *ngFor="let states of stateList" [value]="states">{{states}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-      </div>
-
-      <div class="col-md-6 col-lg-4">
+       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <mat-select   formControlName="country" (valueChange)="onCountry($event)" #countryFocus  (keydown)="onCountryFocus($event)">
-            <!-- formControlName="country" -->
-            <mat-option *ngFor="let countrys of countryList" [value]="countrys">{{countrys}}</mat-option>
+          <mat-select formControlName="country" #countryFocus (valueChange)="countryById($event)">
+            <mat-option *ngFor="let countrys of countryList" [value]="countrys.id">{{countrys.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+
+      </div>
+      <div class="col-md-6 col-lg-4">
+
+        <mat-form-field appearance="outline">
+          <mat-label>State</mat-label>
+          <mat-select (valueChange)="onStateById($event)" formControlName="state" #stateFocus>
+
+
+            <mat-option *ngFor="let states of stateList" [value]="states.id">{{states.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
+      </div>
+      <div class="col-md-6 col-lg-4">
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>City</mat-label>
+          <mat-select formControlName="city" #cityFocus>
+
+            <mat-option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
       </div>
-
 
 
 

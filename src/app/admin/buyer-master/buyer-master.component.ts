@@ -18,6 +18,7 @@ import {
 } from 'ngx-intl-tel-input';
 
 import * as intlTelInput from 'intl-tel-input';
+import { CountryStateCitysService } from 'src/app/services/country-state-citys.service';
 @Component({
   selector: 'app-buyer-master',
   templateUrl: './buyer-master.component.html',
@@ -63,27 +64,20 @@ export class BuyerMasterComponent implements OnInit {
 
   country = new FormControl('');
 
-  countryList: string[] = ['India'];
+  countryList:any;
 
   state = new FormControl('');
 
-  stateList: string[] = [
-    'Andhra Pradesh',
-    'Arunachal Pradesh',
-    ' Assam',
-    'Bihar',
-    'Chhattisgarh',
-    'Goa',
-    'Gujarat',
-  ];
+  stateList:any;
 
   city = new FormControl('');
 
-  cityList: string[] = ['Anantapur', 'Prakasam'];
+  cityList: any;
   constructor(
     private _formBuilder: FormBuilder,
     private adminService: AdminMasterService,
-    private _snackBar: SnackBarService
+    private _snackBar: SnackBarService,
+    private countrystatecityService: CountryStateCitysService
   ) {}
 
   onEnterBuyerName(event: any): void {
@@ -125,18 +119,18 @@ export class BuyerMasterComponent implements OnInit {
     }
   }
 
-  onCountry(data: any) {
-    console.log(data);
-    this.country = data;
-  }
-  onState(data: any) {
-    console.log(data);
-    this.state = data;
-  }
-  onCity(data: any) {
-    console.log(data);
-    this.city = data;
-  }
+  // onCountry(data: any) {
+  //   console.log(data);
+  //   this.country = data;
+  // }
+  // onState(data: any) {
+  //   console.log(data);
+  //   this.state = data;
+  // }
+  // onCity(data: any) {
+  //   console.log(data);
+  //   this.city = data;
+  // }
   ngOnInit(): void {
     this.frmBuyerMaster = this._formBuilder.group({
       buyerName: [''],
@@ -154,16 +148,33 @@ export class BuyerMasterComponent implements OnInit {
       mobile2: [''],
       email2: [''],
     });
+    this.onCountry();
 
-    //   const intInput = document.getElementById('#phone');
-    //   if(intInput){
-    //     intlTelInput(intInput,{
-    //       initialCountry:'US',
-    //       separateDialCode:true,
-    //       utilsScript:'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js'
-    //     })
-    //   }
   }
+
+  onCountry() {
+    debugger
+    this.countrystatecityService.getCountry().subscribe((data: any) => {
+      this.countryList = data.data;
+
+      console.log('Countries fetched', this.countryList);
+    });
+  }
+  countryById(event:any){
+this.countrystatecityService.getState(event).subscribe((res:any)=>{
+  this.stateList = res.data;
+  console.log('state by country id ', this.stateList);
+});
+  }
+  onStateById(data: any) {
+    debugger
+    this.countrystatecityService.getCity(data).subscribe((res:any)=>{
+
+
+    console.log(res);
+    this.cityList = res.data;
+  });
+}
 
   addbuyerMaster() {
     console.log(this.frmBuyerMaster.value);

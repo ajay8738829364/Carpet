@@ -29,7 +29,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Address" #addressFocus  formControlName="address"></textarea>
+          <textarea matInput placeholder="Address" #addressFocus formControlName="address"></textarea>
         </mat-form-field>
 
 
@@ -37,21 +37,18 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <mat-select  formControlName="country" #countryFocus (valueChange)="countryById($event)">
+          <mat-select formControlName="country" #countryFocus (valueChange)="countryById($event)">
             <mat-option *ngFor="let countrys of countryList" [value]="countrys.id">{{countrys.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
-
-
-        <!-- formControlName="city" -->
 
       </div>
       <div class="col-md-6 col-lg-6">
 
         <mat-form-field appearance="outline">
           <mat-label>State</mat-label>
-          <mat-select (valueChange)="onStateById($event)" formControlName="state" #stateFocus >
+          <mat-select (valueChange)="onStateById($event)" formControlName="state" #stateFocus>
 
 
             <mat-option *ngFor="let states of stateList" [value]="states.id">{{states.name}}</mat-option>
@@ -64,7 +61,7 @@
         <mat-form-field appearance="outline">
 
           <mat-label>City</mat-label>
-          <mat-select  formControlName="city" #cityFocus >
+          <mat-select formControlName="city" #cityFocus>
 
             <mat-option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</mat-option>
           </mat-select>
@@ -83,20 +80,21 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus >
+          <input matInput placeholder="Zip Code" formControlName="zipCode" #zipCodeFocus>
         </mat-form-field>
       </div>
-<div class="col-md-6 col-lg-6"></div>
+      <div class="col-md-6 col-lg-6"></div>
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Aadhar No.</mat-label>
-          <input matInput placeholder="Aadhar No." formControlName="adharNo" #zipCodeFocus >
+          <input matInput placeholder="Aadhar No." formControlName="adharNo" #zipCodeFocus>
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload Aadhar Card *</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" id="formFile" accept="image/*" (change)="selectImageAdhar($event)" formControlName="adharImage">
+        <input class="form-control" type="file" id="formFile" accept="image/*" (change)="selectImageAdhar($event)"
+          formControlName="adharImage">
       </div>
 
 
@@ -116,7 +114,8 @@
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload Pan Card *</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)" formControlName="panImage">
+        <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)"
+          formControlName="panImage">
       </div>
 
 
@@ -130,19 +129,21 @@
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload E.P.F.O. Sheet</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" id="formFile" accept="image/*" (change)="selectImageEpfo($event)" formControlName="epfoSheet">
+        <input class="form-control" type="file" id="formFile" accept="image/*" (change)="selectImageEpfo($event)"
+          formControlName="epfoSheet">
       </div>
 
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>E.S.I.C. No.</mat-label>
-          <input matInput placeholder="E.P.F.O. No."  #zipCodeFocus autofocus formControlName="esicNo">
+          <input matInput placeholder="E.P.F.O. No." #zipCodeFocus autofocus formControlName="esicNo">
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
         <label for="formFile" class="form-label">Upload E.S.I.C. Sheet</label>
         <!-- <input class="form-control" type="file"  id="formFile" accept="image/*"  > -->
-        <input class="form-control" type="file" (change)="selectImageEsic($event)" id="formFile" accept="image/*" formControlName="esicSheet">
+        <input class="form-control" type="file" (change)="selectImageEsic($event)" id="formFile" accept="image/*"
+          formControlName="esicSheet">
       </div>
 
 
@@ -220,7 +221,7 @@
 
         <ng-container matColumnDef="panImage">
           <th mat-header-cell mat-sort-header *matHeaderCellDef> Pan Image </th>
-          <td mat-cell *matCellDef="let element"> <img src="{{element.panImage}}" alt="">  </td>
+          <td mat-cell *matCellDef="let element"> <img src="{{element.panImage}}" alt=""> </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
@@ -234,7 +235,7 @@
         </ng-container>
         <ng-container matColumnDef="aadharImage">
           <th mat-header-cell mat-sort-header *matHeaderCellDef> Aadhar Image </th>
-          <td mat-cell *matCellDef="let element"> <img src="{{element.aadharImage}}" alt="">  </td>
+          <td mat-cell *matCellDef="let element"> <img src="{{element.aadharImage}}" alt=""> </td>
         </ng-container>
 
 
@@ -261,11 +262,11 @@
 
         <ng-container matColumnDef="esicSheet">
           <th mat-header-cell mat-sort-header *matHeaderCellDef>Esic Sheet </th>
-          <td mat-cell *matCellDef="let element"> <img src="{{element.esicSheet}}" alt="">  </td>
+          <td mat-cell *matCellDef="let element"> <img src="{{element.esicSheet}}" alt=""> </td>
         </ng-container>
 
         <ng-container matColumnDef="epfoSheet">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef>Epfo Sheet  </th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Epfo Sheet </th>
           <td mat-cell *matCellDef="let element"> <img src="{{element.epfoSheet}}" alt=""> </td>
         </ng-container>
 

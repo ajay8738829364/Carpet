@@ -77,10 +77,13 @@ export class SizeMasterComponent implements OnInit {
   }
 
   addSize() {
+
+    debugger
+
+
     const formData = this.frmSizeMaster.value;
 
-    const calcData = formData.sizeInYard.substring(0,formData.sizeInYard.indexOf('X')
-    );
+    const calcData = formData.sizeInYard.substring(0,formData.sizeInYard.indexOf('X'));
 
     const width1 = calcData.substring(0, formData.sizeInYard.indexOf('.'));
     const width2 = calcData.toString().split('.')[1];
@@ -108,6 +111,29 @@ const totalSizeInYaard= sizeInYaardCalc1*sizeInYaardCalc2/1296;
 console.log(totalSizeInYaard);
 
     console.log('here this data is after * ', calcData2  ,'this data is before .',length1,   'this data is after .',length2   );
+
+
+
+
+
+
+   /////////////////////////////////////////////
+   ///////////////////////
+   ////////////////// sqr in meter
+   /////////////
+   const sizeMeterWidth=formData.sizeInMeter.substring(0,(formData.sizeInMeter.indexOf('x')))
+   const sizeMeterLength = formData.sizeInMeter.toString().split("x")[1];
+  //  const sizeMeterWidth=formData.sizeInMeter.substring(0,formData.sizeInMeter.indexOf('')
+
+
+
+  const totalSizeInMeter = (sizeMeterWidth * sizeMeterLength)/10000;
+console.log('size in meter  ',sizeMeterWidth);
+
+console.log('size in meter  ',sizeMeterLength);
+console.log('totalSizeInMeter  ',totalSizeInMeter);
+
+
     var data = {
 
       sizeInYard: formData.sizeInYard,
@@ -116,7 +142,7 @@ console.log(totalSizeInYaard);
       type: formData.type,
       code: formData.code,
       yardTotal:totalSizeInYaard.toString().substring(0,4),
-       sqrMeterTotal:'cc'
+       sqrMeterTotal:totalSizeInMeter
     };
     debugger;
     this.adminService.sizeMaster(data).subscribe(
