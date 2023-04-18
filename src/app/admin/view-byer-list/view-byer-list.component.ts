@@ -71,9 +71,9 @@ ngOnInit(): void {
     ELEMENT_DATA.length = 0;
 
     this.adminService.getBuyerMaster().subscribe((res: any) => {
-      console.log(res.buyerData);
-      if (res.buyerData) {
-        res.buyerData.map((val: any, ind: number) => {
+      console.log(res.data);
+      if (res.data) {
+        res.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
             id: val._id,
@@ -81,9 +81,9 @@ ngOnInit(): void {
             email:val.byr_email,
             mobile:val.contact_no,
             address:val.address,
-            country:val.country,
-            state:val.state,
-            city:val.city,
+            country:val.countries_name,
+            state:val.states_name,
+            city:val.cities_name,
             zip_code:val.zip_code,
             bank_name:val.bank_name,
             bank_branch:val.bank_address,

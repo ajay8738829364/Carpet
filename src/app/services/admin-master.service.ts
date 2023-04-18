@@ -152,7 +152,7 @@ export class AdminMasterService {
     });
   }
   getBuyerMaster() {
-    return this.http.get(this.apiUrl2 + '/buyer');
+    return this.http.get(this.apiUrl2+'/buyer');
     // return this.http.get(this.apiUrl2+'/size_master');
   }
 

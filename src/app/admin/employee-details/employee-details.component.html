@@ -38,7 +38,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
           <mat-select formControlName="country" #countryFocus (valueChange)="countryById($event)">
-            <mat-option *ngFor="let countrys of countryList" [value]="countrys.id">{{countrys.name}}</mat-option>
+            <mat-option *ngFor="let countrys of countryList" [value]="countrys.id">{{countrys.countries_name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -51,7 +51,7 @@
           <mat-select (valueChange)="onStateById($event)" formControlName="state" #stateFocus>
 
 
-            <mat-option *ngFor="let states of stateList" [value]="states.id">{{states.name}}</mat-option>
+            <mat-option *ngFor="let states of stateList" [value]="states.id">{{states.states_name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -63,7 +63,7 @@
           <mat-label>City</mat-label>
           <mat-select formControlName="city" #cityFocus>
 
-            <mat-option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</mat-option>
+            <mat-option *ngFor="let city of cityList" [value]="city.id">{{city.cities_name}}</mat-option>
           </mat-select>
         </mat-form-field>
 

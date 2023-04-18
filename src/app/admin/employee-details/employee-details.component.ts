@@ -161,7 +161,7 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
     this.cityList = res.data;
   });
 }
- 
+
 
   selectImageAdhar(event: any) {
     this.adharFile = event.target.files[0];
@@ -240,9 +240,9 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
 
             group: val.group,
             address: val.address,
-            country: val.country,
-            state: val.state,
-            city: val.city,
+            country:val.countries_name,
+            state:val.states_name,
+            city:val.cities_name,
             zipCode: val.zipCode,
             aadharNo: val.aadharNo,
             aadharImage:
