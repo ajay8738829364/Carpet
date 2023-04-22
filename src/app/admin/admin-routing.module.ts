@@ -27,6 +27,7 @@ import { FinishingHeadComponent } from './finishing-head/finishing-head.componen
 import { FinishingProcessComponent } from './finishing-process/finishing-process.component';
 import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
 import { PurchaseBillComponent } from './purchase-bill/purchase-bill.component';
+import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-order-list.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -34,6 +35,7 @@ const routes: Routes = [
     {path:'buyer',component:ByerComponent  },
     {path:'view-byer-list',component:ViewByerListComponent},
     {path:'buyer-master',component:BuyerMasterComponent},
+    {path:'buyer-master/:id',component:BuyerMasterComponent},
     {path:'dying-master',component:DyingMasterComponent},
     { path:'shaed-card',component:ShaedCardComponent},
     {path:'size-master', component:SizeMasterComponent},
@@ -45,15 +47,22 @@ const routes: Routes = [
     {path:'finishing-ledger',component:FinishingLedgerComponent},
     {path:'view-finishing-ledger',component:ViewFinishingLedgerComponent},
     {path:'raw-material-group',component:RawMaterialGroupComponent},
+    {path:'raw-material-group/:id',component:RawMaterialGroupComponent},
     {path:'purchaser-details',component:PurchaserDetailsComponent},
+    {path:'purchaser-details/:id',component:PurchaserDetailsComponent},
     {path:'employee-details',component:EmployeeDetailsComponent},
     {path:'quality',component:QualityComponent},
+    {path:'quality/:id',component:QualityComponent},
+
     {path:'design',component:DesignComponent},
+    {path:'design/:id',component:DesignComponent},
+
     {path:'colour-code-dyeing-detail',component:ColourCodeDyeingDetailComponent},
     {path:'colour-shade-card',component:ColourShadeCardComponent},
     {path:'finishing-head',component:FinishingHeadComponent},
     {path:'finishing-process',component:FinishingProcessComponent},
     {path:'buyer-order',component:BuyerOrderComponent},
+    {path:'view-buyer-order-list',component:ViewBuyerOrderListComponent},
     {path:'purchase-bill',component:PurchaseBillComponent}
 
   ]}

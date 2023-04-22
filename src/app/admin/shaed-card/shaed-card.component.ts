@@ -99,7 +99,7 @@ export class ShaedCardComponent implements OnInit {
 
   onDesign(data:any){
     console.log(data);
-
+  
     this._selectListService.getDesignByQtyId(data).subscribe((resp:any)=>{
       console.log(resp.data)
 

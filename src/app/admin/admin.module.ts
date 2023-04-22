@@ -63,6 +63,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-order-list.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -93,7 +94,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     FinishingHeadComponent,
     FinishingProcessComponent,
     BuyerOrderComponent,
-    PurchaseBillComponent
+    PurchaseBillComponent,
+    ViewBuyerOrderListComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,

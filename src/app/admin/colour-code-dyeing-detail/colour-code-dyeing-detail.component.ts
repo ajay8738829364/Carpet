@@ -144,20 +144,6 @@ data:formData.frmReciepeArray
 
 
 
-    // this._service.colourCodeDyingReciepeDetails(this.arrData).subscribe((res:any)=>{
-    //   console.log(res.data);
-    //   this.responsMessage = res.message;
-    //   this._matSnack.openSnackBar(this.responsMessage, '');
-    // },
-    // (error) => {
-    //   if (error.error.msg) {
-    //     this.responsMessage = error.error.message;
-    //   } else {
-    //     this.responsMessage = global.genricError;
-    //   }
-    //   this._matSnack.openSnackBar(this.responsMessage, global.error);
-    //   console.log('data', data);
-    // });
 
     console.log(this.productForm.value);
   }

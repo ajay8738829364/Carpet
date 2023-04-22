@@ -76,7 +76,7 @@ ngOnInit(): void {
         res.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
-            id: val._id,
+            id: val.id,
             name:val.byr_name,
             email:val.byr_email,
             mobile:val.contact_no,

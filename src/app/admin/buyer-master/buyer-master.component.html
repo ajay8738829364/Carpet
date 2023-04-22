@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row"><div class="col text-center">
-    <h4> Buyer Master</h4>
+    <h4> {{isUpdate ?'Update Buyer Master' : 'Add Buyer Master'}}</h4>
   </div></div>
 
 
@@ -17,7 +17,7 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Buyer Name</mat-label>
-          <input matInput placeholder="Buyer Name" formControlName="buyerName"   (keydown)="onEnterBuyerName($event)">
+          <input matInput placeholder="Buyer Name" formControlName="byr_name"   (keydown)="onEnterBuyerName($event)">
 
         </mat-form-field>
       </div>
@@ -39,7 +39,7 @@
 
 
       </div>
-      <div class="col-md-6 col-lg-4">
+      <!-- <div class="col-md-6 col-lg-4">
 
         <mat-form-field appearance="outline">
           <mat-label>State</mat-label>
@@ -71,12 +71,12 @@
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>Zip Code</mat-label>
-          <input matInput placeholder="Zip Code" formControlName="zipCode" autocomplete="false" #zipCodeFocus (keydown)="onZipCodeFocus($event)">
+          <input matInput placeholder="Zip Code" formControlName="zip_code" autocomplete="false" #zipCodeFocus (keydown)="onZipCodeFocus($event)">
         </mat-form-field>
-      </div>
+      </div> -->
 
       <div class="col-md-6 col-lg-4">
-        <ngx-intl-tel-input
+        <!-- <ngx-intl-tel-input
         [cssClass]="'custom'"
         [preferredCountries]="preferredCountries"
         [enableAutoCountrySelect]="true"
@@ -91,19 +91,19 @@
         [phoneValidation]="true"
         [separateDialCode]="separateDialCode"
         [numberFormat]="PhoneNumberFormat.National"
-        name="mobile"
-        formControlName="mobile"
+        name="contact_no"
+        formControlName="contact_no"
       >
-      </ngx-intl-tel-input>
-        <!-- <mat-form-field appearance="outline">
+      </ngx-intl-tel-input> -->
+        <mat-form-field appearance="outline">
           <mat-label>Contact No.</mat-label>
-          <input matInput placeholder="Contact No." formControlName="mobile" autocomplete="false" #contactFocus (keydown)="onContactNo($event)">
-        </mat-form-field> -->
+          <input matInput placeholder="Contact No." formControlName="contact_no" autocomplete="false" #contactFocus (keydown)="onContactNo($event)">
+        </mat-form-field>
       </div>
       <div class="col-md-6 col-lg-4">
         <mat-form-field appearance="outline">
           <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail" #emailFocus formControlName="email"  >
+          <input matInput placeholder="E-Mail" #emailFocus formControlName="byr_email"  >
         </mat-form-field>
       </div>
     </div>
@@ -121,7 +121,7 @@
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
             <mat-label>Bank Name</mat-label>
-            <input matInput placeholder="Bank Name" formControlName="bank" #bankName autofocus  (keyup.enter)="bankAddressFocus.focus()">
+            <input matInput placeholder="Bank Name" formControlName="bank_name" #bankName autofocus  (keyup.enter)="bankAddressFocus.focus()">
           </mat-form-field>
         </div>
 
@@ -131,11 +131,20 @@
             <input matInput placeholder="Branch" formControlName="bank_address" #bankAddressFocus autofocus >
           </mat-form-field>
         </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="bankCountry" #countryFocus >
+              <mat-option *ngFor="let countrys of bankCountryList" [value]="countrys.id">{{countrys.countries_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
 
+
+        </div>
 
 
         <div class="col-md-6 col-lg-4">
-          <ngx-intl-tel-input
+          <!-- <ngx-intl-tel-input
         [cssClass]="'custom'"
         [preferredCountries]="preferredCountries"
         [enableAutoCountrySelect]="true"
@@ -150,19 +159,19 @@
         [phoneValidation]="true"
         [separateDialCode]="separateDialCode"
         [numberFormat]="PhoneNumberFormat.National"
-        name="mobile2"
-        formControlName="mobile2"
-      >
-      </ngx-intl-tel-input>
-          <!-- <mat-form-field appearance="outline">
+        name="bank_mobile"
+        formControlName="bank_mobile"
+      > </ngx-intl-tel-input>-->
+
+          <mat-form-field appearance="outline">
             <mat-label>Mobile No.</mat-label>
-            <input matInput placeholder="Mobile No." >
-          </mat-form-field> -->
+            <input matInput placeholder="Mobile No." formControlName="bank_mobile" >
+          </mat-form-field>
         </div>
         <div class="col-md-6 col-lg-4">
           <mat-form-field appearance="outline">
             <mat-label>E-Mail</mat-label>
-            <input matInput placeholder="E-Mail" formControlName="email2" #bankEmail>
+            <input matInput placeholder="E-Mail" formControlName="bank_email" #bankEmail>
           </mat-form-field>
         </div>
 
@@ -171,9 +180,14 @@
 </section>
 
 
-      <div class="row"><div class="col-lg-3">
+      <div class="row">
+        <div class="col-lg-3" *ngIf="!isUpdate">
         <button mat-raised-button color="primary" type="submit" [disabled]="frmBuyerMaster.invalid">Add</button>
-      </div></div>
+      </div>
+      <div class="col-lg-3" *ngIf="isUpdate">
+        <button mat-raised-button color="primary" type="button"  (click)="updateBuyerRecord()" [disabled]="frmBuyerMaster.invalid">Update</button>
+      </div>
+    </div>
 
 </form>
 

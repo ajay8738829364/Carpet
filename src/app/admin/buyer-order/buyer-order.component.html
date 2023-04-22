@@ -116,9 +116,9 @@
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Quality</mat-label>
-          <mat-select formControlName="quality" >
+          <mat-select formControlName="quality" (valueChange)="onDesign($event)">
 
-            <mat-option *ngFor="let quality of qualityList" [value]="quality">{{quality}}</mat-option>
+            <mat-option *ngFor="let quality of qualityList" [value]="quality.qualityName">{{quality.qualityName}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -126,9 +126,9 @@
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Design</mat-label>
-          <mat-select formControlName ="design" >
+          <mat-select formControlName ="design" (valueChange)="onGroundBorder($event)" >
 
-            <mat-option *ngFor="let design of designList" [value]="design">{{design}}</mat-option>
+            <mat-option *ngFor="let design of designList" [value]="design.design">{{design.design}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

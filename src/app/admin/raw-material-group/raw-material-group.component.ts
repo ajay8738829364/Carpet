@@ -8,6 +8,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { HelperService } from 'src/app/helper/helper.service';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
@@ -21,7 +22,7 @@ export interface PeriodicElement {
   colour: string;
   description: string;
   details: string;
-  image:string;
+  image: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -40,11 +41,12 @@ export class RawMaterialGroupComponent implements OnInit {
     'description',
     'details',
     'image',
-    'action'
+    'action',
   ];
 
   matImage!: File;
-
+  materialId: any;
+  isUpdate:boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -52,13 +54,12 @@ export class RawMaterialGroupComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private adminService: AdminMasterService,
     private _snackBar: SnackBarService,
-    private _helper : HelperService
+    private _helper: HelperService,
+    private _activatedRoute: ActivatedRoute
   ) {}
 
   // 'item_name','description','count','colour','details','mat_image'
   responsMessage: any;
-
-
 
   public frmRawMaterialGroup!: FormGroup;
 
@@ -74,15 +75,19 @@ export class RawMaterialGroupComponent implements OnInit {
       mat_image: [''],
     });
 
+    this.materialId = this._activatedRoute.snapshot.paramMap.get('id') || '';
 
+    if (this.materialId != '') {
+      this.isUpdate=true;
+
+      this.getMaterialData(this.materialId);
+    }
 
     this.getRawMaterial();
 
-
-
- this.adminService.citie().subscribe(res=>{
-  console.log(res);
- })
+    this.adminService.citie().subscribe((res) => {
+      console.log(res);
+    });
   }
 
   ngAfterViewInit() {
@@ -145,8 +150,8 @@ export class RawMaterialGroupComponent implements OnInit {
             colour: val.colour,
             description: val.description,
             details: val.details,
-            image: this._helper.apiPath.baseUrl+'/raw_material/'+val.mat_image,
-
+            image:
+              this._helper.apiPath.baseUrl + '/raw_material/' + val.mat_image,
           });
         });
 
@@ -155,5 +160,51 @@ export class RawMaterialGroupComponent implements OnInit {
         return;
       }
     });
+  }
+
+  getMaterialData(id: any) {
+    this.adminService.editRawMaterialGroup(id).subscribe((resp: any) => {
+      if (resp.data) {
+
+
+        this.frmRawMaterialGroup.patchValue(resp.data);
+
+        console.log('here raw material data',resp.data);
+
+
+      }
+    });
+  }
+
+  updateRawMaterial(){
+    console.log(this.frmRawMaterialGroup.value);
+
+    const formData = this.frmRawMaterialGroup.value;
+
+    console.log(formData);
+    var data = {
+      item_name: formData.item_name,
+      description: formData.description,
+      count: formData.count,
+      colour: formData.colour,
+      details: formData.details,
+    };
+    debugger;
+
+    this.adminService.updateRawMaterial(this.materialId,data, this.matImage).subscribe(
+      (resp:any) => {
+        debugger;
+        this.responsMessage = resp.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+      }
+    );
   }
 }

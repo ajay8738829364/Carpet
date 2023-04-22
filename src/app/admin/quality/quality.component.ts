@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
@@ -28,7 +29,8 @@ export class QualityComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _snackBar: SnackBarService,
-    private _service: AdminMasterService
+    private _service: AdminMasterService,
+    private _activatedRoute:ActivatedRoute
   ) {}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,6 +39,10 @@ export class QualityComponent implements OnInit {
 
   categoryList: string[] = ['category 1', 'category 1', 'category 1'];
 
+
+
+  isUpdate :boolean=false;
+  qualityId:any;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   ngAfterViewInit() {
@@ -52,18 +58,26 @@ export class QualityComponent implements OnInit {
   ngOnInit(): void {
     this.frmQuality = this._formBuilder.group({
       exportQuality: [''],
-      quality: [''],
+      qualityName: [''],
       category: [''],
     });
 
     this.getQalityData();
+
+    this.qualityId= this._activatedRoute.snapshot.paramMap.get('id')||"";
+    if(this.qualityId!=''){
+      this.isUpdate=true;
+      this.editQualityData(this.qualityId);
+    }
+
+
   }
   frmQuality!: FormGroup;
   addQuality() {
     const formData = this.frmQuality.value;
     var data = {
       exportQuality: formData.exportQuality,
-      qualityName: formData.quality,
+      qualityName: formData.qualityName,
       category: formData.category,
     };
 
@@ -106,4 +120,36 @@ export class QualityComponent implements OnInit {
       }
     });
   }
+
+  editQualityData(_id:any){
+    this._service.getQualityById(_id).subscribe((resp:any)=>{
+      console.log(resp.data);
+
+      this.frmQuality.patchValue(resp.data);
+    });
+  }
+
+  updateQualityData(){
+
+    const formData = this.frmQuality.value;
+    var data = {
+      exportQuality: formData.exportQuality,
+      qualityName: formData.qualityName,
+      category: formData.category,
+    };
+    this._service.updateQuality(this.qualityId,data).subscribe((resp:any)=>{
+      this.responsMessage = resp.message;
+
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+      });
+  }
+
 }

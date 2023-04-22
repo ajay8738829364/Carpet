@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h3>View Buyer Order</h3>
+  </div>
+  <div class="col-md-12 table-responsive">
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="buyerName">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Buyer Name  </th>
+        <td mat-cell *matCellDef="let element"> {{element.buyerName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="shippingDate">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Shipping Date  </th>
+        <td mat-cell *matCellDef="let element"> {{element.shippingDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderType">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Order Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.orderType}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="uom">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> uom  </th>
+        <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="issueUnit">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Issue Unit  </th>
+        <td mat-cell *matCellDef="let element"> {{element.issueUnit}} </td>
+      </ng-container>
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Priority  </th>
+        <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+      </ng-container>
+      <ng-container matColumnDef="area">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> area  </th>
+        <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="quality">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> quality  </th>
+        <td mat-cell *matCellDef="let element"> {{element.quality}} </td>
+      </ng-container>
+      <ng-container matColumnDef="design">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> design  </th>
+        <td mat-cell *matCellDef="let element"> {{element.design}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ground">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> ground  </th>
+        <td mat-cell *matCellDef="let element"> {{element.ground}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="border">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> border  </th>
+        <td mat-cell *matCellDef="let element"> {{element.border}} </td>
+      </ng-container>
+      <ng-container matColumnDef="size">
+        <th mat-header-cell mat-sort-header  *matHeaderCellDef> size  </th>
+        <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> type  </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+      <ng-container matColumnDef="pcs">
+        <th mat-header-cell *matHeaderCellDef> PCS  </th>
+        <td mat-cell *matCellDef="let element"> {{element.pcs}} </td>
+      </ng-container>
+      <ng-container matColumnDef="area2">
+        <th mat-header-cell *matHeaderCellDef> area2  </th>
+        <td mat-cell *matCellDef="let element"> {{element.area2}} </td>
+      </ng-container>
+
+
+
+
+
+
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="orderNo">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Order No </th>
+        <td mat-cell *matCellDef="let element"> {{element.orderNo}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="orderDate">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> orderDate </th>
+        <td mat-cell *matCellDef="let element"> {{element.orderDate}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+
+</div>

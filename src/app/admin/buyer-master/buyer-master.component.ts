@@ -19,6 +19,8 @@ import {
 
 import * as intlTelInput from 'intl-tel-input';
 import { CountryStateCitysService } from 'src/app/services/country-state-citys.service';
+import { ActivatedRoute } from '@angular/router';
+import { coerceStringArray } from '@angular/cdk/coercion';
 @Component({
   selector: 'app-buyer-master',
   templateUrl: './buyer-master.component.html',
@@ -69,15 +71,20 @@ export class BuyerMasterComponent implements OnInit {
   state = new FormControl('');
 
   stateList:any;
+  bankCountry =new FormControl('');
 
+  bankCountryList:any;
   city = new FormControl('');
 
   cityList: any;
+  isUpdate:boolean=false;
+  buyerId:any;
   constructor(
     private _formBuilder: FormBuilder,
     private adminService: AdminMasterService,
     private _snackBar: SnackBarService,
-    private countrystatecityService: CountryStateCitysService
+    private countrystatecityService: CountryStateCitysService,
+    private _acvtivetedRout : ActivatedRoute
   ) {}
 
   onEnterBuyerName(event: any): void {
@@ -119,6 +126,7 @@ export class BuyerMasterComponent implements OnInit {
     }
   }
 
+
   // onCountry(data: any) {
   //   console.log(data);
   //   this.country = data;
@@ -133,31 +141,44 @@ export class BuyerMasterComponent implements OnInit {
   // }
   ngOnInit(): void {
     this.frmBuyerMaster = this._formBuilder.group({
-      buyerName: [''],
+      byr_name: [''],
       address: [''],
-      mobile: [''],
-      email: [''],
+      contact_no: [''],
+      byr_email: [''],
       country: [''],
-      state: [''],
-      city: [''],
-      zipCode: [''],
+      // state: [''],
+      // city: [''],
+      // zip_code: [''],
 
-      bank: [''],
+      bank_name: [''],
       bank_address: [''],
 
-      mobile2: [''],
-      email2: [''],
+      bank_mobile: [''],
+      bank_email: [''],
+      bankCountry:['']
     });
     this.onCountry();
 
-  }
 
+     this.buyerId = this._acvtivetedRout.snapshot.paramMap.get('id')|| "";
+    if(this.buyerId!=''){
+this.isUpdate=true;
+
+      this.editFormData(this.buyerId);
+    }
+  }
+  // bankCountryById(){
+  //   this.countrystatecityService.getState(event).subscribe((res:any)=>{
+  //     this.stateList = res.data;
+  //     console.log('state by country id ', this.stateList);
+  //   });
+  // }
   onCountry() {
     debugger
     this.countrystatecityService.getCountry().subscribe((data: any) => {
       this.countryList = data.data;
-
-      console.log('Countries fetched', this.countryList);
+this.bankCountryList=data.data;
+      //console.log('Countries fetched', this.countryList);
     });
   }
   countryById(event:any){
@@ -178,29 +199,30 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
 
   addbuyerMaster() {
     console.log(this.frmBuyerMaster.value);
-    const p: any = this.frmBuyerMaster.value.mobile;
+    const p: any = this.frmBuyerMaster.value.contact_no;
     console.log(p.internationalNumber);
 
     debugger;
-    const p2: any = this.frmBuyerMaster.value.mobile2;
+    const p2: any = this.frmBuyerMaster.value.bank_mobile;
     console.log(p2.internationalNumber);
     const formData = this.frmBuyerMaster.value;
 
     var data = {
-      byr_name: formData.buyerName,
+      byr_name: formData.byr_name,
       address: formData.address,
-      contact_no: p.internationalNumber,
-      byr_email: formData.email,
+      contact_no:formData.contact_no,
+      byr_email: formData.byr_email,
       country: formData.country,
-      state: formData.state,
-      city: formData.city,
-      zip_code: formData.zipCode,
+      // state: formData.state,
+      // city: formData.city,
+      // zip_code: formData.zip_code,
 
-      bank_name: formData.bank,
+      bank_name: formData.bank_name,
       bank_address: formData.bank_address,
 
-      bank_mobile: p2.internationalNumber,
-      bank_email: formData.email2,
+      bank_mobile:formData.bank_mobile,
+      bank_email: formData.bank_email,
+      bankCountry:formData.bankCountry
     };
     debugger;
     this.adminService.buyerMaster(data).subscribe(
@@ -216,6 +238,58 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
         }
         this._snackBar.openSnackBar(this.responsMessage, global.error);
         console.log('data', data);
+      }
+    );
+  }
+
+
+
+  editFormData(frmData:any){
+
+    this.adminService.editBuyerMaster(frmData).subscribe((resp:any)=>{
+
+
+      if(resp.data){
+        this.frmBuyerMaster.patchValue(resp.data);
+      }
+
+
+      console.log('edit frm data', resp.data);
+    });
+  }
+  updateBuyerRecord(){
+debugger
+    const formData = this.frmBuyerMaster.value;
+    var data = {
+      byr_name: formData.byr_name,
+      address: formData.address,
+      contact_no:formData.contact_no,
+      byr_email: formData.byr_email,
+      country: formData.country,
+      state: formData.state,
+      city: formData.city,
+      zip_code: formData.zip_code,
+
+      bank_name: formData.bank_name,
+      bank_address: formData.bank_address,
+
+      bank_mobile:formData.bank_mobile,
+      bank_email: formData.bank_email,
+    };
+
+    this.adminService.updateBuyerMaster(this.buyerId,data).subscribe(
+      (resp: any) => {
+        this.responsMessage = resp.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+        console.log('data', formData);
       }
     );
   }

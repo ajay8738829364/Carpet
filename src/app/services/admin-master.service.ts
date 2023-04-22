@@ -84,6 +84,28 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/raw_material');
   }
 
+
+  editRawMaterialGroup(data:any) {
+    return this.http.get(this.apiUrl2 +'/raw_material_update/'+data);
+  }
+
+  updateRawMaterial(apiUri:any,data:any,matImg: File){
+    const formData = new FormData();
+
+    formData.append('item_name', data.item_name);
+    formData.append('description', data.description);
+    formData.append('count', data.count);
+    formData.append('colour', data.colour);
+    formData.append('details', data.details);
+    formData.append('mat_image', matImg, matImg.name);
+
+    return this.http.post(this.apiUrl2 + '/raw_material_edit/'+apiUri, formData, {
+      headers: new HttpHeaders().set('accept', 'application/json'),
+    });
+  }
+
+
+
   //////////////////////
   /////////// here code for finishing ledger api service
   ///////
@@ -153,8 +175,25 @@ export class AdminMasterService {
   }
   getBuyerMaster() {
     return this.http.get(this.apiUrl2+'/buyer');
-    // return this.http.get(this.apiUrl2+'/size_master');
+
   }
+  editBuyerMaster(data: any) {
+    debugger;
+    console.log(data);
+    return this.http.get(this.apiUrl2 + '/buyer_update/'+ data);
+  }
+
+  updateBuyerMaster(apiUri:any,data: any) {
+    debugger;
+    console.log(data);
+    return this.http.post(this.apiUrl2 + '/buyer_edit/'+apiUri, data, {
+      headers: new HttpHeaders().set('ContentType', 'application/json'),
+    });
+  }
+
+
+
+
 
   //////////////////////
   /////////// here code for Dying Master api service
@@ -211,6 +250,16 @@ export class AdminMasterService {
 
   getQuality() {
     return this.http.get(this.apiUrl2 + '/quality');
+  }
+
+  getQualityById(_id:any){
+    return this.http.get(this.apiUrl2+'/quality_data_update/'+_id);
+  }
+
+  updateQuality(_uri:any, data:any){
+    return this.http.post(this.apiUrl2+'/quality_data_edit/'+_uri,data,{
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
   }
 
   //////////////////////
@@ -276,6 +325,16 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2+'/purchase_ledger');
   }
 
+  getPurchaseLedgerById(_id:any){
+    return this.http.get(this.apiUrl2+'/purchase_ledger_update/'+_id);
+  }
+
+
+  updatePurchaseLedger(apiUri:any, data:any){
+    return this.http.post(this.apiUrl2+'/purchase_ledger_edit/'+apiUri,data,{
+      headers:new HttpHeaders().set('accept','application/json'),
+    })
+  }
   //////////////////////////
   ////////////
   ////// here i am use this api for Design master
@@ -292,6 +351,14 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2+'/design');
   }
 
+  getDesignById(_id:any){
+    return this.http.get(this.apiUrl2+'/design_update/'+_id);
+  }
+updateDesign(_uri:any,data:any){
+  return this.http.post(this.apiUrl2+'/design_edit/'+_uri,data,{
+    headers:new HttpHeaders().set('accept','application/json')
+  })
+}
   //////////////////////////
   ////////////
   ////// here i am use this api for Shade Card master
@@ -358,6 +425,22 @@ export class AdminMasterService {
       headers:new HttpHeaders().set('Accept', 'application/json')
     })
   }
+  //////////////////////////
+  ////////////
+  ////// here i am use this api for buyer order
+  ////
+  addBuyerOrder(data:any){
+    debugger
+    return this.http.post(this.apiUrl2+'/buyer_order_data',data,{
+      headers:new HttpHeaders().set('Accept', 'application/json')
+    })
+  }
+
+  getBuyerOrder(){
+    return this.http.get(this.apiUrl2+'/buyer_order');
+  }
+
+
 
 }
 

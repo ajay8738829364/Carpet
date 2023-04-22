@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, VERSION, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  VERSION,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -9,8 +15,8 @@ import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
-
-import { Country, State, City }  from 'country-state-city';
+import { Country, State, City } from 'country-state-city';
+import { ActivatedRoute } from '@angular/router';
 export interface PeriodicElement {
   id: string;
   index: number;
@@ -48,18 +54,22 @@ export class DesignComponent implements OnInit {
     'ground',
     'border',
     'design',
-    'action'
+    'action',
   ];
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   responsMessage: any;
+
+  designId: any;
+  isUpdate: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
     private _service: AdminMasterService,
     private _serviceSelectList: AllselectlistService,
     private _matSnackBar: SnackBarService,
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _activatedRoute: ActivatedRoute
   ) {}
   // 'prodQty','expQty','design','ground','border
   ngOnInit(): void {
@@ -73,6 +83,12 @@ export class DesignComponent implements OnInit {
     this.getProductQuality();
     this.getExportQuality();
     this.getAllDesignList();
+
+    this.designId = this._activatedRoute.snapshot.paramMap.get('id') || '';
+    if (this.designId != '') {
+      this.isUpdate = true;
+      this.getDesignWithId(this.designId);
+    }
   }
 
   ngAfterViewInit() {
@@ -132,19 +148,18 @@ export class DesignComponent implements OnInit {
     this.expQty = event;
   }
 
-  getAllDesignList(){
-    this._service.getDesignList().subscribe((resp:any)=>{
-
+  getAllDesignList() {
+    this._service.getDesignList().subscribe((resp: any) => {
       if (resp.data) {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
             id: val.id,
-            productionQuality:val.prodQty,
-            exportQuality:val.expQty,
-            ground:val.ground,
-            border:val.border,
-            design:val.design
+            productionQuality: val.prodQty,
+            exportQuality: val.expQty,
+            ground: val.ground,
+            border: val.border,
+            design: val.design,
           });
         });
 
@@ -152,53 +167,43 @@ export class DesignComponent implements OnInit {
         this.ngAfterViewInit();
         return;
       }
-
     });
-
-  }
-  @ViewChild('country') country!: ElementRef
-  @ViewChild('city') city!: ElementRef
-  @ViewChild('state') state!: ElementRef
-  name = 'Angular ' + VERSION.major;
-  countries = Country.getAllCountries();
-  states :any= null;
-  cities :any= null;
-
-  selectedCountry:any;
-  selectedState:any;
-  selectedCity:any;
-
-
-  onCountryChange($event:any): void {
-    this.states = State.getStatesOfCountry(JSON.parse(this.country.nativeElement.value).isoCode);
-    this.selectedCountry = JSON.parse(this.country.nativeElement.value);
-    this.cities = this.selectedState = this.selectedCity = null;
   }
 
-  onStateChange($event:any): void {
-    this.cities = City.getCitiesOfState(JSON.parse(this.country.nativeElement.value).isoCode, JSON.parse(this.state.nativeElement.value).isoCode)
-    this.selectedState = JSON.parse(this.state.nativeElement.value);
-    this.selectedCity = null;
-
+  getDesignWithId(_id: any) {
+    this._service.getDesignById(_id).subscribe((resp: any) => {
+      console.log(resp.data);
+      this.frmProductionQuality.patchValue(resp.data);
+    });
   }
 
-  onCityChange($event:any): void {
-    this.selectedCity = JSON.parse(this.city.nativeElement.value)
-  }
+  updateDesignData(){
 
-  clear(type: string): void {
-    switch(type) {
-      case 'country':
-        this.selectedCountry = this.country.nativeElement.value = this.states = this.cities = this.selectedState = this.selectedCity = null;
-        break;
-      case 'state':
-        this.selectedState = this.state.nativeElement.value = this.cities = this.selectedCity = null;
-        break;
-      case 'city':
-        this.selectedCity = this.city.nativeElement.value = null;
-        break;
-    }
-  }
+    const formData = this.frmProductionQuality.value;
+    console.log(formData);
 
+    var data = {
+      prodQty: formData.prodQty,
+      expQty: formData.expQty,
+      design: formData.design,
+      ground: formData.ground,
+      border: formData.border,
+    };
+
+
+    this._service.updateDesign(this.designId,data).subscribe((resp:any)=>{
+      this.responsMessage = resp.message;
+      this._matSnackBar.openSnackBar(this.responsMessage, '');
+    },
+    (error) => {
+      if (error.error.msg) {
+        this.responsMessage = error.error.message;
+      } else {
+        this.responsMessage = global.genricError;
+      }
+      this._matSnackBar.openSnackBar(this.responsMessage, global.error);
+      console.log('data', data);
+    })
+  }
 
 }
