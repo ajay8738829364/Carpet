@@ -45,9 +45,17 @@ export class QualityComponent implements OnInit {
   qualityId:any;
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  ngAfterViewInit() {
+  ngAfterViewInit():void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+debugger
+    // this.qualityId= this._activatedRoute.snapshot.paramMap.get('id')||"";
+    // if(this.qualityId!=''){
+    //   debugger
+    //   console.log( this.qualityId);
+    //   this.isUpdate=true;
+    //   this.editQualityData(this.qualityId);
+    // }
   }
   applyFilter($event: any) {
     this.dataSource.filter = $event.target.value;
@@ -64,14 +72,16 @@ export class QualityComponent implements OnInit {
 
     this.getQalityData();
 
-    this.qualityId= this._activatedRoute.snapshot.paramMap.get('id')||"";
-    if(this.qualityId!=''){
-      this.isUpdate=true;
-      this.editQualityData(this.qualityId);
-    }
+
 
 
   }
+
+
+
+
+
+
   frmQuality!: FormGroup;
   addQuality() {
     const formData = this.frmQuality.value;
@@ -122,6 +132,9 @@ export class QualityComponent implements OnInit {
   }
 
   editQualityData(_id:any){
+    this.isUpdate=true;
+    this.qualityId=_id;
+
     this._service.getQualityById(_id).subscribe((resp:any)=>{
       console.log(resp.data);
 

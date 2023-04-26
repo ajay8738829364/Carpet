@@ -30,13 +30,16 @@
 
       </div>
        <div class="col-md-6 col-lg-4">
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
           <mat-select formControlName="country" #countryFocus (valueChange)="countryById($event)">
             <mat-option *ngFor="let countrys of countryList" [value]="countrys.id">{{countrys.countries_name}}</mat-option>
           </mat-select>
+        </mat-form-field> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <input matInput placeholder=" Country" formControlName="country"  >
         </mat-form-field>
-
 
       </div>
       <!-- <div class="col-md-6 col-lg-4">
@@ -132,14 +135,17 @@
           </mat-form-field>
         </div>
         <div class="col-md-6 col-lg-4">
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>Country</mat-label>
             <mat-select formControlName="bankCountry" #countryFocus >
               <mat-option *ngFor="let countrys of bankCountryList" [value]="countrys.id">{{countrys.countries_name}}</mat-option>
             </mat-select>
+          </mat-form-field> -->
+
+          <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <input matInput placeholder=" Country" formControlName="bankCountry"  >
           </mat-form-field>
-
-
         </div>
 
 

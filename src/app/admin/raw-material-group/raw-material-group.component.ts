@@ -75,13 +75,13 @@ export class RawMaterialGroupComponent implements OnInit {
       mat_image: [''],
     });
 
-    this.materialId = this._activatedRoute.snapshot.paramMap.get('id') || '';
+    // this.materialId = this._activatedRoute.snapshot.paramMap.get('id') || '';
 
-    if (this.materialId != '') {
-      this.isUpdate=true;
+    // if (this.materialId != '') {
+    //   this.isUpdate=true;
 
-      this.getMaterialData(this.materialId);
-    }
+    //   this.getMaterialData(this.materialId);
+    // }
 
     this.getRawMaterial();
 
@@ -163,6 +163,8 @@ export class RawMaterialGroupComponent implements OnInit {
   }
 
   getMaterialData(id: any) {
+    this.isUpdate=true;
+    this.materialId=id
     this.adminService.editRawMaterialGroup(id).subscribe((resp: any) => {
       if (resp.data) {
 

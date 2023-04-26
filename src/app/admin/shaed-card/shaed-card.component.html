@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 col-md-3 text-center">
-    Shaed Card
+{{isUpdate?'Update Shaed Card':'Add Shaed Card'}}
     </div>
   </div>
 
@@ -12,7 +12,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Quality</mat-label>
           <mat-select formControlName="qty" (valueChange)="onDesign($event)" >
-            <mat-option *ngFor="let qualitys of qualityList" [value]="qualitys.qualityName">{{qualitys.qualityName}}</mat-option>
+            <mat-option *ngFor="let qualitys of qualityList" value="{{qualitys.id}}">{{qualitys.qualityName}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -20,7 +20,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Design</mat-label>
           <mat-select formControlName="design" (valueChange)="onGroundBorder($event)">
-            <mat-option *ngFor="let designs of designList" [value]="designs.design">{{designs.design}}</mat-option>
+            <mat-option *ngFor="let designs of designList" value="{{designs.design}}">{{designs.design}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -63,16 +63,16 @@
       <div class="col-lg-4 col-md-4 d-flex">
       <mat-form-field appearance="outline">
         <mat-label>Color Code</mat-label>
-        <input matInput placeholder="Color Code"[value]="color2" [(colorPicker)]="color2" formControlName="color2" >
+        <input matInput placeholder="Color Code" value="colourCode" [(colorPicker)]="colourCode" formControlName="colourCode" >
       </mat-form-field>
       <span>
-        <input class="colorPic " [style.background]="color2" [(colorPicker)]="color2" />
+        <input class="colorPic " [style.background]="colourCode" [(colorPicker)]="colourCode" />
       </span>
       </div>
       <div class="col-lg-4 col-md-4 ">
         <mat-form-field appearance="outline">
           <mat-label>Weight %</mat-label>
-          <input matInput placeholder="Weight %" formControlName="weight">
+          <input matInput placeholder="Weight %" formControlName="weight" >
         </mat-form-field>
     </div>
       <div class="col-lg-4 col-md-4 ">
@@ -81,11 +81,14 @@
           <input matInput placeholder="Lagat" formControlName="lagat" >
         </mat-form-field>
       </div>
-      <span class="diplayColor" [style.background]="color2"></span>
+      <span class="diplayColor" [style.background]="colourCode"></span>
     </div>
     <div class="row">
-      <div class="col-lg-3 col-md-3">
+      <div class="col-lg-3 col-md-3" *ngIf="!isUpdate">
         <button mat-raised-button color="primary">Add</button>
+      </div>
+      <div class="col-lg-3 col-md-3" *ngIf="isUpdate">
+        <button mat-raised-button color="primary">Update</button>
       </div>
     </div>
   </form>
@@ -101,7 +104,7 @@
         <input matInput placeholder="Search" #input autocomplete="off" (keyup)="applyFilter($event)">
       </mat-form-field>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-12 " style="overflow: auto;">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <!--- Note that these columns can be defined in any order.
@@ -127,7 +130,7 @@
         <ng-container matColumnDef="action" >
           <th mat-header-cell *matHeaderCellDef>Action </th>
           <td mat-cell *matCellDef="let element" class="d-flex">
-            <a><i class="fa fa-pencil-square-o fa-lg fa-edit" aria-hidden="true"></i></a>
+            <a (click)="getShadeCardById(element.id)"><i class="fa fa-pencil-square-o fa-lg fa-edit" aria-hidden="true"></i></a>
             &nbsp;
             <a><i class="fa fa-trash-o fa-lg fa-trash" aria-hidden="true"></i></a>
           </td>

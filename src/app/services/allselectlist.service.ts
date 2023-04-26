@@ -41,6 +41,8 @@ getDesignByQtyId(_qtyId:any){
 }
 
 
+
+
 getGroundBorder(_designTxt:any){
  console.log(_designTxt);
   return this.http.get(this.selectListApiUrl+'/shead_card_design/'+_designTxt);

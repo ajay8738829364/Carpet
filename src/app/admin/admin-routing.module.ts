@@ -39,6 +39,7 @@ const routes: Routes = [
     {path:'dying-master',component:DyingMasterComponent},
     { path:'shaed-card',component:ShaedCardComponent},
     {path:'size-master', component:SizeMasterComponent},
+    {path:'size-master/:id', component:SizeMasterComponent},
     {path:'raw-material', component:RawMaterialComponent},
     {path:'weaving',component:WeavingComponent},
     {path:'finishing-labour-ledger',component:FinishingLabourLedgerComponent},

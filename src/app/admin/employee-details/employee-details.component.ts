@@ -57,7 +57,7 @@ export class EmployeeDetailsComponent implements OnInit {
     'epfoNo',
     'esicSheet',
     'epfoSheet',
-    // 'password',
+    'action'
   ];
 
 
@@ -273,5 +273,13 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
         return;
       }
     });
+  }
+
+
+  getEmployeeDetailById(_id:any){
+    debugger
+    this.adminService.getEmployeeById(_id).subscribe((resp:any)=>{
+console.log(resp.data);
+    })
   }
 }

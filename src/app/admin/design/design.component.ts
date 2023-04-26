@@ -84,11 +84,11 @@ export class DesignComponent implements OnInit {
     this.getExportQuality();
     this.getAllDesignList();
 
-    this.designId = this._activatedRoute.snapshot.paramMap.get('id') || '';
-    if (this.designId != '') {
-      this.isUpdate = true;
-      this.getDesignWithId(this.designId);
-    }
+    // this.designId = this._activatedRoute.snapshot.paramMap.get('id') || '';
+    // if (this.designId != '') {
+    //   this.isUpdate = true;
+    //   this.getDesignWithId(this.designId);
+    // }
   }
 
   ngAfterViewInit() {
@@ -171,6 +171,8 @@ export class DesignComponent implements OnInit {
   }
 
   getDesignWithId(_id: any) {
+    this.isUpdate=true;
+    this.designId=_id
     this._service.getDesignById(_id).subscribe((resp: any) => {
       console.log(resp.data);
       this.frmProductionQuality.patchValue(resp.data);

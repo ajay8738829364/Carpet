@@ -161,6 +161,17 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/size_master');
   }
 
+
+  getSizeById(_id:any){
+    return this.http.get(this.apiUrl2+'/size_master_update/'+_id);
+  }
+
+  updateSizeMaster(_id:any,data:any){
+    return this.http.post(this.apiUrl2 + '/size_master_edit/'+_id, data, {
+      headers: new HttpHeaders().set('content-type', 'application/json'),
+    });
+  }
+
   //////////////////////
   /////////// here code for BuyerMaster api service
   ///////
@@ -377,6 +388,16 @@ updateDesign(_uri:any,data:any){
     return this.http.get(this.apiUrl2+'/shead_card');
   }
 
+  getShadeCardWithId(_id:any){
+    return this.http.get(this.apiUrl2+'/shead_card_update/'+_id);
+  }
+
+  updateShadeCard(uriID:any,data:any){
+    debugger
+    return this.http.post(this.apiUrl2+'/shead_card_edit/'+uriID,data,{
+      headers:new HttpHeaders().set('Accept', 'application/json')
+    })
+  }
 //////////////////////////
   ////////////
   ////// here i am use this api for Finishing Head
@@ -440,6 +461,10 @@ updateDesign(_uri:any,data:any){
     return this.http.get(this.apiUrl2+'/buyer_order');
   }
 
+
+  getEmployeeById(_id:any){
+return this.http.get(this.apiUrl2+'/contractor_finishing_ledger_update/'+_id);
+  }
 
 
 }

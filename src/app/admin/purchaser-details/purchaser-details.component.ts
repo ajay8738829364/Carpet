@@ -95,6 +95,7 @@ export class PurchaserDetailsComponent implements OnInit {
       console.log(res);
 
       this.countList = res.data;
+
     });
 
     console.log('here my on change event  material ', data);
@@ -124,11 +125,13 @@ export class PurchaserDetailsComponent implements OnInit {
     this.getMaterial();
     this.getRawMaterial();
 
-    this.purchaseId = this._activatedRouter.snapshot.paramMap.get('id') || '';
-    if (this.purchaseId != '') {
-      this.getPurchaseDetailById(this.purchaseId);
-      this.isUpdate = true;
-    }
+
+
+    // this.purchaseId = this._activatedRouter.snapshot.paramMap.get('id') || '';
+    // if (this.purchaseId != '') {
+    //   this.getPurchaseDetailById(this.purchaseId);
+    //   this.isUpdate = true;
+    // }
   }
 
   getMaterial() {
@@ -218,8 +221,15 @@ export class PurchaserDetailsComponent implements OnInit {
   }
 
   getPurchaseDetailById(_purchaseId: any) {
+
+    this.isUpdate = true;
+    this.purchaseId=_purchaseId;
+
     this._service.getPurchaseLedgerById(_purchaseId).subscribe((resp: any) => {
       console.log(resp.data);
+
+      this.onMaterial(resp.data.materialName)
+
 
       this.frmPurchaserDetails.patchValue(resp.data);
     });
