@@ -7,13 +7,20 @@
 
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-lg-6 col-md-6 d-flex">
         <mat-form-field appearance="outline">
-          <mat-label> Quality</mat-label>
-          <mat-select formControlName="qty">
+          <mat-label>Material</mat-label>
+          <mat-select  (valueChange)="onMaterial($event)" formControlName="materialName">
+            <mat-option *ngFor="let materials of materialList" value="{{materials.item_name}}">{{materials.item_name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-            <mat-option *ngFor="let exportQuality of exportQualityList"
-              [value]="exportQuality">{{exportQuality}}</mat-option>
+      <div class="col-lg-6 col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Count</mat-label>
+          <mat-select  (valueChange)="onCount($event)" formControlName="count">
+            <mat-option *ngFor="let counts of countList" value="{{counts.id}}">{{counts.count}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

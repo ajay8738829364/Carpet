@@ -36,7 +36,13 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
   public color2: string = '';
   responsMessage: any;
   arrData:any[]=[];
+  count = new FormControl('');
+  groupName?: string;
+  countList: any[] = [];
 
+  material_name = new FormControl('');
+
+  materialList: any[] = [];
   constructor(
     private fb: FormBuilder,
     private _service: AdminMasterService,
@@ -49,12 +55,16 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.fb.group({
       qty: [''],
+      materialName:[''],
+      count:[''],
+
       colourName: [''],
       colourCode: [''],
       recipe: [''],
       frmReciepeArray: this.fb.array([]),
     });
     this.qualityList();
+    this.getMaterial();
   }
 
   displayedColumns: string[] = [
@@ -111,6 +121,8 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
 
     var data = {
       qty: 'ghh',
+      materialName:formData.materialName,
+      count:formData.count,
       colourName: formData.colourName,
       colourCode: this.color2,
       recipe: formData.recipe,
@@ -154,4 +166,29 @@ data:formData.frmReciepeArray
       this.exportQualityList = res.data;
     });
   }
+
+  getMaterial() {
+    this._selectList.getAllMaterialItem().subscribe((res: any) => {
+      console.log(res.data);
+      this.materialList = res.data;
+    });
+  }
+  onMaterial(data: any) {
+    debugger;
+
+    this._selectList.getCountList(data).subscribe((res: any) => {
+      console.log(res);
+
+      this.countList = res.data;
+
+    });
+
+    console.log('here my on change event  material ', data);
+    this.material_name = data;
+  }
+  onCount(data: any) {
+    console.log(data);
+    this.count = data;
+  }
+
 }

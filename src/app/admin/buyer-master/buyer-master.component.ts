@@ -64,19 +64,19 @@ export class BuyerMasterComponent implements OnInit {
 
   responsMessage: any;
 
-  country = new FormControl('');
+  // country = new FormControl('');
 
-  countryList:any;
+  // countryList:any;
 
-  state = new FormControl('');
+  // state = new FormControl('');
 
-  stateList:any;
-  bankCountry =new FormControl('');
+  // stateList:any;
+  // bankCountry =new FormControl('');
 
-  bankCountryList:any;
-  city = new FormControl('');
+  // bankCountryList:any;
+  // city = new FormControl('');
 
-  cityList: any;
+  // cityList: any;
   isUpdate:boolean=false;
   buyerId:any;
   constructor(
@@ -157,7 +157,7 @@ export class BuyerMasterComponent implements OnInit {
       bank_email: [''],
       bankCountry:['']
     });
-    this.onCountry();
+    // this.onCountry();
 
 
      this.buyerId = this._acvtivetedRout.snapshot.paramMap.get('id')|| "";
@@ -173,29 +173,29 @@ this.isUpdate=true;
   //     console.log('state by country id ', this.stateList);
   //   });
   // }
-  onCountry() {
-    debugger
-    this.countrystatecityService.getCountry().subscribe((data: any) => {
-      this.countryList = data.data;
-this.bankCountryList=data.data;
-      //console.log('Countries fetched', this.countryList);
-    });
-  }
-  countryById(event:any){
-this.countrystatecityService.getState(event).subscribe((res:any)=>{
-  this.stateList = res.data;
-  console.log('state by country id ', this.stateList);
-});
-  }
-  onStateById(data: any) {
-    debugger
-    this.countrystatecityService.getCity(data).subscribe((res:any)=>{
+//   onCountry() {
+//     debugger
+//     this.countrystatecityService.getCountry().subscribe((data: any) => {
+// //       this.countryList = data.data;
+// // this.bankCountryList=data.data;
+//       //console.log('Countries fetched', this.countryList);
+//     });
+//   }
+//   countryById(event:any){
+// this.countrystatecityService.getState(event).subscribe((res:any)=>{
+//   // this.stateList = res.data;
+//   // console.log('state by country id ', this.stateList);
+// });
+//   }
+//   onStateById(data: any) {
+//     debugger
+//     this.countrystatecityService.getCity(data).subscribe((res:any)=>{
 
 
-    console.log(res);
-    this.cityList = res.data;
-  });
-}
+//     console.log(res);
+//     // this.cityList = res.data;
+//   });
+// }
 
   addbuyerMaster() {
     console.log(this.frmBuyerMaster.value);
@@ -266,15 +266,16 @@ debugger
       contact_no:formData.contact_no,
       byr_email: formData.byr_email,
       country: formData.country,
-      state: formData.state,
-      city: formData.city,
-      zip_code: formData.zip_code,
+      // state: formData.state,
+      // city: formData.city,
+      // zip_code: formData.zip_code,
 
       bank_name: formData.bank_name,
       bank_address: formData.bank_address,
 
       bank_mobile:formData.bank_mobile,
       bank_email: formData.bank_email,
+      bankCountry:formData.bankCountry
     };
 
     this.adminService.updateBuyerMaster(this.buyerId,data).subscribe(

@@ -59,14 +59,16 @@ export class ShaedCardComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  // quality = new  FormControl('');
+
   qualityList: any;
-  // design = new  FormControl('');
+
   designList: any;
   responsMessage: any;
 
   groundColours: any;
   borderColours: any;
+
+  designID:any;
 
   isUpdate: boolean = false;
   shadeCardID: any;
@@ -111,8 +113,12 @@ debugger
 
       console.log('hhhhhh',this.designList);
 
-      this.onGroundBorder(this.designList[0].design)
+      this.designID = this.designList[0].design;
+
     });
+   if(this.designID!=''){
+    this.onGroundBorder(this.designID);
+   }
   }
   onGroundBorder(data: any) {
     debugger;
@@ -208,7 +214,7 @@ debugger
        this.frmShadeCard.patchValue(resp.data);
 
 
-     
+
 
 
     });

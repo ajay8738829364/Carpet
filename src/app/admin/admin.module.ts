@@ -64,6 +64,8 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-order-list.component';
+import { ManageBranchComponent } from './manage-branch/manage-branch.component';
+import { CarpetStockComponent } from './carpet-stock/carpet-stock.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -95,7 +97,9 @@ import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-
     FinishingProcessComponent,
     BuyerOrderComponent,
     PurchaseBillComponent,
-    ViewBuyerOrderListComponent
+    ViewBuyerOrderListComponent,
+    ManageBranchComponent,
+    CarpetStockComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,

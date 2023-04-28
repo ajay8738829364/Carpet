@@ -14,13 +14,14 @@ export interface PeriodicElement {
   mobile:string;
   address:string;
   country:string;
-  state:string;
-  city:string;
-  zip_code:string;
+  // state:string;
+  // city:string;
+  // zip_code:string;
   bank_name:string;
   bank_branch:string;
   bank_contact:string;
   bank_email:string;
+  bankCountry:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -38,13 +39,15 @@ export class ViewByerListComponent implements OnInit {
     'mobile',
     'address',
     'country',
-    'state',
-    'city',
-    'zip_code',
+    // 'state',
+    // 'city',
+    // 'zip_code',
     'bank_name',
     'bank_branch',
+    'bankCountry',
     'bank_contact',
     'bank_email',
+
     'action'
 
 
@@ -81,14 +84,15 @@ ngOnInit(): void {
             email:val.byr_email,
             mobile:val.contact_no,
             address:val.address,
-            country:val.countries_name,
-            state:val.states_name,
-            city:val.cities_name,
-            zip_code:val.zip_code,
+            country:val.country,
+            // state:val.states_name,
+            // city:val.cities_name,
+            // zip_code:val.zip_code,
             bank_name:val.bank_name,
             bank_branch:val.bank_address,
             bank_contact:val.bank_mobile,
-            bank_email:val.bank_email
+            bank_email:val.bank_email,
+            bankCountry:val.bankCountry
           });
         });
 

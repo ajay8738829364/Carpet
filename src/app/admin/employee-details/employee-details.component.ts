@@ -19,9 +19,9 @@ export interface PeriodicElement {
   group: string;
   address: string;
   country: string;
-  state: string;
-  city: string;
-  zipCode: string;
+  // state: string;
+  // city: string;
+  // zipCode: string;
   aadharNo: string;
   aadharImage: string;
   panNo: string;
@@ -45,9 +45,9 @@ export class EmployeeDetailsComponent implements OnInit {
     'group',
     'address',
     'country',
-    'state',
-    'city',
-    'zipCode',
+    // 'state',
+    // 'city',
+    // 'zipCode',
     'aadharNo',
     'aadharImage',
     'panNo',
@@ -116,10 +116,11 @@ export class EmployeeDetailsComponent implements OnInit {
       groupName: [''],
       name: [''],
       address: [''],
-      state: [''],
-      city: [''],
+      // state: [''],
+      // city: [''],
+      // zipCode: [''],
       country: [''],
-      zipCode: [''],
+
       adharNo: [''],
       adharImage: [''],
       panNo: [''],
@@ -185,10 +186,10 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
       groupName: formData.groupName,
       name: formData.name,
       address: formData.address,
-      state: formData.state,
-      city: formData.city,
+      // state: formData.state,
+      // city: formData.city,
       country: formData.country,
-      zipCode: formData.zipCode,
+      // zipCode: formData.zipCode,
       adharNo: formData.adharNo,
       // adharImage: formData.adharImage,
       panNo: formData.panNo,
@@ -241,9 +242,9 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
             group: val.group,
             address: val.address,
             country:val.countries_name,
-            state:val.states_name,
-            city:val.cities_name,
-            zipCode: val.zipCode,
+            // state:val.states_name,
+            // city:val.cities_name,
+            // zipCode: val.zipCode,
             aadharNo: val.aadharNo,
             aadharImage:
               this._helper.apiPath.baseUrl +

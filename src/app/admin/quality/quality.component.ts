@@ -165,4 +165,10 @@ debugger
       });
   }
 
+
+  deleteQuality(_id:any){
+    this._service.deleteQuality(_id).subscribe((resp:any)=>{
+      console.log(resp.data);
+    });
+  }
 }

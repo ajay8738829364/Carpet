@@ -49,6 +49,10 @@ getGroundBorder(_designTxt:any){
 }
 
 
+getSizeYaard(){
+  return this.http.get(this.selectListApiUrl+'/size_in_yard');
+}
+
 
 
 

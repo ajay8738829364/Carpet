@@ -1,0 +1,15 @@
+.row {
+  margin: auto;
+}
+.mat-mdc-form-field {
+  width: 100%;
+}
+.fa-edit{
+  color: rgb(118, 103, 250);
+}
+
+
+
+.fa-trash{
+  color: rgb(235, 28, 28);
+}

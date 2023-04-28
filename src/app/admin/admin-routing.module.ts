@@ -28,6 +28,8 @@ import { FinishingProcessComponent } from './finishing-process/finishing-process
 import { BuyerOrderComponent } from './buyer-order/buyer-order.component';
 import { PurchaseBillComponent } from './purchase-bill/purchase-bill.component';
 import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-order-list.component';
+import { ManageBranchComponent } from './manage-branch/manage-branch.component';
+import { CarpetStockComponent } from './carpet-stock/carpet-stock.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -64,8 +66,9 @@ const routes: Routes = [
     {path:'finishing-process',component:FinishingProcessComponent},
     {path:'buyer-order',component:BuyerOrderComponent},
     {path:'view-buyer-order-list',component:ViewBuyerOrderListComponent},
-    {path:'purchase-bill',component:PurchaseBillComponent}
-
+    {path:'purchase-bill',component:PurchaseBillComponent},
+{path:'manage-branch',component:ManageBranchComponent},
+{path:'carpet-stock',component:CarpetStockComponent}
   ]}
 ];
 

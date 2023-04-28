@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdminMasterService {
-  getImageApi ='https://carpet.emarketking.in/public/images';
+  getImageApi = 'https://carpet.emarketking.in/public/images';
   apiUrl2 = 'http://carpet.emarketking.in/public/api';
 
   constructor(private http: HttpClient) {}
@@ -51,11 +51,6 @@ export class AdminMasterService {
     });
   }
 
-
-
-
-
-
   ledgerAccount(data: any): Observable<any> {
     return data;
   }
@@ -84,12 +79,11 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/raw_material');
   }
 
-
-  editRawMaterialGroup(data:any) {
-    return this.http.get(this.apiUrl2 +'/raw_material_update/'+data);
+  editRawMaterialGroup(data: any) {
+    return this.http.get(this.apiUrl2 + '/raw_material_update/' + data);
   }
 
-  updateRawMaterial(apiUri:any,data:any,matImg: File){
+  updateRawMaterial(apiUri: any, data: any, matImg: File) {
     const formData = new FormData();
 
     formData.append('item_name', data.item_name);
@@ -99,12 +93,14 @@ export class AdminMasterService {
     formData.append('details', data.details);
     formData.append('mat_image', matImg, matImg.name);
 
-    return this.http.post(this.apiUrl2 + '/raw_material_edit/'+apiUri, formData, {
-      headers: new HttpHeaders().set('accept', 'application/json'),
-    });
+    return this.http.post(
+      this.apiUrl2 + '/raw_material_edit/' + apiUri,
+      formData,
+      {
+        headers: new HttpHeaders().set('accept', 'application/json'),
+      }
+    );
   }
-
-
 
   //////////////////////
   /////////// here code for finishing ledger api service
@@ -150,7 +146,6 @@ export class AdminMasterService {
   ////
 
   sizeMaster(data: any): Observable<any> {
-
     debugger;
     return this.http.post(this.apiUrl2 + '/size_master_data', data, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
@@ -161,13 +156,12 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/size_master');
   }
 
-
-  getSizeById(_id:any){
-    return this.http.get(this.apiUrl2+'/size_master_update/'+_id);
+  getSizeById(_id: any) {
+    return this.http.get(this.apiUrl2 + '/size_master_update/' + _id);
   }
 
-  updateSizeMaster(_id:any,data:any){
-    return this.http.post(this.apiUrl2 + '/size_master_edit/'+_id, data, {
+  updateSizeMaster(_id: any, data: any) {
+    return this.http.post(this.apiUrl2 + '/size_master_edit/' + _id, data, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
     });
   }
@@ -185,26 +179,21 @@ export class AdminMasterService {
     });
   }
   getBuyerMaster() {
-    return this.http.get(this.apiUrl2+'/buyer');
-
+    return this.http.get(this.apiUrl2 + '/buyer');
   }
   editBuyerMaster(data: any) {
     debugger;
     console.log(data);
-    return this.http.get(this.apiUrl2 + '/buyer_update/'+ data);
+    return this.http.get(this.apiUrl2 + '/buyer_update/' + data);
   }
 
-  updateBuyerMaster(apiUri:any,data: any) {
+  updateBuyerMaster(apiUri: any, data: any) {
     debugger;
     console.log(data);
-    return this.http.post(this.apiUrl2 + '/buyer_edit/'+apiUri, data, {
+    return this.http.post(this.apiUrl2 + '/buyer_edit/' + apiUri, data, {
       headers: new HttpHeaders().set('ContentType', 'application/json'),
     });
   }
-
-
-
-
 
   //////////////////////
   /////////// here code for Dying Master api service
@@ -263,14 +252,18 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/quality');
   }
 
-  getQualityById(_id:any){
-    return this.http.get(this.apiUrl2+'/quality_data_update/'+_id);
+  getQualityById(_id: any) {
+    return this.http.get(this.apiUrl2 + '/quality_data_update/' + _id);
   }
 
-  updateQuality(_uri:any, data:any){
-    return this.http.post(this.apiUrl2+'/quality_data_edit/'+_uri,data,{
-      headers: new HttpHeaders().set('Content-Type', 'application/json')
-    })
+  updateQuality(_uri: any, data: any) {
+    return this.http.post(this.apiUrl2 + '/quality_data_edit/' + _uri, data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    });
+  }
+
+  deleteQuality(_id: any) {
+    return this.http.delete(this.apiUrl2 + '/quality_data_delete/' + _id);
   }
 
   //////////////////////
@@ -309,164 +302,175 @@ export class AdminMasterService {
     );
   }
 
-
-  getContractor(){
-    return this.http.get(this.apiUrl2+'/contractor_finishing_ledger');
-
+  getContractor() {
+    return this.http.get(this.apiUrl2 + '/contractor_finishing_ledger');
   }
-
-
-
 
   //////////////////////////
   ////////////
   ////// here i am use this api for purchase ledger account
   ////
 
-
-
-  addPurchaseAccount(data:any){
-    return this.http.post(this.apiUrl2+'/purchase_ledger_account',data,{
+  addPurchaseAccount(data: any) {
+    return this.http.post(this.apiUrl2 + '/purchase_ledger_account', data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
-    })
-
+    });
   }
 
-  getPurchaseLedger(){
-    return this.http.get(this.apiUrl2+'/purchase_ledger');
+  getPurchaseLedger() {
+    return this.http.get(this.apiUrl2 + '/purchase_ledger');
   }
 
-  getPurchaseLedgerById(_id:any){
-    return this.http.get(this.apiUrl2+'/purchase_ledger_update/'+_id);
+  getPurchaseLedgerById(_id: any) {
+    return this.http.get(this.apiUrl2 + '/purchase_ledger_update/' + _id);
   }
 
-
-  updatePurchaseLedger(apiUri:any, data:any){
-    return this.http.post(this.apiUrl2+'/purchase_ledger_edit/'+apiUri,data,{
-      headers:new HttpHeaders().set('accept','application/json'),
-    })
+  updatePurchaseLedger(apiUri: any, data: any) {
+    return this.http.post(
+      this.apiUrl2 + '/purchase_ledger_edit/' + apiUri,
+      data,
+      {
+        headers: new HttpHeaders().set('accept', 'application/json'),
+      }
+    );
   }
   //////////////////////////
   ////////////
   ////// here i am use this api for Design master
   ////
 
-
-  addDesign(data : any){
-    return this.http.post(this.apiUrl2+'/design_data',data,{
-      headers:new HttpHeaders().set('Accept', 'application/json')
-    })
+  addDesign(data: any) {
+    return this.http.post(this.apiUrl2 + '/design_data', data, {
+      headers: new HttpHeaders().set('Accept', 'application/json'),
+    });
   }
 
-  getDesignList(){
-    return this.http.get(this.apiUrl2+'/design');
+  getDesignList() {
+    return this.http.get(this.apiUrl2 + '/design');
   }
 
-  getDesignById(_id:any){
-    return this.http.get(this.apiUrl2+'/design_update/'+_id);
+  getDesignById(_id: any) {
+    return this.http.get(this.apiUrl2 + '/design_update/' + _id);
   }
-updateDesign(_uri:any,data:any){
-  return this.http.post(this.apiUrl2+'/design_edit/'+_uri,data,{
-    headers:new HttpHeaders().set('accept','application/json')
-  })
-}
+  updateDesign(_uri: any, data: any) {
+    return this.http.post(this.apiUrl2 + '/design_edit/' + _uri, data, {
+      headers: new HttpHeaders().set('accept', 'application/json'),
+    });
+  }
   //////////////////////////
   ////////////
   ////// here i am use this api for Shade Card master
   ////
 
-
-
-  addShadeCard(data:any){
-    debugger
-    return this.http.post(this.apiUrl2+'/shead_card_data',data,{
-      headers:new HttpHeaders().set('Accept', 'application/json')
-    })
+  addShadeCard(data: any) {
+    debugger;
+    return this.http.post(this.apiUrl2 + '/shead_card_data', data, {
+      headers: new HttpHeaders().set('Accept', 'application/json'),
+    });
   }
 
-  getShadeCardList(){
-    return this.http.get(this.apiUrl2+'/shead_card');
+  getShadeCardList() {
+    return this.http.get(this.apiUrl2 + '/shead_card');
   }
 
-  getShadeCardWithId(_id:any){
-    return this.http.get(this.apiUrl2+'/shead_card_update/'+_id);
+  getShadeCardWithId(_id: any) {
+    return this.http.get(this.apiUrl2 + '/shead_card_update/' + _id);
   }
 
-  updateShadeCard(uriID:any,data:any){
-    debugger
-    return this.http.post(this.apiUrl2+'/shead_card_edit/'+uriID,data,{
-      headers:new HttpHeaders().set('Accept', 'application/json')
-    })
+  updateShadeCard(uriID: any, data: any) {
+    debugger;
+    return this.http.post(this.apiUrl2 + '/shead_card_edit/' + uriID, data, {
+      headers: new HttpHeaders().set('Accept', 'application/json'),
+    });
   }
-//////////////////////////
+  //////////////////////////
   ////////////
   ////// here i am use this api for Finishing Head
   ////
-  addFinishingHead(data:any){
-    debugger
-    return this.http.post(this.apiUrl2+'/job_name_data',data,{
-      headers:new HttpHeaders().set('Accept', 'application/json')
-    })
+  addFinishingHead(data: any) {
+    debugger;
+    return this.http.post(this.apiUrl2 + '/job_name_data', data, {
+      headers: new HttpHeaders().set('Accept', 'application/json'),
+    });
   }
-  getFinishingHeadList(){
-    return this.http.get(this.apiUrl2+'/job_name');
+  getFinishingHeadList() {
+    return this.http.get(this.apiUrl2 + '/job_name');
   }
 
-//////////////////////////
+  //////////////////////////
   ////////////
   ////// here i am use this api for colour code with dyeing details
   ////
 
-
   colourCodeDyingDetails(data: any): Observable<any> {
-
     debugger;
     return this.http.post(this.apiUrl2 + '/colour_code_dyis_data', data, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
     });
   }
   colourCodeDyingReciepeDetails(data: any): Observable<any> {
-
     debugger;
-    console.log(data.frmReciepeArray)
-    return this.http.post(this.apiUrl2 + '/colour_code_dyieng_data_details', data, {
-      headers: new HttpHeaders().set('content-type', 'application/json'),
-    });
+    console.log(data.frmReciepeArray);
+    return this.http.post(
+      this.apiUrl2 + '/colour_code_dyieng_data_details',
+      data,
+      {
+        headers: new HttpHeaders().set('content-type', 'application/json'),
+      }
+    );
   }
-
 
   //////////////////////////
   ////////////
   ////// here i am use this api for finishing process
   ////
 
-  addFinishingProcess(data:any){
-    debugger
-    return this.http.post(this.apiUrl2+'/finishing_process_data',data,{
-      headers:new HttpHeaders().set('Accept', 'application/json')
-    })
+  addFinishingProcess(data: any) {
+    debugger;
+    return this.http.post(this.apiUrl2 + '/finishing_process_data', data, {
+      headers: new HttpHeaders().set('Accept', 'application/json'),
+    });
   }
   //////////////////////////
   ////////////
   ////// here i am use this api for buyer order
   ////
-  addBuyerOrder(data:any){
-    debugger
-    return this.http.post(this.apiUrl2+'/buyer_order_data',data,{
-      headers:new HttpHeaders().set('Accept', 'application/json')
+  addBuyerOrder(data: any) {
+    debugger;
+    return this.http.post(this.apiUrl2 + '/buyer_order_data', data, {
+      headers: new HttpHeaders().set('Accept', 'application/json'),
+    });
+  }
+
+  getBuyerOrder() {
+    return this.http.get(this.apiUrl2 + '/buyer_order');
+  }
+
+  getEmployeeById(_id: any) {
+    return this.http.get(
+      this.apiUrl2 + '/contractor_finishing_ledger_update/' + _id
+    );
+  }
+
+
+
+  addBranch(data:any){
+    return this.http.post(this.apiUrl2+'/branch_data',data,{
+      headers:new HttpHeaders().set('accept','application/json')
     })
   }
 
-  getBuyerOrder(){
-    return this.http.get(this.apiUrl2+'/buyer_order');
+  getBranch(){
+    return this.http.get(this.apiUrl2+'/branch');
   }
 
-
-  getEmployeeById(_id:any){
-return this.http.get(this.apiUrl2+'/contractor_finishing_ledger_update/'+_id);
+  addCarpetStock(data:any){
+    return this.http.post(this.apiUrl2+'/stocks_data',data,{
+      headers: new HttpHeaders().set('accept','application/json')
+    })
   }
 
-
+  getCarpetStock(){
+    return this.http.get(this.apiUrl2+'/stock');
+  }
 }
-
-

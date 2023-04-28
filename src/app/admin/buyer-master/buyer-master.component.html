@@ -21,7 +21,7 @@
 
         </mat-form-field>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-8">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Address</mat-label>
           <textarea matInput placeholder="Address" #addressFocus (keydown)="onAddressFocus($event)"  formControlName="address" ></textarea>
@@ -38,7 +38,7 @@
         </mat-form-field> -->
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <input matInput placeholder=" Country" formControlName="country"  >
+          <input class="input" matInput placeholder=" Country" formControlName="country"  >
         </mat-form-field>
 
       </div>
@@ -143,7 +143,7 @@
           </mat-form-field> -->
 
           <mat-form-field appearance="outline">
-            <mat-label>Country</mat-label>
+            <mat-label>Bank Country</mat-label>
             <input matInput placeholder=" Country" formControlName="bankCountry"  >
           </mat-form-field>
         </div>
