@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col">
+      Lagat Master
+    </div>
+  </div>
+
+
+
+
+  <form>
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Qualitys</mat-label>
+          <mat-select [formControl]="quality" multiple>
+
+            <mat-option *ngFor="let quality of qualityList" [value]="quality">{{quality}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Design</mat-label>
+          <mat-select [formControl]="design" multiple>
+            <mat-option *ngFor="let design of qualityList" [value]="design">{{design}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Ground</mat-label>
+          <input matInput placeholder="Placeholder">
+
+        </mat-form-field>
+
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Border</mat-label>
+          <input matInput placeholder="Placeholder">
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>From Date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>To Date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder">
+
+        </mat-form-field>
+      </div>
+    </div>
+
+  </form>
+
+
+
+
+
+</div>
+<!--  -->

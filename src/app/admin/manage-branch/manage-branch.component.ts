@@ -26,9 +26,13 @@ export class ManageBranchComponent implements OnInit {
   frmBranch!: FormGroup;
   responsMessage: any;
 
-  displayedColumns: string[] = ['id', 'branchName', 'branchCode'];
+  displayedColumns: string[] = ['id', 'branchName', 'branchCode','action'];
   dataSource =new MatTableDataSource(ELEMENT_DATA);
 
+
+
+  isUpdate:boolean=false;
+  branchID:any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -102,5 +106,38 @@ export class ManageBranchComponent implements OnInit {
         return;
       }
     });
+  }
+
+
+  getBranchByID(_id:any){
+    this.branchID=_id;
+    this.isUpdate = true;
+    this._service.getBranchByID(_id).subscribe((resp:any)=>{
+
+      this.frmBranch.patchValue(resp.data);
+
+      console.log(resp.data);
+    })
+  }
+
+
+  updateBranch(){
+    const data = this.frmBranch.value;
+    this._service.updateBranch(this.branchID,data).subscribe(
+      (resp: any) => {
+        console.log(resp.data);
+        this.responsMessage = resp.message;
+        this._snack.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._snack.openSnackBar(this.responsMessage, global.error);
+        console.log('data', data);
+      }
+    );
   }
 }

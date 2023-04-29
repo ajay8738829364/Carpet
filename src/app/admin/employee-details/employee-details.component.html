@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12 text-center">
-      Contractor / Staff / Finisher Ledger Account
+      {{isUpdate ?' Update Contractor / Staff / Finisher Ledger Account':'Contractor / Staff / Finisher Ledger Account'}}
     </div>
   </div>
 
@@ -112,7 +112,7 @@
       <div class="col-md-6 col-lg-6">
         <mat-form-field appearance="outline">
           <mat-label>Pan Card No.</mat-label>
-          <input matInput placeholder="Pan Card No." formControlName="panNo" #zipCodeFocus autofocus>
+          <input matInput placeholder="Pan Card No." formControlName="panNo" #zipCodeFocus >
         </mat-form-field>
       </div>
       <div class="col-lg-6 col-md-6">
@@ -168,7 +168,9 @@
 
     </div>
     <div class="row">
-      <div class="col-lg-3"><button mat-raised-button color="primary">Add</button></div>
+      <div class="col-lg-3" *ngIf="!isUpdate"><button mat-raised-button color="primary">Add</button></div>
+      <div class="col-lg-3" *ngIf="isUpdate"><button mat-raised-button color="primary" type="button" (click)="updateEmployee()">Update</button></div>
+
     </div>
   </form>
 

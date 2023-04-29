@@ -30,6 +30,7 @@ import { PurchaseBillComponent } from './purchase-bill/purchase-bill.component';
 import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-order-list.component';
 import { ManageBranchComponent } from './manage-branch/manage-branch.component';
 import { CarpetStockComponent } from './carpet-stock/carpet-stock.component';
+import { LagatMasterComponent } from './lagat-master/lagat-master.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -68,7 +69,8 @@ const routes: Routes = [
     {path:'view-buyer-order-list',component:ViewBuyerOrderListComponent},
     {path:'purchase-bill',component:PurchaseBillComponent},
 {path:'manage-branch',component:ManageBranchComponent},
-{path:'carpet-stock',component:CarpetStockComponent}
+{path:'carpet-stock',component:CarpetStockComponent},
+{path:'lagat-master',component:LagatMasterComponent}
   ]}
 ];
 

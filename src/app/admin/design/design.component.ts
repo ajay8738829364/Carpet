@@ -125,7 +125,7 @@ export class DesignComponent implements OnInit {
         console.log('data', data);
       }
     );
-    this.getAllDesignList();
+    // this.getAllDesignList();
   }
 
   getProductQuality() {

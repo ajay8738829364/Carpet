@@ -43,6 +43,8 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
   material_name = new FormControl('');
 
   materialList: any[] = [];
+
+  colourList:any;
   constructor(
     private fb: FormBuilder,
     private _service: AdminMasterService,
@@ -120,7 +122,7 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
     const formData = this.productForm.value;
 
     var data = {
-      qty: 'ghh',
+
       materialName:formData.materialName,
       count:formData.count,
       colourName: formData.colourName,
@@ -187,8 +189,15 @@ data:formData.frmReciepeArray
     this.material_name = data;
   }
   onCount(data: any) {
+debugger
+    this._selectList.getColourByCountId(data).subscribe((resp:any)=>{
+      console.log(resp.data);
+this.colourList=resp.data;
+    });
     console.log(data);
     this.count = data;
   }
+
+
 
 }

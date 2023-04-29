@@ -23,6 +23,10 @@ getCountList(data:any){
   return this.http.get(this.selectListApiUrl+'/get_material_data/'+data);
 }
 
+getColourByCountId(_id:any){
+  debugger
+  return this.http.get(this.selectListApiUrl+'/colour_count/'+_id);
+}
 getProductionQuality(){
   return this.http.get(this.selectListApiUrl+'/productionQuality');
 }
@@ -53,6 +57,9 @@ getSizeYaard(){
   return this.http.get(this.selectListApiUrl+'/size_in_yard');
 }
 
+getYaardTotal(_yaardID:any){
+  return this.http.get(this.selectListApiUrl+'/totalYard/'+_yaardID);
+}
 
 
 

@@ -303,8 +303,42 @@ export class AdminMasterService {
   }
 
   getContractor() {
-    return this.http.get(this.apiUrl2 + '/contractor_finishing_ledger');
+    return this.http.get(this.apiUrl2+'/contractor_finishing_ledger');
   }
+
+
+
+  getContractorByID(_id:any){
+    return this.http.get(this.apiUrl2+'/contractor_finishing_ledger_update/'+_id);
+  }
+
+
+  updateContractor(_uri:any, data:any,pan: any, adhar: any, esic: any, epfo: any){
+    debugger
+    const formData = new FormData();
+    formData.append('groupName', data.groupName);
+    formData.append('name', data.name);
+    formData.append('address', data.address);
+
+
+    formData.append('country', data.country);
+
+    formData.append('adharNo', data.adharNo);
+    formData.append('adharImage', adhar, adhar.name);
+    formData.append('panNo', data.panNo);
+    formData.append('panImage', pan, pan.name);
+    formData.append('epfoNo', data.epfoNo);
+    formData.append('epfoSheet', epfo, epfo.name);
+    formData.append('esicNo', data.esicNo);
+    formData.append('esicSheet', esic, esic.name);
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+    return this.http.post(this.apiUrl2+'/contractor_finishing_ledger_edit/'+_uri,formData,{
+      headers: new HttpHeaders().set('accept','application/json')
+    })
+  }
+
+
 
   //////////////////////////
   ////////////
@@ -446,11 +480,7 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/buyer_order');
   }
 
-  getEmployeeById(_id: any) {
-    return this.http.get(
-      this.apiUrl2 + '/contractor_finishing_ledger_update/' + _id
-    );
-  }
+
 
 
 
@@ -464,13 +494,33 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2+'/branch');
   }
 
+  getBranchByID(_id:any){
+    return this.http.get(this.apiUrl2+'/branch_update/'+_id)
+  }
+  updateBranch(_uri:any, data:any){
+    return this.http.put(this.apiUrl2+'/branch_edit/'+_uri,data,{
+      headers: new HttpHeaders().set('accept','application/json')
+    })
+  }
   addCarpetStock(data:any){
     return this.http.post(this.apiUrl2+'/stocks_data',data,{
       headers: new HttpHeaders().set('accept','application/json')
     })
   }
 
+
+
   getCarpetStock(){
     return this.http.get(this.apiUrl2+'/stock');
+  }
+
+  getStockById(_id:any){
+    return this.http.get(this.apiUrl2+'/stocks_update/'+_id);
+  }
+
+  updateStock(_uri:any, data:any){
+    return this.http.put(this.apiUrl2+'/stocks_edit/'+_uri,data,{
+      headers:new HttpHeaders().set('accept','application/json')
+    })
   }
 }

@@ -57,10 +57,8 @@ export class EmployeeDetailsComponent implements OnInit {
     'epfoNo',
     'esicSheet',
     'epfoSheet',
-    'action'
+    'action',
   ];
-
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -87,22 +85,24 @@ export class EmployeeDetailsComponent implements OnInit {
 
   responsMessage: any;
 
-  country = new FormControl('');
+  isUpdate: boolean = false;
+  empID: any;
+  // country = new FormControl('');
 
-  countryList: any;
+  // countryList: any;
 
-  state = new FormControl('');
+  // state = new FormControl('');
 
   adharFile!: File;
   panFile!: File;
   epfoFile!: File;
   esicFile!: File;
 
-  stateList: any
+  // stateList: any;
 
-  city = new FormControl('');
+  // city = new FormControl('');
 
-  cityList:any;
+  // cityList: any;
   constructor(
     private _formBuilder: FormBuilder,
     private adminService: AdminMasterService,
@@ -135,34 +135,30 @@ export class EmployeeDetailsComponent implements OnInit {
 
     this.getEmployeeDetails();
 
-    this.onCountry();
+    // this.onCountry();
   }
 
+  // onCountry() {
+  //   debugger;
+  //   this.countrystatecityService.getCountry().subscribe((data: any) => {
+  //     this.countryList = data.data;
 
-  onCountry() {
-    debugger
-    this.countrystatecityService.getCountry().subscribe((data: any) => {
-      this.countryList = data.data;
-
-      console.log('Countries fetched', this.countryList);
-    });
-  }
-  countryById(event:any){
-this.countrystatecityService.getState(event).subscribe((res:any)=>{
-  this.stateList = res.data;
-  console.log('state by country id ', this.stateList);
-});
-  }
-  onStateById(data: any) {
-    debugger
-    this.countrystatecityService.getCity(data).subscribe((res:any)=>{
-
-
-    console.log(res);
-    this.cityList = res.data;
-  });
-}
-
+  //     console.log('Countries fetched', this.countryList);
+  //   });
+  // }
+  // countryById(event: any) {
+  //   this.countrystatecityService.getState(event).subscribe((res: any) => {
+  //     this.stateList = res.data;
+  //     console.log('state by country id ', this.stateList);
+  //   });
+  // }
+  // onStateById(data: any) {
+  //   debugger;
+  //   this.countrystatecityService.getCity(data).subscribe((res: any) => {
+  //     console.log(res);
+  //     this.cityList = res.data;
+  //   });
+  // }
 
   selectImageAdhar(event: any) {
     this.adharFile = event.target.files[0];
@@ -186,18 +182,17 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
       groupName: formData.groupName,
       name: formData.name,
       address: formData.address,
-      // state: formData.state,
-      // city: formData.city,
+
       country: formData.country,
-      // zipCode: formData.zipCode,
+
       adharNo: formData.adharNo,
-      // adharImage: formData.adharImage,
+
       panNo: formData.panNo,
-      // panImage: formData.panImage,
+
       epfoNo: formData.epfoNo,
-      // epfoSheet: formData.epfoSheet,
+
       esicNo: formData.esicNo,
-      // esicSheet: formData.esicSheet,
+
       email: formData.email,
       password: formData.password,
     };
@@ -239,13 +234,13 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
             index: ind + 1,
             id: val.id,
 
-            group: val.group,
+            group: val.groupName,
             address: val.address,
-            country:val.countries_name,
+            country: val.country,
             // state:val.states_name,
             // city:val.cities_name,
             // zipCode: val.zipCode,
-            aadharNo: val.aadharNo,
+            aadharNo: val.adharNo,
             aadharImage:
               this._helper.apiPath.baseUrl +
               '/contractotStaffFinishing_ledger/' +
@@ -276,11 +271,85 @@ this.countrystatecityService.getState(event).subscribe((res:any)=>{
     });
   }
 
+  getEmployeeDetailById(_id: any) {
+    this.isUpdate = true;
+    this.empID = _id;
+    debugger;
+    this.adminService.getContractorByID(_id).subscribe((resp: any) => {
+      console.log(resp.data);
 
-  getEmployeeDetailById(_id:any){
+      // this.frmEmployeeDetails.patchValue(resp.data);
+      const formData = resp.data;
+
+      this.frmEmployeeDetails = this._formBuilder.group({
+        groupName: [formData.groupName],
+        name: [formData.name],
+        address: [formData.address],
+
+        country: [formData.country],
+
+        adharNo: [formData.adharNo],
+        adharImage: [],
+        panNo: [formData.panNo],
+        panImage: [''],
+        epfoNo: [formData.epfoNo],
+        epfoSheet: [''],
+        esicNo: [formData.esicNo],
+        esicSheet: [''],
+        email: [formData.email],
+        password: [formData.password],
+      });
+    });
+  }
+
+
+  updateEmployee(){
     debugger
-    this.adminService.getEmployeeById(_id).subscribe((resp:any)=>{
-console.log(resp.data);
-    })
+    console.log(this.frmEmployeeDetails.value);
+    const formData = this.frmEmployeeDetails.value;
+
+    var data = {
+      groupName: formData.groupName,
+      name: formData.name,
+      address: formData.address,
+
+      country: formData.country,
+
+      adharNo: formData.adharNo,
+
+      panNo: formData.panNo,
+
+      epfoNo: formData.epfoNo,
+
+      esicNo: formData.esicNo,
+
+      email: formData.email,
+      password: formData.password,
+    };
+
+    this.adminService
+      .updateContractor(this.empID,
+        data,
+        this.adharFile,
+        this.panFile,
+        this.epfoFile,
+        this.esicFile
+      )
+
+      .subscribe(
+        (resp: any) => {
+          debugger;
+          this.responsMessage = resp.message;
+          this._snackBar.openSnackBar(this.responsMessage, '');
+        },
+        (error) => {
+          if (error.error.msg) {
+            this.responsMessage = error.error.message;
+          } else {
+            this.responsMessage = global.genricError;
+          }
+          this._snackBar.openSnackBar(this.responsMessage, global.error);
+        }
+      );
   }
 }

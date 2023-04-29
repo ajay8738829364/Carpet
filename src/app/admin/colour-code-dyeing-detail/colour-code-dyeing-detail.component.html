@@ -20,18 +20,26 @@
         <mat-form-field appearance="outline">
           <mat-label>Count</mat-label>
           <mat-select  (valueChange)="onCount($event)" formControlName="count">
-            <mat-option *ngFor="let counts of countList" value="{{counts.id}}">{{counts.count}}</mat-option>
+            <mat-option *ngFor="let counts of countList" value="{{counts.count}}">{{counts.count}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
       <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Colour</mat-label>
+          <mat-select   formControlName="colourName">
+            <mat-option *ngFor="let colour of colourList" value="{{colour.colour}}">{{colour.colour}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-4">
 
         <mat-form-field appearance="outline">
           <mat-label>Color Name</mat-label>
           <input matInput placeholder="Color Name" formControlName="colourName">
         </mat-form-field>
-      </div>
+      </div> -->
 
       <div class="col-lg-4 col-md-4 d-flex">
         <mat-form-field appearance="outline" style="width: 70%;">

@@ -114,11 +114,12 @@ debugger
       console.log('hhhhhh',this.designList);
 
       this.designID = this.designList[0].design;
-
+      console.log(this.designID);
+      if(this.designID!=''){
+        this.onGroundBorder(this.designID);
+       }
     });
-   if(this.designID!=''){
-    this.onGroundBorder(this.designID);
-   }
+
   }
   onGroundBorder(data: any) {
     debugger;

@@ -66,6 +66,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-order-list.component';
 import { ManageBranchComponent } from './manage-branch/manage-branch.component';
 import { CarpetStockComponent } from './carpet-stock/carpet-stock.component';
+import { LagatMasterComponent } from './lagat-master/lagat-master.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -99,7 +100,8 @@ import { CarpetStockComponent } from './carpet-stock/carpet-stock.component';
     PurchaseBillComponent,
     ViewBuyerOrderListComponent,
     ManageBranchComponent,
-    CarpetStockComponent
+    CarpetStockComponent,
+    LagatMasterComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,

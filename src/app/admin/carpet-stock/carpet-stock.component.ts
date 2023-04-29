@@ -8,8 +8,6 @@ import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
-
-
 export interface PeriodicElement {
   id: string;
   index: number;
@@ -30,7 +28,6 @@ const ELEMENT_DATA: PeriodicElement[] = [];
   styleUrls: ['./carpet-stock.component.css'],
 })
 export class CarpetStockComponent {
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -57,11 +54,12 @@ export class CarpetStockComponent {
   borderColours: any;
 
   isUpdate: boolean = false;
-
+  stockID: any;
   sizeList: any;
 
   frmCarpetStock!: FormGroup;
   designID: any;
+  areaCalc: any;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -88,7 +86,6 @@ export class CarpetStockComponent {
       size: [''],
       area: [''],
     });
-    // ['', 'design', '', '', '', '', 'size', ''];
 
     this.getProductQuality();
     this.getSizeInYaard();
@@ -97,7 +94,7 @@ export class CarpetStockComponent {
 
   onDesign(data: any) {
     console.log(data);
-    debugger;
+
     this._selectListService.getDesignByQtyId(data).subscribe((resp: any) => {
       console.log(resp.data);
 
@@ -138,11 +135,9 @@ export class CarpetStockComponent {
       carpet_no: formData.carpet_no,
       branch_code: formData.branch_code,
       size: formData.size,
-      area: formData.area,
+      area: this.areaCalc,
     };
     console.log(data);
-
-
 
     this._service.addCarpetStock(data).subscribe(
       (resp: any) => {
@@ -169,8 +164,13 @@ export class CarpetStockComponent {
     });
   }
 
-  changeSize(_id: any) {}
-
+  changeSize(_id: any) {
+    this._selectListService.getYaardTotal(_id).subscribe((resp: any) => {
+      console.log(resp.data);
+      this.areaCalc = resp.data[0].yardTotal;
+      console.log('resp.data', this.areaCalc);
+    });
+  }
 
   getCarpetDetails() {
     ELEMENT_DATA.length = 0;
@@ -188,10 +188,10 @@ export class CarpetStockComponent {
 
             groundColour: val.ground_colour,
             borderColour: val.border_colour,
-            carpetNo:val.carpet_no,
-            branchCode:val.branch_code,
-            size:val.size,
-            area:val.area
+            carpetNo: val.carpet_no,
+            branchCode: val.branch_code,
+            size: val.size,
+            area: val.area,
           });
         });
 
@@ -202,4 +202,45 @@ export class CarpetStockComponent {
     });
   }
 
+  getStockById(_id: any) {
+    this.isUpdate = true;
+    this.stockID = _id;
+    this._service.getStockById(_id).subscribe((resp: any) => {
+      console.log(resp.data);
+
+      this.frmCarpetStock.patchValue(resp.data);
+    });
+  }
+
+  updateStock() {
+    const formData = this.frmCarpetStock.value;
+    var data = {
+      quality: formData.quality,
+      design: formData.design,
+      ground_colour: this.groundColours,
+      border_colour: this.borderColours,
+      carpet_no: formData.carpet_no,
+      branch_code: formData.branch_code,
+      size: formData.size,
+      area: this.areaCalc,
+    };
+    console.log(data);
+
+    this._service.updateStock(this.stockID, data).subscribe(
+      (resp: any) => {
+        this.responsMessage = resp.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+        console.log('data', data);
+      }
+    );
+    this.getCarpetDetails();
+  }
 }
