@@ -27,7 +27,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Material</mat-label>
           <mat-select  (valueChange)="onMaterial($event)" formControlName="materialName">
-            <mat-option *ngFor="let materials of materialList" value="{{materials.id}}">{{materials.item_name}}</mat-option>
+            <mat-option *ngFor="let materials of materialList" value="{{materials.item_name}}">{{materials.item_name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

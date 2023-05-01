@@ -454,6 +454,11 @@ export class AdminMasterService {
     );
   }
 
+  getColourCodeDyingDetails(){
+    return this.http.get(this.apiUrl2+'/colour_code_dyis_details');
+
+  }
+
   //////////////////////////
   ////////////
   ////// here i am use this api for finishing process
@@ -465,6 +470,21 @@ export class AdminMasterService {
       headers: new HttpHeaders().set('Accept', 'application/json'),
     });
   }
+
+  getFinishingProcess(){
+    return this.http.get(this.apiUrl2+'/finishing_process');
+  }
+
+  getFinishingById(_id:any){
+    return this.http.get(this.apiUrl2+'/finishing_process_update/'+_id);
+  }
+
+  updateFinishingProcess(_id:any,data:any){
+    return this.http.put(this.apiUrl2+'/finishing_process_edit/'+_id,data,{
+
+      headers:new HttpHeaders().set('accept','application/json')
+    })
+    }
   //////////////////////////
   ////////////
   ////// here i am use this api for buyer order

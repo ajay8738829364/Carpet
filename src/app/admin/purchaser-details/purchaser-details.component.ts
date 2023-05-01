@@ -60,7 +60,7 @@ export class PurchaserDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   group = new FormControl('');
 
-  groupList: any[] = [];
+  groupList: any;
   count = new FormControl('');
   groupName?: string;
   countList: any[] = [];
