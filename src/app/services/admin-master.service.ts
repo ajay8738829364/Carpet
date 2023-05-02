@@ -455,8 +455,13 @@ export class AdminMasterService {
   }
 
   getColourCodeDyingDetails(){
-    return this.http.get(this.apiUrl2+'/colour_code_dyis_details');
+    return this.http.get(this.apiUrl2+'/colour_code_dyis');
 
+  }
+
+  getColourCodeByID(_id:any){
+    debugger
+    return this.http.get(this.apiUrl2+'/colour_code_dyis_details_update/'+_id);
   }
 
   //////////////////////////

@@ -11,10 +11,13 @@ import { global } from 'src/app/shared/global';
 export interface PeriodicElement {
   index: number;
   id: string;
-  quality: string;
+
   colourName: string;
   clolurCode: string;
   reciepeDetails: string;
+
+  materialName: string;
+  count: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -35,7 +38,7 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
 
   public color2: string = '';
   responsMessage: any;
-  arrData:any[]=[];
+  arrData: any[] = [];
   count = new FormControl('');
   groupName?: string;
   countList: any[] = [];
@@ -44,7 +47,11 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
 
   materialList: any[] = [];
 
-  colourList:any;
+  colourList: any;
+
+  isUpdate:boolean=false;
+
+
   constructor(
     private fb: FormBuilder,
     private _service: AdminMasterService,
@@ -56,9 +63,9 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
-      qty: [''],
-      materialName:[''],
-      count:[''],
+      // qty: [''],
+      materialName: [''],
+      count: [''],
 
       colourName: [''],
       colourCode: [''],
@@ -67,14 +74,17 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
     });
     this.qualityList();
     this.getMaterial();
+    this.getColourCodeDyingDetails();
   }
 
   displayedColumns: string[] = [
     'id',
-    'quality',
+    'materialName',
+    'count',
     'colourName',
     'clolurCode',
     'reciepeDetails',
+    'action',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -96,7 +106,9 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
   onAddReceipe(): FormArray {
     return this.productForm.get('frmReciepeArray') as FormArray;
   }
-
+  // get frmReciepeArray() {
+  //   return this.productForm.get("frmReciepeArray") as FormArray;
+  // }
 
   newReceipe(): FormGroup {
     return this.fb.group({
@@ -113,7 +125,6 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
     this.onAddReceipe().push(this.newReceipe());
   }
 
-
   removeReceipe(i: number) {
     this.onAddReceipe().removeAt(i);
   }
@@ -122,42 +133,34 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
     const formData = this.productForm.value;
 
     var data = {
-
-      materialName:formData.materialName,
-      count:formData.count,
+      materialName: formData.materialName,
+      count: formData.count,
       colourName: formData.colourName,
       colourCode: this.color2,
       recipe: formData.recipe,
-data:formData.frmReciepeArray
+      data: formData.frmReciepeArray,
     };
 
-
-
-
-
-    this._service.colourCodeDyingDetails(data).subscribe((res:any)=>{
-      console.log(res.data);
-      this.responsMessage = res.message;
-      this._matSnack.openSnackBar(this.responsMessage, '');
-    },
-    (error) => {
-      if (error.error.msg) {
-        this.responsMessage = error.error.message;
-      } else {
-        this.responsMessage = global.genricError;
+    this._service.colourCodeDyingDetails(data).subscribe(
+      (res: any) => {
+        console.log(res.data);
+        this.responsMessage = res.message;
+        this._matSnack.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._matSnack.openSnackBar(this.responsMessage, global.error);
+        console.log('data', data);
       }
-      this._matSnack.openSnackBar(this.responsMessage, global.error);
-      console.log('data', data);
-    });
+    );
 
-    this.arrData =this.productForm.value
-
+    this.arrData = this.productForm.value;
 
     console.log(this.arrData);
-
-
-
-
 
     console.log(this.productForm.value);
   }
@@ -182,22 +185,71 @@ data:formData.frmReciepeArray
       console.log(res);
 
       this.countList = res.data;
-
     });
 
     console.log('here my on change event  material ', data);
     this.material_name = data;
   }
   onCount(data: any) {
-debugger
-    this._selectList.getColourByCountId(data).subscribe((resp:any)=>{
+    debugger;
+    this._selectList.getColourByCountId(data).subscribe((resp: any) => {
       console.log(resp.data);
-this.colourList=resp.data;
+      this.colourList = resp.data;
     });
     console.log(data);
     this.count = data;
   }
 
+  getColourCodeDyingDetails() {
+    this._service.getColourCodeDyingDetails().subscribe((resp: any) => {
+      console.log(resp.data);
+      if (resp.data) {
+        resp.data.map((val: any, ind: number) => {
+          ELEMENT_DATA.push({
+            index: ind + 1,
+            id: val.id,
 
+            colourName: val.colourName,
+            clolurCode: val.colourCode,
+            reciepeDetails: val.recipe,
+            materialName: val.materialName,
+            count: val.count,
+          });
+        });
 
+        this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+        this.ngAfterViewInit();
+        return;
+      }
+    });
+  }
+
+  getColourCodeById(_id: any) {
+    this.isUpdate=true;
+    console.log(_id);
+    debugger;
+    this._service.getColourCodeByID(_id).subscribe((resp: any) => {
+      console.log(resp.data1);
+      console.log(resp.data2);
+
+      if (resp.data2 != null) {
+        debugger
+        for (let x = 0; x < resp.data2.length; x++) {
+
+          this.addReceipeRow();
+        }
+      }
+      this.productForm.patchValue({
+        materialName:resp.data1[0].materialname,
+        count: resp.data1[0].count,
+
+        colourName:resp.data1[0].colourName,
+        colourCode:resp.data1[0].colourCode,
+        recipe: resp.data1[0].recipe,
+        frmReciepeArray:resp.data2,
+      });
+
+    });
+  }
 }
+

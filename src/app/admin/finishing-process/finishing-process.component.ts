@@ -110,7 +110,7 @@ export class FinishingProcessComponent implements OnInit {
     });
   }
   setDesignValue(data: any) {
-    this.design = data;
+    // this.design = data;
   }
   onSubmit() {
     const formData = this.frmFinishingProcess.value;

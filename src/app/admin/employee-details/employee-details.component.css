@@ -31,3 +31,8 @@ img
 .fa-trash{
   color: rgb(235, 28, 28);
 }
+.container1 {
+  width:180px;
+  display:inline-block;
+  }
+

@@ -13,6 +13,9 @@ import { CountryStateCitysService } from 'src/app/services/country-state-citys.s
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
+
+import * as $ from 'jquery';
+
 export interface PeriodicElement {
   id: string;
   index: number;
@@ -352,4 +355,7 @@ export class EmployeeDetailsComponent implements OnInit {
         }
       );
   }
+
+
+  
 }
