@@ -303,23 +303,28 @@ export class AdminMasterService {
   }
 
   getContractor() {
-    return this.http.get(this.apiUrl2+'/contractor_finishing_ledger');
+    return this.http.get(this.apiUrl2 + '/contractor_finishing_ledger');
   }
 
-
-
-  getContractorByID(_id:any){
-    return this.http.get(this.apiUrl2+'/contractor_finishing_ledger_update/'+_id);
+  getContractorByID(_id: any) {
+    return this.http.get(
+      this.apiUrl2 + '/contractor_finishing_ledger_update/' + _id
+    );
   }
 
-
-  updateContractor(_uri:any, data:any,pan: any, adhar: any, esic: any, epfo: any){
-    debugger
+  updateContractor(
+    _uri: any,
+    data: any,
+    pan: any,
+    adhar: any,
+    esic: any,
+    epfo: any
+  ) {
+    debugger;
     const formData = new FormData();
     formData.append('groupName', data.groupName);
     formData.append('name', data.name);
     formData.append('address', data.address);
-
 
     formData.append('country', data.country);
 
@@ -333,12 +338,14 @@ export class AdminMasterService {
     formData.append('esicSheet', esic, esic.name);
     formData.append('email', data.email);
     formData.append('password', data.password);
-    return this.http.post(this.apiUrl2+'/contractor_finishing_ledger_edit/'+_uri,formData,{
-      headers: new HttpHeaders().set('accept','application/json')
-    })
+    return this.http.post(
+      this.apiUrl2 + '/contractor_finishing_ledger_edit/' + _uri,
+      formData,
+      {
+        headers: new HttpHeaders().set('accept', 'application/json'),
+      }
+    );
   }
-
-
 
   //////////////////////////
   ////////////
@@ -454,14 +461,15 @@ export class AdminMasterService {
     );
   }
 
-  getColourCodeDyingDetails(){
-    return this.http.get(this.apiUrl2+'/colour_code_dyis');
-
+  getColourCodeDyingDetails() {
+    return this.http.get(this.apiUrl2 + '/colour_code_dyis');
   }
 
-  getColourCodeByID(_id:any){
-    debugger
-    return this.http.get(this.apiUrl2+'/colour_code_dyis_details_update/'+_id);
+  getColourCodeByID(_id: any) {
+    debugger;
+    return this.http.get(
+      this.apiUrl2 + '/colour_code_dyis_details_update/' + _id
+    );
   }
 
   //////////////////////////
@@ -476,20 +484,23 @@ export class AdminMasterService {
     });
   }
 
-  getFinishingProcess(){
-    return this.http.get(this.apiUrl2+'/finishing_process');
+  getFinishingProcess() {
+    return this.http.get(this.apiUrl2 + '/finishing_process');
   }
 
-  getFinishingById(_id:any){
-    return this.http.get(this.apiUrl2+'/finishing_process_update/'+_id);
+  getFinishingById(_id: any) {
+    return this.http.get(this.apiUrl2 + '/finishing_process_update/' + _id);
   }
 
-  updateFinishingProcess(_id:any,data:any){
-    return this.http.put(this.apiUrl2+'/finishing_process_edit/'+_id,data,{
-
-      headers:new HttpHeaders().set('accept','application/json')
-    })
-    }
+  updateFinishingProcess(_id: any, data: any) {
+    return this.http.put(
+      this.apiUrl2 + '/finishing_process_edit/' + _id,
+      data,
+      {
+        headers: new HttpHeaders().set('accept', 'application/json'),
+      }
+    );
+  }
   //////////////////////////
   ////////////
   ////// here i am use this api for buyer order
@@ -505,47 +516,80 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/buyer_order');
   }
 
-
-
-
-
-  addBranch(data:any){
-    return this.http.post(this.apiUrl2+'/branch_data',data,{
-      headers:new HttpHeaders().set('accept','application/json')
-    })
+  addBranch(data: any) {
+    return this.http.post(this.apiUrl2 + '/branch_data', data, {
+      headers: new HttpHeaders().set('accept', 'application/json'),
+    });
   }
 
-  getBranch(){
-    return this.http.get(this.apiUrl2+'/branch');
+  getBranch() {
+    return this.http.get(this.apiUrl2 + '/branch');
   }
 
-  getBranchByID(_id:any){
-    return this.http.get(this.apiUrl2+'/branch_update/'+_id)
+  getBranchByID(_id: any) {
+    return this.http.get(this.apiUrl2 + '/branch_update/' + _id);
   }
-  updateBranch(_uri:any, data:any){
-    return this.http.put(this.apiUrl2+'/branch_edit/'+_uri,data,{
-      headers: new HttpHeaders().set('accept','application/json')
-    })
+  updateBranch(_uri: any, data: any) {
+    return this.http.put(this.apiUrl2 + '/branch_edit/' + _uri, data, {
+      headers: new HttpHeaders().set('accept', 'application/json'),
+    });
   }
-  addCarpetStock(data:any){
-    return this.http.post(this.apiUrl2+'/stocks_data',data,{
-      headers: new HttpHeaders().set('accept','application/json')
-    })
-  }
-
-
-
-  getCarpetStock(){
-    return this.http.get(this.apiUrl2+'/stock');
+  addCarpetStock(data: any) {
+    return this.http.post(this.apiUrl2 + '/stocks_data', data, {
+      headers: new HttpHeaders().set('accept', 'application/json'),
+    });
   }
 
-  getStockById(_id:any){
-    return this.http.get(this.apiUrl2+'/stocks_update/'+_id);
+  getCarpetStock() {
+    return this.http.get(this.apiUrl2 + '/stock');
   }
 
-  updateStock(_uri:any, data:any){
-    return this.http.put(this.apiUrl2+'/stocks_edit/'+_uri,data,{
-      headers:new HttpHeaders().set('accept','application/json')
-    })
+  getStockById(_id: any) {
+    return this.http.get(this.apiUrl2 + '/stocks_update/' + _id);
   }
+
+  updateStock(_uri: any, data: any) {
+    return this.http.put(this.apiUrl2 + '/stocks_edit/' + _uri, data, {
+      headers: new HttpHeaders().set('accept', 'application/json'),
+    });
+  }
+
+  ////////////////////////////
+  /////////// Delete Api
+  /////
+  ///
+
+  deleteContractor(_id: any) {
+    return this.http.delete(
+      this.apiUrl2 + '/contractor_finishing_ledger_delete/' + _id
+    );
+  }
+  deleteDesign(_id: any) {
+    debugger
+    return this.http.delete(this.apiUrl2 + '/design_delete/' + _id);
+  }
+  deleteColourCodeDyis(_id: any) {
+    return this.http.delete(this.apiUrl2 + '/colour_code_dyis_delete/' + _id);
+  }
+  deleteSize(_id: any) {
+    return this.http.delete(this.apiUrl2 + '/size_master_delete/' + _id);
+  }
+
+  deleteShadeCard(_id: any) {
+    debugger;
+    return this.http.delete(this.apiUrl2 + '/shead_card_delete/' + _id);
+  }
+  deleteBuyerMaster(_id: any) {
+    debugger;
+    return this.http.delete(this.apiUrl2 + '/buyer_delete/' + _id);
+  }
+  deleteRawMaterial(_id: any) {
+    debugger;
+    return this.http.delete(this.apiUrl2 + '/raw_material_delete/' + _id);
+  }
+  deletePurchaseLedger(_id: any) {
+    debugger;
+    return this.http.delete(this.apiUrl2 + '/purchase_ledger_delete/' + _id);
+  }
+
 }

@@ -35,12 +35,12 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 })
 export class ShaedCardComponent implements OnInit {
   public arrayColors: any = {
-    colourCode: '#e920e9',
+    colour2: '#e920e9',
   };
 
   frmShadeCard!: FormGroup;
 
-  public colourCode: any;
+  public colour2: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -141,7 +141,7 @@ debugger
       groundColour:this.groundColours,
       borderColour:this.borderColours,
       colourShead:formData.colourShead,
-      colourCode:this.colourCode,
+      colourCode:this.colour2,
       weight:formData.weight,
       lagat:formData.lagat,
     };
@@ -175,7 +175,7 @@ debugger
             index: ind + 1,
             id: val.id,
 
-            qty: val.qty,
+            qty: val.qualityName,
             design: val.design,
 
             groundColour: val.groundColour,
@@ -205,14 +205,22 @@ debugger
   }
 
   getShadeCardById(_id: any) {
+    debugger
     this.isUpdate = true;
     this.shadeCardID = _id;
     this._service.getShadeCardWithId(_id).subscribe((resp: any) => {
       console.log(resp.data);
 
-      this.onDesign(resp.data.qty)
+      this.onDesign(resp.data[0].qty)
 debugger
-       this.frmShadeCard.patchValue(resp.data);
+       this.frmShadeCard.patchValue(  {qty:resp.data[0].qty,
+        design:resp.data[0].design,
+        groundColour:this.groundColours,
+        borderColour:this.borderColours,
+        colourShead:resp.data[0].colourShead,
+        colourCode:resp.data[0].colourCode,
+        weight:resp.data[0].weight,
+        lagat:resp.data[0].lagat,});
 
 
 
@@ -230,7 +238,7 @@ debugger
       groundColour: this.groundColours,
       borderColour: this.borderColours,
       colourShead: formData.colourShead,
-      colourCode: this.colourCode,
+      colourCode: this.colour2,
       weight: formData.weight,
       lagat: formData.lagat,
     };
@@ -248,6 +256,23 @@ debugger
       this._snackBar.openSnackBar(this.responsMessage, global.error);
     });
     this.getShadeCard();
+  }
+
+  deleteShadeCard(_id:any){
+    this._service.deleteShadeCard(_id).subscribe(
+      (res: any) => {
+        this.responsMessage = res.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+      }
+    );
   }
 }
 

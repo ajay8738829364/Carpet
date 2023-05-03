@@ -150,6 +150,7 @@ export class DesignComponent implements OnInit {
 
   getAllDesignList() {
     this._service.getDesignList().subscribe((resp: any) => {
+      console.log(resp.data);
       if (resp.data) {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
@@ -206,6 +207,27 @@ export class DesignComponent implements OnInit {
       this._matSnackBar.openSnackBar(this.responsMessage, global.error);
       console.log('data', data);
     })
+  }
+
+  deleteDesign(_id:any){
+
+
+    this._service.deleteDesign(_id).subscribe(
+      (res: any) => {
+        console.log(res.data);
+        this.responsMessage = res.message;
+        this._matSnackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._matSnackBar.openSnackBar(this.responsMessage, global.error);
+        console.log('data', _id);
+      }
+    );
   }
 
 }

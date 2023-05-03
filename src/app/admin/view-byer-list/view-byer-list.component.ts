@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { global } from 'src/app/shared/global';
 
 export interface PeriodicElement {
   id: string;
@@ -57,6 +58,8 @@ export class ViewByerListComponent implements OnInit {
     private adminService: AdminMasterService,
     private _snackBar: SnackBarService
   ) {}
+
+  responsMessage:any
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   ngAfterViewInit() {
@@ -105,6 +108,26 @@ ngOnInit(): void {
 
 
 
+  deleteBuyerMaster(_id:any){
+
+
+    this.adminService.deleteBuyerMaster(_id).subscribe(
+      (res: any) => {
+        console.log(res.data);
+        this.responsMessage = res.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+        console.log('data', _id);
+      }
+    );
+  }
 
 
 }

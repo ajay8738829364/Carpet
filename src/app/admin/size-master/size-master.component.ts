@@ -282,4 +282,22 @@ export class SizeMasterComponent implements OnInit {
       }
     )
   }
+
+
+  deleteSize(_id:any){
+    this.adminService.deleteSize(_id).subscribe(
+      (res: any) => {
+        this.responsMessage = res.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+      }
+    );
+  }
 }

@@ -36,3 +36,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 60px !important;
     width: 295px;
 }
+.mat-mdc-table tbody,.mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell{
+  text-transform: capitalize;
+}
+a{
+  cursor: pointer;
+}

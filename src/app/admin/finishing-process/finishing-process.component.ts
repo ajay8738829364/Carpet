@@ -179,7 +179,7 @@ export class FinishingProcessComponent implements OnInit {
       console.log(resp.data);
 
       this.frmFinishingProcess.patchValue(resp.data);
-      this.frmFinishingProcess.value.get('toDate').patchValue(this.formatDate(new Date()));
+      //this.frmFinishingProcess.value.get('toDate').patchValue(this.formatDate(new Date()));
 
     });
   }

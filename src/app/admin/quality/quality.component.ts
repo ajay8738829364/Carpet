@@ -167,8 +167,19 @@ debugger
 
 
   deleteQuality(_id:any){
-    this._service.deleteQuality(_id).subscribe((resp:any)=>{
-      console.log(resp.data);
-    });
+    this._service.deleteQuality(_id).subscribe(
+      (res: any) => {
+        this.responsMessage = res.message;
+        this._snackBar.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global;
+        }
+        this._snackBar.openSnackBar(this.responsMessage, global.error);
+      }
+    );
   }
 }

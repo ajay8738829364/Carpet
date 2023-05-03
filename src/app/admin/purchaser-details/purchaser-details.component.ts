@@ -60,7 +60,7 @@ export class PurchaserDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   group = new FormControl('');
 
-  groupList: any;
+  groupList: string[] = ['STAFF', 'VIEWER', 'FINISHER', 'OTHERS 1', 'OTHERS 2'];
   count = new FormControl('');
   groupName?: string;
   countList: any[] = [];
@@ -101,10 +101,10 @@ export class PurchaserDetailsComponent implements OnInit {
     console.log('here my on change event  material ', data);
     this.material_name = data;
   }
-  onCount(data: any) {
-    console.log(data);
-    this.count = data;
-  }
+  // onCount(data: any) {
+  //   console.log(data);
+  //   this.count = data;
+  // }
 
   onGroup(data: any) {
     this.group = data;
@@ -127,11 +127,11 @@ export class PurchaserDetailsComponent implements OnInit {
 
 
 
-    // this.purchaseId = this._activatedRouter.snapshot.paramMap.get('id') || '';
-    // if (this.purchaseId != '') {
-    //   this.getPurchaseDetailById(this.purchaseId);
-    //   this.isUpdate = true;
-    // }
+    this.purchaseId = this._activatedRouter.snapshot.paramMap.get('id') || '';
+    if (this.purchaseId != '') {
+      this.getPurchaseDetailById(this.purchaseId);
+      this.isUpdate = true;
+    }
   }
 
   getMaterial() {
@@ -145,7 +145,7 @@ export class PurchaserDetailsComponent implements OnInit {
     this._serviceList.getGroupList().subscribe((res: any) => {
       console.log(res.data);
 
-      this.groupList = res.data;
+      // this.groupList = res.data;
       console.log(res);
 
       console.log(this.groupList);
@@ -168,7 +168,7 @@ export class PurchaserDetailsComponent implements OnInit {
       partyName: formData.partyName,
       gstNo: formData.gstNo,
       address: formData.address,
-      contactNo: telData.internationalNumber,
+      contactNo:formData.contactNo ,
     };
     console.log(this.frmPurchaserDetails.value);
 
@@ -220,18 +220,27 @@ export class PurchaserDetailsComponent implements OnInit {
     });
   }
 
-  getPurchaseDetailById(_purchaseId: any) {
-
+  getPurchaseDetailById(_Id: any) {
+debugger
     this.isUpdate = true;
-    this.purchaseId=_purchaseId;
+    this.purchaseId=_Id;
 
-    this._service.getPurchaseLedgerById(_purchaseId).subscribe((resp: any) => {
-      console.log(resp.data);
+    this._service.getPurchaseLedgerById(_Id).subscribe((resp: any) => {
+      console.log('**********************',resp);
+debugger
+      this.onMaterial(resp.data[0].materialName)
 
-      this.onMaterial(resp.data.materialName)
 
+      this.frmPurchaserDetails.patchValue({
+        groupName: resp.data[0].groupName,
+        materialName: resp.data[0].materialName,
+        count: resp.data[0].count,
+        partyName: resp.data[0].partyName,
+        gstNo: resp.data[0].gstNo,
+        address: resp.data[0].address,
+        contactNo: resp.data[0].contactNo,
 
-      this.frmPurchaserDetails.patchValue(resp.data);
+      });
     });
   }
 
@@ -253,6 +262,25 @@ export class PurchaserDetailsComponent implements OnInit {
 
     console.log(data);
     this._service.updatePurchaseLedger(this.purchaseId, data).subscribe(
+      (res: any) => {
+        this.responsMessage = res.message;
+        this._snakBarService.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global;
+        }
+        this._snakBarService.openSnackBar(this.responsMessage, global.error);
+      }
+    );
+  }
+
+
+
+  deletePurchaseLedger(_id:any){
+    this._service.deletePurchaseLedger(_id).subscribe(
       (res: any) => {
         this.responsMessage = res.message;
         this._snakBarService.openSnackBar(this.responsMessage, '');

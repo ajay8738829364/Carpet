@@ -356,6 +356,21 @@ export class EmployeeDetailsComponent implements OnInit {
       );
   }
 
+  deleteEmployee(_id:any){
+    this.adminService.deleteContractor(_id).subscribe( (resp: any) => {
+      debugger;
+      this.responsMessage = resp.message;
+      this._snackBar.openSnackBar(this.responsMessage, '');
+    },
+    (error) => {
+      if (error.error.msg) {
+        this.responsMessage = error.error.message;
+      } else {
+        this.responsMessage = global.genricError;
+      }
+      this._snackBar.openSnackBar(this.responsMessage, global.error);
+    }
+  );
+  }
 
-  
 }

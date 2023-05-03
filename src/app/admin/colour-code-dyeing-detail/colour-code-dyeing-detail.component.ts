@@ -251,5 +251,26 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
 
     });
   }
+
+  deleteColourCode(_id:any){
+
+
+    this._service.deleteColourCodeDyis(_id).subscribe(
+      (res: any) => {
+        console.log(res.data);
+        this.responsMessage = res.message;
+        this._matSnack.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global.genricError;
+        }
+        this._matSnack.openSnackBar(this.responsMessage, global.error);
+        console.log('data', _id);
+      }
+    );
+  }
 }
 
