@@ -26,3 +26,383 @@
   </form>
 
   </div>
+
+
+
+  <div >
+
+    <div class="content-wrapper">
+      <div class="container-full">
+        <!-- Content Header (Page header) -->
+        <!-- <div class="content-header">
+          <div class="d-flex align-items-center">
+            <div class="me-auto">
+              <h3 class="page-title">Invoice</h3>
+
+              <div class="d-inline-block align-items-center">
+                <nav>
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
+                    <li class="breadcrumb-item" aria-current="page"> Invoice</li>
+                    <li class="breadcrumb-item active" aria-current="page">Invoice</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+        </div> -->
+
+        <!-- <section class="content">
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="box">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-2">
+                      <div class="bb-1 clearFix">
+                        <div class="text-end pb-15">
+
+                          <button class="btn btn-warning" (click)="openPDF()"> <span><i class="fa fa-print"></i>
+                              Print</span>
+
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-2">
+                      <div class="bb-1 clearFix">
+                        <div class="text-end pb-15">
+                          <button class="btn btn-success" type="button"> <span><i class="fa fa-print"></i> Save</span>
+                          </button>
+                          <!-- <button  class="btn btn-warning"  (click)="openPDF()"> <span><i class="fa fa-print"></i> Print</span> -->
+
+                          <!-- </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <section class="invoice printableArea" id="htmlData">
+                    <div class="row">
+                      <div class="col-12 fs-15">
+                        <div class="text-center">
+                          <p><b> PRATYAKSH AYURVEDA</b> </p>
+                        </div>
+                        <div class="page-header">
+                          <h2 class="d-inline"><span class="fs-15">Invoice No. 12305 </span></h2>
+                          <div class="pull-right text-end">
+                            <h3>{{newdat}}</h3>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row invoice-info">
+                      <div class="col-md-6 invoice-col">
+                        <strong>From</strong>
+                        <address>
+                          <span class="text-blue fs-24">Pratyaksh Ayurveda </span><br>
+                          <span class="d-inline"> 111/241 Ramtirth Marg, Mansarovar, Jaipur, Rajasthan 302020
+
+                            Branches- Jaipur | Varanasi</span><br>
+                          <span>Phone: +91 85957 76006,+91 77379 45981 </span><br>
+                          <span> Email: epratyakshayurveda@gmail.com</span><br>
+                          <strong>GSTIN No. 9874563210 </strong>
+                        </address>
+                      </div>
+                      <!-- /.col
+                      <div class="col-md-6 invoice-col text-end">
+                        <strong>To</strong>
+                        <address>
+                          <span class="text-blue fs-24">Pratyaksh Ayurveda </span><br>
+                          <span class="d-inline"> Branches- Jaipur | Varanasi</span><br>
+                          <span>Phone: +91 85957 76006,+91 77379 45981 </span><br>
+                          <span> Email: epratyakshayurveda@gmail.com</span>
+                        </address>
+                      </div>
+                      <!-- /.col
+                      <div class="col-sm-12 invoice-col mb-15">
+                        <!-- <div class="invoice-details row no-margin">
+                  <div class="col-md-6 col-lg-3"><b>Invoice </b>#0154879</div>
+                  <div class="col-md-6 col-lg-3"><b>Order ID:</b> FC12548</div>
+                  <div class="col-md-6 col-lg-3"><b>Payment Due:</b> 14/08/2018</div>
+                  <div class="col-md-6 col-lg-3"><b>Account:</b> 00215487541296</div>
+                </div> -->
+                      </div>
+                      <!-- /.col --
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-12 table-responsive">
+                        <table class="table table-bordered">
+                          <tbody>
+                            <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">Item Description</th>
+                              <th class="text-center">SAC Code</th>
+                              <th class="text-center">Gst %</th>
+                              <th class="text-center">Quantity</th>
+                              <th class="text-center">Unit </th>
+                              <th class="text-center">Rate</th>
+                              <th class="text-center"> Discount %</th>
+                              <th class="text-end"> Amount </th>
+                            </tr>
+                            <tr>
+                              <td class="text-center">1</td>
+                              <td class="text-center">Milk Powder</td>
+                              <td class="text-center">12345678912514</td>
+                              <td class="text-center">0</td>
+                              <td class="text-center">3</td>
+                              <td class="text-center">Pcs</td>
+                              <td class="text-center">100</td>
+                              <td class="text-center">10%</td>
+                              <td class="text-center">300</td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.col --
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 ">
+                        <div class="amt-word ">
+                          <span>Amount in Words :</span> <span> &nbsp;three hundred twenty</span>
+                        </div>
+                      </div>
+                      <div class="col-6 text-end">
+                        <!-- <p class="lead"><b>Payment Due : </b><span > {{newdat}} </span></p> --
+                        <div>
+                          <p>Total amount : ₹300</p>
+                          <p>Tax (18%) : ₹0</p>
+                          <p>Discount : ₹30</p>
+                          <p>Shipping : ₹50</p>
+                        </div>
+
+
+                        <div class="total-payment">
+                          <h4>Gross Total : ₹320</h4>
+                        </div>
+
+                      </div>
+                      <!-- /.col --
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        Remark
+                      </div>
+                      <div class="col-md-4">
+                        <span class="text-end">
+                          <h5>For Pratyaksh Ayurveda</h5>
+                        </span>
+                      </div>
+                      <div class="col-12 table-responsive">
+                        <h4>Tax Details</h4>
+                        <table class="table table-bordered">
+                          <tbody>
+                            <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">SAC Code</th>
+                              <th class="text-center">Taxable Value</th>
+                              <th class="text-center">Gst Rate Amount</th>
+                              <th class="text-center">Cgst Rate Amount</th>
+                              <th class="text-center">Sgst Rate Amount </th>
+                              <th class="text-center">Igst Rate Amount</th>
+
+                            </tr>
+                            <tr>
+                              <td class="text-center">1</td>
+                              <td class="text-center">201225</td>
+                              <td class="text-center">12345</td>
+                              <td class="text-center">0</td>
+                              <td class="text-center">3</td>
+                              <td class="text-center">20</td>
+                              <td class="text-center">100</td>
+
+                            </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+
+                        <span class="d-flex">
+                          <h6>Note : </h6>&nbsp;1. All rate is inclusive of GST
+                        </span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>2. Any dispute subject to
+                          Varanasi jurisdiction </span>
+
+                      </div>
+                      <!-- <div class="col-md-4">
+            <span class="text-center"><h5>Authorized Signature</h5></span>
+          </div> -->
+                    </div>
+                    <div class="row no-print">
+                      <div class="col-12">
+                        <!-- <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+            </button> --
+                      </div>
+                    </div>
+                  </section>
+
+                </div>
+
+              </div>
+              <!-- /.box --
+            </div>
+          </div>
+        </section> -->
+
+      </div>
+
+    </div>
+
+    <div class="content-wrapper">
+      <div class="container-full">
+
+        <div class="content-header">
+          <div class="d-flex align-items-center">
+            <div class="me-auto">
+              <h3 class="page-title"></h3>
+              <div class="d-inline-block align-items-center">
+                <nav>
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">
+                        <!-- <i class="mdi mdi-home-outline"></i> -->
+                      </a>
+                    </li>
+                    <!-- <li class="breadcrumb-item" aria-current="page"></li>
+                    <li class="breadcrumb-item active" aria-current="page"></li> -->
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+       <!-- <section class="invoice printableArea">
+        <div class="row">
+        <div class="col-12">
+          <div class="bb-1 clearFix">
+          <div class="text-end pb-15">
+            <button class="btn btn-success" type="button"> <span><i class="fa fa-print"></i> Save</span> </button>
+            <button id="print2" class="btn btn-warning" type="button" (click)="openPDF()"> <span><i class="fa fa-print"></i> Print</span> </button>
+          </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="page-header">
+          <h2 class="d-inline"><span class="fs-30">Invoice </span></h2>
+          <div class="pull-right text-end">
+            <h3>22 April 2018</h3>
+          </div>
+          </div>
+        </div>
+
+        </div>
+        <div class="row invoice-info">
+        <div class="col-md-6 invoice-col">
+          <strong>From</strong>
+          <address>
+          <strong class="text-blue fs-24">Pratyaksh Ayurveda</strong><br>
+          <strong class="d-inline">124 Lorem Ipsum, Suite 478,  Dummuy, USA 123456</strong><br>
+          <strong>Phone: (00) 123-456-7890 &nbsp;&nbsp;&nbsp;&nbsp; Email: info@example.com</strong>
+          </address>
+        </div>
+
+        <div class="col-md-6 invoice-col text-end">
+          <strong>To</strong>
+          <address>
+          <strong class="text-blue fs-24">Doe Shina</strong><br>
+          124 Lorem Ipsum, Suite 478, Dummuy, USA 123456<br>
+          <strong>Phone: (00) 789-456-1230 &nbsp;&nbsp;&nbsp;&nbsp; Email: conatct@example.com</strong>
+          </address>
+        </div>
+
+        <div class="col-sm-12 invoice-col mb-15">
+          <div class="invoice-details row no-margin">
+            <div class="col-md-6 col-lg-3"><b>Invoice </b>#0154879</div>
+            <div class="col-md-6 col-lg-3"><b>Order ID:</b> FC12548</div>
+            <div class="col-md-6 col-lg-3"><b>Payment Due:</b> 14/08/2018</div>
+            <div class="col-md-6 col-lg-3"><b>Account:</b> 00215487541296</div>
+          </div>
+        </div>
+
+        </div>
+        <div class="row">
+        <div class="col-12 table-responsive">
+          <table class="table table-bordered">
+          <tbody>
+          <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Serial #</th>
+            <th class="text-end">Quantity</th>
+            <th class="text-end">Unit Cost</th>
+            <th class="text-end">Subtotal</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Milk Powder</td>
+            <td>12345678912514</td>
+            <td class="text-end">2</td>
+            <td class="text-end">$26.00</td>
+            <td class="text-end">$52.00</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Air Conditioner</td>
+            <td>12345678912514</td>
+            <td class="text-end">1</td>
+            <td class="text-end">$1500.00</td>
+            <td class="text-end">$1500.00</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>TV</td>
+            <td>12345678912514</td>
+            <td class="text-end">2</td>
+            <td class="text-end">$540.00</td>
+            <td class="text-end">$1080.00</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Mobile</td>
+            <td>12345678912514</td>
+            <td class="text-end">3</td>
+            <td class="text-end">$320.00</td>
+            <td class="text-end">$960.00</td>
+          </tr>
+          </tbody>
+          </table>
+        </div>
+
+        </div>
+        <div class="row">
+        <div class="col-12 text-end">
+          <p class="lead"><b>Payment Due</b><span class="text-danger"> 14/08/2018 </span></p>
+
+          <div>
+            <p>Sub - Total amount  :  $3,592.00</p>
+            <p>Tax (18%)  :  $646.56</p>
+            <p>Shipping  :  $110.44</p>
+          </div>
+          <div class="total-payment">
+            <h3><b>Total :</b> $4,349.00</h3>
+          </div>
+
+        </div>
+
+        </div>
+        <div class="row no-print">
+        <div class="col-12">
+          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          </button>
+        </div>
+        </div>
+      </section> -->
+

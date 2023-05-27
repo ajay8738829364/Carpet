@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      Container Received
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Import Number</mat-label>
+        <mat-select [formControl]="importerNo" multiple>
+
+          <mat-option *ngFor="let importerNo of importerNoList" [value]="importerNo">{{importerNo}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Expens Amount</mat-label>
+        <input matInput placeholder="Expens Amount">
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <label for="formFile" class="form-label">Upload Container Bill ( .Pdf ) </label>
+      <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)">
+
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Total Meter</mat-label>
+        <input matInput placeholder="Total Amount">
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-4">
+      <mat-form-field appearance="outline">
+        <mat-label>ESP. Price</mat-label>
+        <input matInput placeholder="ESP. Price">
+      </mat-form-field>
+    </div>
+
+
+
+
+  </div>
+</div>

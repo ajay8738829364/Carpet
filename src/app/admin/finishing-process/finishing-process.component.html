@@ -14,7 +14,7 @@
           <mat-label>Job Name</mat-label>
           <mat-select formControlName="jobName">
 
-            <mat-option *ngFor="let job of jobList" [value]="job">{{job}}</mat-option>
+            <mat-option *ngFor="let job of jobList" value="job">{{job}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -50,7 +50,7 @@
 <div class="col-md-3">
   <mat-form-field appearance="outline">
     <mat-label>From Date</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="fromDate">
+    <input matInput [matDatepicker]="picker"  formControlName="fromDate">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
@@ -60,7 +60,7 @@
 <div class="col-md-3">
   <mat-form-field appearance="outline">
     <mat-label>To Date</mat-label>
-    <input matInput [matDatepicker]="picker2" value="{{picker2}}" formControlName="toDate">
+    <input matInput [matDatepicker]="picker2"  formControlName="toDate">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>

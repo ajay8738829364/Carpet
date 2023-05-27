@@ -16,12 +16,11 @@ import { HomeComponent } from './home/home.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-
-
 
   ],
   imports: [

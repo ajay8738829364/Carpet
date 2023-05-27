@@ -75,15 +75,15 @@ export class AdminMasterService {
     });
   }
 
-  getRawMaterialGropu() {
+  getRawMaterialGropu():Observable<any> {
     return this.http.get(this.apiUrl2 + '/raw_material');
   }
 
-  editRawMaterialGroup(data: any) {
+  editRawMaterialGroup(data: any):Observable<any> {
     return this.http.get(this.apiUrl2 + '/raw_material_update/' + data);
   }
 
-  updateRawMaterial(apiUri: any, data: any, matImg: File) {
+  updateRawMaterial(apiUri: any, data: any, matImg: File):Observable<any>{
     const formData = new FormData();
 
     formData.append('item_name', data.item_name);
@@ -136,7 +136,7 @@ export class AdminMasterService {
     });
   }
 
-  getFinisherLedgerData() {
+  getFinisherLedgerData() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/finishing_ledger');
   }
 
@@ -152,15 +152,15 @@ export class AdminMasterService {
     });
   }
 
-  getSizeMaster() {
+  getSizeMaster() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/size_master');
   }
 
-  getSizeById(_id: any) {
+  getSizeById(_id: any) :Observable<any>{
     return this.http.get(this.apiUrl2 + '/size_master_update/' + _id);
   }
 
-  updateSizeMaster(_id: any, data: any) {
+  updateSizeMaster(_id: any, data: any) :Observable<any>{
     return this.http.post(this.apiUrl2 + '/size_master_edit/' + _id, data, {
       headers: new HttpHeaders().set('content-type', 'application/json'),
     });
@@ -171,23 +171,23 @@ export class AdminMasterService {
   ///////
   ////
 
-  buyerMaster(data: any) {
+  buyerMaster(data: any) :Observable<any>{
     debugger;
     console.log(data);
     return this.http.post(this.apiUrl2 + '/buyer_details', data, {
       headers: new HttpHeaders().set('ContentType', 'application/json'),
     });
   }
-  getBuyerMaster() {
+  getBuyerMaster() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/buyer');
   }
-  editBuyerMaster(data: any) {
+  editBuyerMaster(data: any) :Observable<any>{
     debugger;
     console.log(data);
     return this.http.get(this.apiUrl2 + '/buyer_update/' + data);
   }
 
-  updateBuyerMaster(apiUri: any, data: any) {
+  updateBuyerMaster(apiUri: any, data: any) :Observable<any>{
     debugger;
     console.log(data);
     return this.http.post(this.apiUrl2 + '/buyer_edit/' + apiUri, data, {
@@ -199,7 +199,7 @@ export class AdminMasterService {
   /////////// here code for Dying Master api service
   ///////
   ////
-  dyingMaster(data: any) {
+  dyingMaster(data: any) :Observable<any>{
     debugger;
     console.log(data);
     return this.http.post(this.apiUrl2 + '/dying_master', data, {
@@ -207,7 +207,7 @@ export class AdminMasterService {
     });
   }
 
-  getDyingMaster() {
+  getDyingMaster() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/dying_master_data');
     // return this.http.get(this.apiUrl2+'/size_master');
   }
@@ -231,7 +231,7 @@ export class AdminMasterService {
   ///////
   ////
 
-  purchser(data: any) {
+  purchser(data: any):Observable<any> {
     return this.http.post(this.apiUrl2 + '/contractor_staff_fn_ledger', data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
@@ -242,27 +242,27 @@ export class AdminMasterService {
   ///////
   ////
 
-  quality(data: any) {
+  quality(data: any):Observable<any> {
     return this.http.post(this.apiUrl2 + '/quality_data', data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
   }
 
-  getQuality() {
+  getQuality():Observable<any> {
     return this.http.get(this.apiUrl2 + '/quality');
   }
 
-  getQualityById(_id: any) {
+  getQualityById(_id: any):Observable<any> {
     return this.http.get(this.apiUrl2 + '/quality_data_update/' + _id);
   }
 
-  updateQuality(_uri: any, data: any) {
+  updateQuality(_uri: any, data: any) :Observable<any>{
     return this.http.post(this.apiUrl2 + '/quality_data_edit/' + _uri, data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     });
   }
 
-  deleteQuality(_id: any) {
+  deleteQuality(_id: any):Observable<any> {
     return this.http.delete(this.apiUrl2 + '/quality_data_delete/' + _id);
   }
 
@@ -271,7 +271,7 @@ export class AdminMasterService {
   ///////
   ////
 
-  addContractor(data: any, pan: any, adhar: any, esic: any, epfo: any) {
+  addContractor(data: any, pan: any, adhar: any, esic: any, epfo: any):Observable<any>{
     debugger;
     const formData = new FormData();
     formData.append('groupName', data.groupName);
@@ -302,11 +302,11 @@ export class AdminMasterService {
     );
   }
 
-  getContractor() {
+  getContractor() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/contractor_finishing_ledger');
   }
 
-  getContractorByID(_id: any) {
+  getContractorByID(_id: any) :Observable<any>{
     return this.http.get(
       this.apiUrl2 + '/contractor_finishing_ledger_update/' + _id
     );
@@ -352,13 +352,13 @@ export class AdminMasterService {
   ////// here i am use this api for purchase ledger account
   ////
 
-  addPurchaseAccount(data: any) {
+  addPurchaseAccount(data: any) :Observable<any>{
     return this.http.post(this.apiUrl2 + '/purchase_ledger_account', data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
     });
   }
 
-  getPurchaseLedger() {
+  getPurchaseLedger():Observable<any> {
     return this.http.get(this.apiUrl2 + '/purchase_ledger');
   }
 
@@ -366,7 +366,7 @@ export class AdminMasterService {
     return this.http.get(this.apiUrl2 + '/purchase_ledger_update/' + _id);
   }
 
-  updatePurchaseLedger(apiUri: any, data: any) {
+  updatePurchaseLedger(apiUri: any, data: any) :Observable<any>{
     return this.http.post(
       this.apiUrl2 + '/purchase_ledger_edit/' + apiUri,
       data,
@@ -380,20 +380,20 @@ export class AdminMasterService {
   ////// here i am use this api for Design master
   ////
 
-  addDesign(data: any) {
+  addDesign(data: any) :Observable<any>{
     return this.http.post(this.apiUrl2 + '/design_data', data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
     });
   }
 
-  getDesignList() {
+  getDesignList():Observable<any>{
     return this.http.get(this.apiUrl2 + '/design');
   }
 
   getDesignById(_id: any) {
     return this.http.get(this.apiUrl2 + '/design_update/' + _id);
   }
-  updateDesign(_uri: any, data: any) {
+  updateDesign(_uri: any, data: any):Observable<any> {
     return this.http.post(this.apiUrl2 + '/design_edit/' + _uri, data, {
       headers: new HttpHeaders().set('accept', 'application/json'),
     });
@@ -403,22 +403,22 @@ export class AdminMasterService {
   ////// here i am use this api for Shade Card master
   ////
 
-  addShadeCard(data: any) {
+  addShadeCard(data: any) :Observable<any>{
     debugger;
     return this.http.post(this.apiUrl2 + '/shead_card_data', data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
     });
   }
 
-  getShadeCardList() {
+  getShadeCardList() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/shead_card');
   }
 
-  getShadeCardWithId(_id: any) {
+  getShadeCardWithId(_id: any) :Observable<any>{
     return this.http.get(this.apiUrl2 + '/shead_card_update/' + _id);
   }
 
-  updateShadeCard(uriID: any, data: any) {
+  updateShadeCard(uriID: any, data: any) :Observable<any>{
     debugger;
     return this.http.post(this.apiUrl2 + '/shead_card_edit/' + uriID, data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
@@ -428,13 +428,13 @@ export class AdminMasterService {
   ////////////
   ////// here i am use this api for Finishing Head
   ////
-  addFinishingHead(data: any) {
+  addFinishingHead(data: any):Observable<any> {
     debugger;
     return this.http.post(this.apiUrl2 + '/job_name_data', data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
     });
   }
-  getFinishingHeadList() {
+  getFinishingHeadList():Observable<any> {
     return this.http.get(this.apiUrl2 + '/job_name');
   }
 
@@ -461,11 +461,11 @@ export class AdminMasterService {
     );
   }
 
-  getColourCodeDyingDetails() {
+  getColourCodeDyingDetails():Observable<any> {
     return this.http.get(this.apiUrl2 + '/colour_code_dyis');
   }
 
-  getColourCodeByID(_id: any) {
+  getColourCodeByID(_id: any) :Observable<any>{
     debugger;
     return this.http.get(
       this.apiUrl2 + '/colour_code_dyis_details_update/' + _id
@@ -477,22 +477,22 @@ export class AdminMasterService {
   ////// here i am use this api for finishing process
   ////
 
-  addFinishingProcess(data: any) {
+  addFinishingProcess(data: any) :Observable<any>{
     debugger;
     return this.http.post(this.apiUrl2 + '/finishing_process_data', data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
     });
   }
 
-  getFinishingProcess() {
+  getFinishingProcess() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/finishing_process');
   }
 
-  getFinishingById(_id: any) {
+  getFinishingById(_id: any):Observable<any> {
     return this.http.get(this.apiUrl2 + '/finishing_process_update/' + _id);
   }
 
-  updateFinishingProcess(_id: any, data: any) {
+  updateFinishingProcess(_id: any, data: any):Observable<any> {
     return this.http.put(
       this.apiUrl2 + '/finishing_process_edit/' + _id,
       data,
@@ -505,50 +505,50 @@ export class AdminMasterService {
   ////////////
   ////// here i am use this api for buyer order
   ////
-  addBuyerOrder(data: any) {
+  addBuyerOrder(data: any) :Observable<any>{
     debugger;
     return this.http.post(this.apiUrl2 + '/buyer_order_data', data, {
       headers: new HttpHeaders().set('Accept', 'application/json'),
     });
   }
 
-  getBuyerOrder() {
+  getBuyerOrder() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/buyer_order');
   }
 
-  addBranch(data: any) {
+  addBranch(data: any) :Observable<any>{
     return this.http.post(this.apiUrl2 + '/branch_data', data, {
       headers: new HttpHeaders().set('accept', 'application/json'),
     });
   }
 
-  getBranch() {
+  getBranch():Observable<any> {
     return this.http.get(this.apiUrl2 + '/branch');
   }
 
-  getBranchByID(_id: any) {
+  getBranchByID(_id: any):Observable<any> {
     return this.http.get(this.apiUrl2 + '/branch_update/' + _id);
   }
-  updateBranch(_uri: any, data: any) {
+  updateBranch(_uri: any, data: any):Observable<any> {
     return this.http.put(this.apiUrl2 + '/branch_edit/' + _uri, data, {
       headers: new HttpHeaders().set('accept', 'application/json'),
     });
   }
-  addCarpetStock(data: any) {
+  addCarpetStock(data: any):Observable<any> {
     return this.http.post(this.apiUrl2 + '/stocks_data', data, {
       headers: new HttpHeaders().set('accept', 'application/json'),
     });
   }
 
-  getCarpetStock() {
+  getCarpetStock() :Observable<any>{
     return this.http.get(this.apiUrl2 + '/stock');
   }
 
-  getStockById(_id: any) {
+  getStockById(_id: any):Observable<any> {
     return this.http.get(this.apiUrl2 + '/stocks_update/' + _id);
   }
 
-  updateStock(_uri: any, data: any) {
+  updateStock(_uri: any, data: any) :Observable<any>{
     return this.http.put(this.apiUrl2 + '/stocks_edit/' + _uri, data, {
       headers: new HttpHeaders().set('accept', 'application/json'),
     });
@@ -559,35 +559,35 @@ export class AdminMasterService {
   /////
   ///
 
-  deleteContractor(_id: any) {
+  deleteContractor(_id: any):Observable<any> {
     return this.http.delete(
       this.apiUrl2 + '/contractor_finishing_ledger_delete/' + _id
     );
   }
-  deleteDesign(_id: any) {
+  deleteDesign(_id: any):Observable<any> {
     debugger
     return this.http.delete(this.apiUrl2 + '/design_delete/' + _id);
   }
-  deleteColourCodeDyis(_id: any) {
+  deleteColourCodeDyis(_id: any) :Observable<any>{
     return this.http.delete(this.apiUrl2 + '/colour_code_dyis_delete/' + _id);
   }
-  deleteSize(_id: any) {
+  deleteSize(_id: any):Observable<any> {
     return this.http.delete(this.apiUrl2 + '/size_master_delete/' + _id);
   }
 
-  deleteShadeCard(_id: any) {
+  deleteShadeCard(_id: any):Observable<any> {
     debugger;
     return this.http.delete(this.apiUrl2 + '/shead_card_delete/' + _id);
   }
-  deleteBuyerMaster(_id: any) {
+  deleteBuyerMaster(_id: any) :Observable<any>{
     debugger;
     return this.http.delete(this.apiUrl2 + '/buyer_delete/' + _id);
   }
-  deleteRawMaterial(_id: any) {
+  deleteRawMaterial(_id: any):Observable<any> {
     debugger;
     return this.http.delete(this.apiUrl2 + '/raw_material_delete/' + _id);
   }
-  deletePurchaseLedger(_id: any) {
+  deletePurchaseLedger(_id: any):Observable<any> {
     debugger;
     return this.http.delete(this.apiUrl2 + '/purchase_ledger_delete/' + _id);
   }

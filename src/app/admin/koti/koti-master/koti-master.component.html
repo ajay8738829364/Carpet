@@ -1,0 +1,146 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col text-center">
+     {{ isUpdate?'Update K.O.T.I.':'Add K.O.T.I.'}}
+    </div>
+  </div>
+
+  <form [formGroup]="frmImporterAddress" (ngSubmit)="addImporterAddress()">
+    <div class="row mt-5" >
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Importer Name</mat-label>
+          <input matInput placeholder="Importer Name" formControlName="importer_name">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Importer Code</mat-label>
+          <input matInput placeholder="Importer Code" formControlName="importer_code">
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Address" formControlName="address">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <input matInput placeholder="Country" formControlName="country">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Number</mat-label>
+          <input matInput placeholder="Contact Number" formControlName="contact_no">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label> Pan Number </mat-label>
+          <input matInput placeholder="Pan Number">
+        </mat-form-field>
+      </div> -->
+      <!-- <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label></mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+      </div> -->
+    </div>
+    <div class="row"><div class="col-md-3" *ngIf="!isUpdate"><button mat-raised-button color="primary">Add</button></div>
+
+  </div>
+  </form>
+  <div class="col-md-3" *ngIf="isUpdate"><button mat-raised-button color="primary" (click)="updateImporter()">Update</button></div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+
+
+
+
+
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef> Country </th>
+          <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="contact_no">
+          <th mat-header-cell *matHeaderCellDef> Contact No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.contact_no}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element" style="text-transform: none !important;"> {{element.email}} </td>
+        </ng-container>
+
+
+
+
+
+
+        <ng-container matColumnDef="importer_name">
+          <th mat-header-cell *matHeaderCellDef> Importer Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.importer_name}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="importer_code">
+          <th mat-header-cell *matHeaderCellDef> Importer Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.importer_code}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action </th>
+          <td mat-cell *matCellDef="let element">
+            <a (click)="edit(element.id)"><i class="fa fa-pencil-square-o fa-lg fa-edit" aria-hidden="true"></i></a>
+            &nbsp;
+            <a  ><i class="fa fa-trash-o fa-lg fa-trash" aria-hidden="true"></i></a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+    </div>
+  </div>
+
+
+
+
+
+</div>

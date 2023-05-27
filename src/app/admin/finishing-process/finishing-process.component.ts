@@ -26,7 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [];
   selector: 'app-finishing-process',
   templateUrl: './finishing-process.component.html',
   styleUrls: ['./finishing-process.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
 })
 export class FinishingProcessComponent implements OnInit {
   frmFinishingProcess!: FormGroup;
@@ -49,7 +49,7 @@ export class FinishingProcessComponent implements OnInit {
     'fromDate',
     'toDate',
     'rate',
-    'action'
+    'action',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -58,11 +58,8 @@ export class FinishingProcessComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   responsMessage: any;
 
-
-  isUpdate:boolean=false;
-  finishingId:any;
-
-
+  isUpdate: boolean = false;
+  finishingId: any;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -77,7 +74,7 @@ export class FinishingProcessComponent implements OnInit {
     private _snackBar: SnackBarService,
     private _helper: HelperService,
     private _selectService: AllselectlistService,
-    private _datePipe:DatePipe
+    private _datePipe: DatePipe
   ) {}
   ngOnInit(): void {
     this.frmFinishingProcess = this._formBuilder.group({
@@ -85,7 +82,7 @@ export class FinishingProcessComponent implements OnInit {
       qty: [''],
       design: [''],
       fromDate: [''],
-      toDate: ['',new Date()],
+      toDate: [''],
       rate: [''],
     });
 
@@ -121,8 +118,10 @@ export class FinishingProcessComponent implements OnInit {
       qty: formData.qty,
 
       design: formData.design,
-      fromDate: this._datePipe.transform(formData.fromDate,'MM/dd/yyyy'),
-      toDate: this._datePipe.transform(formData.toDate,'MM/dd/yyyy'),
+      fromDate: formData.fromDate,
+      toDate: formData.toDate,
+      // fromDate: this._datePipe.transform(formData.fromDate,'MM/dd/yyyy'),
+      // toDate: this._datePipe.transform(formData.toDate,'MM/dd/yyyy'),
       rate: formData.rate,
     };
 
@@ -170,24 +169,27 @@ export class FinishingProcessComponent implements OnInit {
     });
   }
 
-
-  editFinishingProcess(_id:any){
-
-    this.finishingId=_id;
-    this.isUpdate=true;
-    this.adminService.getFinishingById(_id).subscribe((resp:any)=>{
+  editFinishingProcess(_id: any) {
+    this.finishingId = _id;
+    this.isUpdate = true;
+    this.adminService.getFinishingById(_id).subscribe((resp: any) => {
       console.log(resp.data);
+      debugger;
+      // this.frmFinishingProcess.patchValue(resp.data);
 
-      this.frmFinishingProcess.patchValue(resp.data);
+            this.frmFinishingProcess.patchValue({
+              jobName:resp.data[0].jobName,
+      qty:resp.data[0].qty,
+      design:resp.data[0].design,
+      fromDate:resp.data[0].fromDate,
+      toDate:resp.data[0].toDate,
+      rate:resp.data[0].rate
+            });
       //this.frmFinishingProcess.value.get('toDate').patchValue(this.formatDate(new Date()));
-
     });
   }
 
-  updateFinishing(){
-
-
-
+  updateFinishing() {
     const formData = this.frmFinishingProcess.value;
 
     var data = {
@@ -196,12 +198,14 @@ export class FinishingProcessComponent implements OnInit {
       qty: formData.qty,
 
       design: formData.design,
-      fromDate: this._datePipe.transform(formData.fromDate,'MM/dd/yyyy'),
-      toDate: this._datePipe.transform(formData.toDate,'MM/dd/yyyy'),
+      fromDate: formData.fromDate,
+      toDate: formData.toDate,
+      // fromDate: this._datePipe.transform(formData.fromDate, 'MM/dd/yyyy'),
+      // toDate: this._datePipe.transform(formData.toDate, 'MM/dd/yyyy'),
       rate: formData.rate,
     };
 
-    this.adminService.updateFinishingProcess(this.finishingId,data).subscribe(
+    this.adminService.updateFinishingProcess(this.finishingId, data).subscribe(
       (resp: any) => {
         debugger;
         this.responsMessage = resp.message;
@@ -218,12 +222,9 @@ export class FinishingProcessComponent implements OnInit {
     );
 
     console.log(data);
-
-
-
   }
 
-  private formatDate(date:any) {
+  private formatDate(date: any) {
     const d = new Date(date);
     let month = '' + (d.getMonth() + 1);
     let day = '' + d.getDate();

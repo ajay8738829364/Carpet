@@ -31,6 +31,13 @@ import { ViewBuyerOrderListComponent } from './view-buyer-order-list/view-buyer-
 import { ManageBranchComponent } from './manage-branch/manage-branch.component';
 import { CarpetStockComponent } from './carpet-stock/carpet-stock.component';
 import { LagatMasterComponent } from './lagat-master/lagat-master.component';
+import { KotiMasterComponent } from './koti/koti-master/koti-master.component';
+import { KotiCustomerComponent } from './koti/koti-customer/koti-customer.component';
+import { KotiQualityComponent } from './koti/koti-quality/koti-quality.component';
+import { KotiContainerDispatchComponent } from './koti/koti-container-dispatch/koti-container-dispatch.component';
+import { KotiContainerReceivedComponent } from './koti/koti-container-received/koti-container-received.component';
+import { KotiSaleBillComponent } from './koti/koti-sale-bill/koti-sale-bill.component';
+import { QualityDesignComponent } from './koti/quality-design/quality-design.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -70,7 +77,18 @@ const routes: Routes = [
     {path:'purchase-bill',component:PurchaseBillComponent},
 {path:'manage-branch',component:ManageBranchComponent},
 {path:'carpet-stock',component:CarpetStockComponent},
-{path:'lagat-master',component:LagatMasterComponent}
+{path:'lagat-master',component:LagatMasterComponent},
+
+{path:'koti-master',component:KotiMasterComponent},
+
+{path:'koti-customer',component:KotiCustomerComponent},
+{path:'koti-quality',component:KotiQualityComponent},
+{path:'koti-container-dispatch',component:KotiContainerDispatchComponent},
+{path:'koti-container-received',component:KotiContainerReceivedComponent},
+{path:'koti-sale-bill',component:KotiSaleBillComponent},
+{path:'quality-design',component:QualityDesignComponent},
+
+
   ]}
 ];
 

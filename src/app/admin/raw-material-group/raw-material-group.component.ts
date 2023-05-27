@@ -14,6 +14,8 @@ import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
 
+
+import * as $ from 'jquery';
 export interface PeriodicElement {
   id: string;
   index: number;
@@ -75,6 +77,9 @@ export class RawMaterialGroupComponent implements OnInit {
       mat_image: [''],
     });
 
+    $('#large-image').click(function() {
+      alert('GeeksForGeeks');
+  });
     // this.materialId = this._activatedRoute.snapshot.paramMap.get('id') || '';
 
     // if (this.materialId != '') {
