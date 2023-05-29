@@ -40,6 +40,7 @@ export class QualityDesignComponent {
 
   isUpdate: boolean = false;
   file!: File;
+  qualityDesignId: any;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -75,15 +76,16 @@ export class QualityDesignComponent {
     debugger;
     const data = this.frmQualityDesign.value;
 
-    const formData={
-      design:data.design,
-      colour:data.colour,
-      size:data.size
-    }
+    const formData = {
+      design: data.design,
+      colour: data.colour,
+      size: data.size,
+    };
 
     this._service.qualityDesign(formData, this.file).subscribe(
       (resp: any) => {
         this.responsMessage = resp.message;
+        
         this._matSnack.openSnackBar(this.responsMessage, '');
       },
       (error) => {
@@ -119,5 +121,56 @@ export class QualityDesignComponent {
         return;
       }
     });
+  }
+  edit(_id: any) {
+    this.qualityDesignId = _id;
+    this.isUpdate = true;
+    this._service.getQualityDesignById(_id).subscribe((resp: any) => {
+      console.log(resp.data);
+      this.frmQualityDesign.patchValue(resp.data);
+    });
+  }
+
+  update(){
+    debugger;
+    const data = this.frmQualityDesign.value;
+
+    const formData:any = {
+      design: data.design,
+      colour: data.colour,
+      size: data.size,
+    };
+    this._service.updateQualityDesign(formData,this.qualityDesignId,this.file).subscribe(
+      (resp: any) => {
+        console.log(resp.data);
+        this.responsMessage = resp.message;
+        this._matSnack.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global;
+        }
+        this._matSnack.openSnackBar(this.responsMessage, global.error);
+      }
+    );
+  }
+  deleteQualityDesign(_id: any) {
+    this._service.deleteQualityDesign(_id).subscribe(
+      (resp: any) => {
+        console.log(resp.data);
+        this.responsMessage = resp.message;
+        this._matSnack.openSnackBar(this.responsMessage, '');
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.responsMessage = error.error.message;
+        } else {
+          this.responsMessage = global;
+        }
+        this._matSnack.openSnackBar(this.responsMessage, global.error);
+      }
+    );
   }
 }
