@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { codingDetial } from 'src/app/model/codingDetails';
+import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { KotiService } from 'src/app/services/koti.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
@@ -21,6 +22,7 @@ export interface PeriodicElement {
   size: string;
   design_code: string;
   colour_code: string;
+  // size_code:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -42,6 +44,7 @@ export class KotiQualityComponent implements OnInit {
   sizeList: any[] = [];
   responsMessage: any;
 
+  tblData:any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -63,7 +66,8 @@ export class KotiQualityComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _service: KotiService,
-    private _matSnack: SnackBarService
+    private _matSnack: SnackBarService,
+    private _selectList : AllselectlistService,
   ) {}
 
   ngAfterViewInit() {
@@ -89,21 +93,21 @@ export class KotiQualityComponent implements OnInit {
   }
 
   getDesign() {
-    this._service.getDesign().subscribe((resp: any) => {
+    this._selectList.getDesign().subscribe((resp: any) => {
       console.log(resp.data);
       this.designList = resp.data;
     });
   }
 
   getColour() {
-    this._service.getColour().subscribe((resp: any) => {
+    this._selectList.getColour().subscribe((resp: any) => {
       console.log(resp.data);
       this.colourList = resp.data;
     });
   }
 
   getSize() {
-    this._service.getSize().subscribe((resp: any) => {
+    this._selectList.getSize().subscribe((resp: any) => {
       console.log(resp.data);
       this.sizeList = resp.data;
     });
@@ -135,21 +139,27 @@ export class KotiQualityComponent implements OnInit {
   }
 
   getCodingDetails() {
+    debugger;
     this._service.getCodingDetails().subscribe((resp: any) => {
-      console.log(resp.data);
+      console.log(resp.data[1].design.design);
+      this.tblData=resp.data;
+      console.log(this.tblData)
+debugger;
+      if (resp.data) {debugger
 
-      if (resp.data) {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
-            id: val.id,
-            design: val.design,
-            colour: val.colour,
-            size: val.size,
+            id: val._id,
+            design:val.design? val.design.design: '',
+            colour: val.colour ?val.colour.colour:'',
+            size: val.size?val.size.size :'',
             design_code: val.design_code,
             colour_code: val.colour_code,
           });
+          debugger
         });
+
 
         this.dataSource = new MatTableDataSource(ELEMENT_DATA);
         this.ngAfterViewInit();
@@ -165,7 +175,7 @@ export class KotiQualityComponent implements OnInit {
     this._service.getCodeingDetailById(_id).subscribe((resp: any) => {
       console.log(resp.data);
 
-      this.frmKotiQuality.patchValue(resp.data);
+      this.frmKotiQuality.patchValue(resp.data[0]);
     });
   }
 

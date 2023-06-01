@@ -108,7 +108,7 @@ export class KotiCustomerComponent implements OnInit {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
-            id: val.id,
+            id: val._id,
             customer_name: val.customer_name,
             branch_code: val.branch_code,
 
@@ -161,7 +161,7 @@ export class KotiCustomerComponent implements OnInit {
         this._matSnack.openSnackBar(this.responsMessage, '');
       },
       (error) => {
-        if (error.error.msg) {
+        if (error.error.message) {
           this.responsMessage = error.error.message;
         } else {
           this.responsMessage = global;

@@ -98,6 +98,7 @@ export class KotiMasterComponent implements OnInit {
   }
 
   getImporterDetails() {
+    debugger
     this._service.getImporterAddress().subscribe((resp: any) => {
       console.log('data', resp);
 
@@ -105,7 +106,7 @@ export class KotiMasterComponent implements OnInit {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
-            id: val.id,
+            id: val._id,
             importer_name: val.importer_name,
             importer_code: val.importer_code,
             address: val.address,
@@ -122,16 +123,16 @@ export class KotiMasterComponent implements OnInit {
     });
   }
 
-  edit(_id: any) {
-    console.log(_id);
-
+  edit(id: any) {
+    console.log(id);
+debugger;
     this.isUpdate = true;
 
-    this.importerId = _id;
-    this._service.getImporterById(_id).subscribe((resp: any) => {
-      console.log(resp);
-
-      this.frmImporterAddress.patchValue(resp.data);
+    this.importerId = id;
+    this._service.getImporterById(id).subscribe((resp: any) => {
+      console.log(resp.data[0]);
+debugger
+      this.frmImporterAddress.patchValue(resp.data[0]);
     });
   }
 

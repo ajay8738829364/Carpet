@@ -85,7 +85,7 @@ export class QualityDesignComponent {
     this._service.qualityDesign(formData, this.file).subscribe(
       (resp: any) => {
         this.responsMessage = resp.message;
-        
+
         this._matSnack.openSnackBar(this.responsMessage, '');
       },
       (error) => {
@@ -108,11 +108,11 @@ export class QualityDesignComponent {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
-            id: val.id,
+            id: val._id,
             design: val.design,
             colour: val.colour,
             size: val.size,
-            file: val.file,
+            file:'http://localhost:4000/images/'+ val.file,
           });
         });
 
@@ -122,12 +122,13 @@ export class QualityDesignComponent {
       }
     });
   }
-  edit(_id: any) {
-    this.qualityDesignId = _id;
+  edit(id: any) {
+
+    this.qualityDesignId = id;
     this.isUpdate = true;
-    this._service.getQualityDesignById(_id).subscribe((resp: any) => {
-      console.log(resp.data);
-      this.frmQualityDesign.patchValue(resp.data);
+    this._service.getQualityDesignById(id).subscribe((resp: any) => {
+      console.log(resp.data[0]);
+      this.frmQualityDesign.patchValue(resp.data[0]);
     });
   }
 

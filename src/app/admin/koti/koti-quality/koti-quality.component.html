@@ -9,7 +9,7 @@
         <mat-form-field  appearance="outline" >
           <mat-label>Design</mat-label>
           <mat-select formControlName="design">
-            <mat-option *ngFor="let design of designList" value="{{design.id}}">{{design.design}}</mat-option>
+            <mat-option *ngFor="let design of designList" value="{{design._id}}">{{design.design}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -26,7 +26,7 @@
         <mat-form-field  appearance="outline">
           <mat-label>Colour</mat-label>
           <mat-select formControlName="colour" >
-            <mat-option *ngFor="let colour of colourList" value="{{colour.id}}">{{colour.colour}}</mat-option>
+            <mat-option *ngFor="let colour of colourList" value="{{colour._id}}">{{colour.colour}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -40,7 +40,7 @@
         <mat-form-field  appearance="outline">
           <mat-label>Size</mat-label>
           <mat-select formControlName="size" >
-            <mat-option *ngFor="let size of sizeList" value="{{size.id}}">{{size.size}}</mat-option>
+            <mat-option *ngFor="let size of sizeList" value="{{size._id}}">{{size.size}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -75,7 +75,7 @@
 
         <ng-container matColumnDef="design">
           <th mat-header-cell *matHeaderCellDef> Design </th>
-          <td mat-cell *matCellDef="let element"> {{element.design}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.design}}</td>
         </ng-container>
 
 
@@ -123,3 +123,4 @@
     </div>
   </div>
 </div>
+
