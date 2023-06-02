@@ -1,412 +1,133 @@
-<!-- <nav id="sidebar" class="sidebar js-sidebar">
-    <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand text-center text-decoration-none" routerLink="">
-            RACHIN EXPORTS
-        </a>
-
-        <ul class="sidebar-nav">
-
-
-            <li class="sidebar-item active">
-                <a class="sidebar-link " routerLink="dashboard">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="buyer">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Buyer
-                        </span>
-                </a>
-            </li>
-
-
-            <li>
-                <a class="sidebar-link" routerLink="view-byer-list">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">View Byer List</span>
-                </a>
-            </li>
-            <li>
-                <a class="sidebar-link" routerLink="buyer-master">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Buyer Master</span>
-                </a>
-            </li>
-            <li>
-                <a class="sidebar-link" routerLink="dying-master">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Dying Master</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="shaed-card">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Shaed Card</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="size-master">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Size Master</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="raw-material">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Raw Material</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="weaving">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Weaving</span>
-                </a>
-            </li>
-            <li>
-                <a class="sidebar-link" routerLink="finishing-labour-ledger">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Finishing Labour Ledger</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="ledger-account">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Ledger Account</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="contractor">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Contractor</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="finishing-ledger">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Finishing Ledger</span>
-                </a>
-            </li>
-            <li>
-                <a class="sidebar-link" routerLink="view-finishing-ledger">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">View Finishing Ledger</span>
-                </a>
-            </li>
-
-
-
-        </ul>
-
-
-    </div>
-</nav> -->
-
-
-
-
-<aside class="sidebar-nav-wrapper">
-  <div class="navbar-logo">
-    <a href="index.html">
-      <h3> <a class="sidebar-brand text-center text-decoration-none" routerLink="">
-          RACHIN EXPORTS
-        </a>
-      </h3>
-    </a>
-  </div>
-  <nav class="sidebar-nav">
-    <ul>
-      <li class="nav-item nav-item-has-children">
-        <a routerLink="dashboard" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="icon">
-            <svg width="22" height="22" viewBox="0 0 22 22">
-              <path
-                d="M17.4167 4.58333V6.41667H13.75V4.58333H17.4167ZM8.25 4.58333V10.0833H4.58333V4.58333H8.25ZM17.4167 11.9167V17.4167H13.75V11.9167H17.4167ZM8.25 15.5833V17.4167H4.58333V15.5833H8.25ZM19.25 2.75H11.9167V8.25H19.25V2.75ZM10.0833 2.75H2.75V11.9167H10.0833V2.75ZM19.25 10.0833H11.9167V19.25H19.25V10.0833ZM10.0833 13.75H2.75V19.25H10.0833V13.75Z" />
-            </svg>
+<nav class="sidebar">
+  <div class="menu_content">
+    <ul class="menu_items">
+      <div class="menu_title menu_dahsboard"></div>
+      <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
+      <!-- start -->
+      <li class="item">
+        <div href="#" class="nav_link submenu_item">
+          <span class="navlink_icon">
+            <i class="bx bx-home-alt"></i>
           </span>
-          <span class="text">Dashboard</span>
+          <span class="navlink">Home</span>
+          <i class="bx bx-chevron-right arrow-left"></i>
+        </div>
 
-        </a>
-
-      </li>
-      <li class="nav-item nav-item-has-children" href="javascript:void(0)">
-        <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <i style="margin-right: 15px;" class="lni lni-user"></i>
-          <span class="text"> Master</span>
-        </a>
-        <ul id="ddmenu_2" class="collapse dropdown-nav">
-
-
-
-
-          <li>
-            <a routerLink="buyer-master">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Buyer </span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="view-byer-list">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">View Byer List</span>
-            </a>
-          </li>
-
-          <li>
-            <a routerLink="raw-material-group">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Raw Material Group </span>
-            </a>
-          </li>
-
-          <li>
-            <a routerLink="purchaser-details">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Purchaser Details </span>
-            </a>
-          </li>
-
-          <li>
-            <a routerLink="employee-details">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Employee Details </span>
-            </a>
-          </li>
-          <li>
-            <a class="sidebar-link" routerLink="view-finishing-ledger">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">View Finishing Ledger</span>
-            </a>
-          </li>
-
-          <li>
-            <a routerLink="quality">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Quality </span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="design">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Design </span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="colour-code-dyeing-detail">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Colour Code With Dyeing
-                Details </span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="shaed-card">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Shade Card</span>
-            </a>
-          </li>
-
-          <li>
-            <a routerLink="size-master">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Size </span>
-            </a>
-          </li>
-
-          <li>
-            <a class="sidebar-link" routerLink="finishing-head">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Finishing Head</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="sidebar-link" routerLink="finishing-process">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Finishing Process</span>
-            </a>
-          </li>
-
-
-
-
-          <li>
-            <a routerLink="manage-branch">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Manage Branch</span>
-            </a>
-          </li>
-
-
-
-
-
-          <li>
-            <a class="sidebar-link" routerLink="carpet-stock">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Stock</span>
-            </a>
-          </li>
-
-
-
-
+        <ul class="menu_items submenu">
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
         </ul>
       </li>
-      <li class="nav-item nav-item-has-children" >
-        <a href="javascript:void(0)" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <i style="margin-right: 15px;" class="lni lni-user"></i>
-          <span class="text"> Buyer Order</span>
-        </a>
-        <ul id="ddmenu_2" class="collapse dropdown-nav">
+      <!-- end -->
 
+      <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
+      <!-- start -->
+      <li class="item">
+        <div href="#" class="nav_link submenu_item">
+          <span class="navlink_icon">
+            <i class="bx bx-grid-alt"></i>
+          </span>
+          <span class="navlink">Overview</span>
+          <i class="bx bx-chevron-right arrow-left"></i>
+        </div>
 
-
-          <li>
-            <a routerLink="buyer-order">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Buyer Order </span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="view-buyer-order-list">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">View Buyer Order List</span>
-            </a>
-          </li>
-
-
-
+        <ul class="menu_items submenu">
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
+          <a href="#" class="nav_link sublink">Nav Sub Link</a>
         </ul>
       </li>
-      <li class="nav-item nav-item-has-children" href="javascript:void(0)">
-        <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <i style="margin-right: 15px;" class="lni lni-user"></i>
-          <span class="text">K.O.T.I.</span>
-        </a>
-        <ul id="ddmenu_2" class="collapse dropdown-nav">
-
-
-          <!-- <li>
-                <a  routerLink="buyer">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Buyer Details
-                        </span>
-                </a>
-            </li> -->
-
-          <li class="nav-item nav-item-has-children">
-            <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2"
-              aria-expanded="false" aria-label="Toggle navigation">
-              <i class="lni lni-user" data-feather="book"></i> <span class="align-middle">Master</span>
-            </a>
-            <ul id="ddmenu_2" class="collapse dropdown-nav">
-              <li>
-                <a routerLink="koti-master">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Importer Address</span>
-                </a>
-              </li>
-              <li>
-                <a routerLink="koti-customer">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Customer </span>
-                </a>
-              </li>
-              <li>
-                <a routerLink="koti-quality">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Coding Details</span>
-                </a>
-              </li>
-              <li>
-                <a routerLink="quality-design">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Quality Design</span>
-                </a>
-              </li>
-
-
-
-
-
-
-            </ul>
-          </li>
-
-          <li class="nav-item nav-item-has-children">
-            <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2"
-              aria-expanded="false" aria-label="Toggle navigation">
-              <i class="lni lni-user" data-feather="book"></i> <span class="align-middle">Import</span>
-            </a>
-            <ul id="ddmenu_2" class="collapse dropdown-nav">
-
-              <li>
-                <a routerLink="">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Despatch Order  </span>
-                </a>
-              </li>
-              <li>
-                <a routerLink="koti-container-dispatch">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Container Despatch </span>
-                </a>
-              </li>
-
-              <li>
-                <a routerLink="">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Container Dispatch Report </span>
-                </a>
-              </li>
-              <li>
-                <a routerLink="koti-container-received">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Container Received </span>
-                </a>
-              </li>
-              <li>
-                <a routerLink="">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Container Received Report </span>
-                </a>
-              </li>
-
-            </ul>
-          </li>
-          <li class="nav-item nav-item-has-children">
-            <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2"
-              aria-expanded="false" aria-label="Toggle navigation">
-              <i class="lni lni-user" data-feather="book"></i> <span class="align-middle">Sale</span>
-            </a>
-            <ul id="ddmenu_2" class="collapse dropdown-nav">
-              <li>
-                <a routerLink="koti-sale-bill">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bill</span>
-                </a>
-              </li>
-              <li>
-                <a routerLink="">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bill Report  </span>
-                </a>
-              </li>
-
-            </ul>
-          </li>
-
-
-          <!-- <li>
-                <a class="sidebar-link" routerLink="weaving">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Weaving</span>
-                </a>
-            </li> -->
-
-
-          <!-- <li>
-                <a class="sidebar-link" routerLink="ledger-account">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Ledger Account</span>
-                </a>
-            </li> -->
-
-          <!-- <li>
-                <a class="sidebar-link" routerLink="contractor">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Contractor</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="sidebar-link" routerLink="finishing-ledger">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Finishing Ledger</span>
-                </a>
-            </li> -->
-
-
-
-
-        </ul>
-      </li>
-
-
-
+      <!-- end -->
     </ul>
-  </nav>
 
-</aside>
-<div class="overlay"></div>
+    <ul class="menu_items">
+      <div class="menu_title menu_editor"></div>
+      <!-- duplicate these li tag if you want to add or remove navlink only -->
+      <!-- Start -->
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bxs-magic-wand"></i>
+          </span>
+          <span class="navlink">Magic build</span>
+        </a>
+      </li>
+      <!-- End -->
 
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-loader-circle"></i>
+          </span>
+          <span class="navlink">Filters</span>
+        </a>
+      </li>
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-filter"></i>
+          </span>
+          <span class="navlink">Filter</span>
+        </a>
+      </li>
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-cloud-upload"></i>
+          </span>
+          <span class="navlink">Upload new</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="menu_items">
+      <div class="menu_title menu_setting"></div>
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-flag"></i>
+          </span>
+          <span class="navlink">Notice board</span>
+        </a>
+      </li>
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-medal"></i>
+          </span>
+          <span class="navlink">Award</span>
+        </a>
+      </li>
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-cog"></i>
+          </span>
+          <span class="navlink">Setting</span>
+        </a>
+      </li>
+      <li class="item">
+        <a href="#" class="nav_link">
+          <span class="navlink_icon">
+            <i class="bx bx-layer"></i>
+          </span>
+          <span class="navlink">Features</span>
+        </a>
+      </li>
+    </ul>
 
-
-
-
+    <!-- Sidebar Open / Close -->
+    <div class="bottom_content">
+      <div class="bottom expand_sidebar">
+        <span> Expand</span>
+        <i class='bx bx-log-in' ></i>
+      </div>
+      <div class="bottom collapse_sidebar">
+        <span> Collapse</span>
+        <i class='bx bx-log-out'></i>
+      </div>
+    </div>
+  </div>
+</nav>
