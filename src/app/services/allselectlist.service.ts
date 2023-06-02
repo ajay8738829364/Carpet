@@ -76,4 +76,10 @@ getColour(): Observable<any> {
 getSize(): Observable<any> {
   return this.http.get<any>(this.apiUrl + '/getSizeList');
 }
+
+getImporterName():Observable<any>{
+  return this.http.get<any>(this.apiUrl+'/getImporterName');
+}
+
+
 }

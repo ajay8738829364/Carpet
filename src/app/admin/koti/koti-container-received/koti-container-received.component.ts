@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { KotiService } from 'src/app/services/koti.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { global } from 'src/app/shared/global';
@@ -57,7 +58,8 @@ export class KotiContainerReceivedComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _service: KotiService,
-    private _matSnack: SnackBarService
+    private _matSnack: SnackBarService,
+    private _selectList : AllselectlistService
   ) {}
   ngOnInit(): void {
     this.frmContainerReceived = this._formBuilder.group({
@@ -69,6 +71,7 @@ export class KotiContainerReceivedComponent implements OnInit {
     });
 
     this.getContainerDetails();
+    this.getImporterName();
   }
 
   selectImage(event: any) {
@@ -104,17 +107,27 @@ export class KotiContainerReceivedComponent implements OnInit {
     );
   }
 
+
+  getImporterName(){
+this._selectList.getImporterName().subscribe((resp:any)=>{
+  console.log(resp.data);
+
+  this.importerNoList = resp.data;
+});
+  }
+
   getContainerDetails() {
     debugger;
     this._service.getContainerReceived().subscribe((resp: any) => {
       console.log(resp.data);
+debugger
       if (resp.data) {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
             id: val._id,
             espPrice:val.espPrice,
-            importerNumber:val.importerNumber,
+            importerNumber:val.importerNumber?val.importerNumber.importer_name:'',
             expenseAmount: val.expenseAmount,
             totalMeter:val.totalMeter,
             file: 'http://localhost:4000/images/'+ val.file,

@@ -11,7 +11,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Import Number</mat-label>
           <mat-select formControlName="importerNumber" >
-            <mat-option *ngFor="let importerNo of importerNoList" [value]="importerNo">{{importerNo}}</mat-option>
+            <mat-option *ngFor="let importerNo of importerNoList" [value]="importerNo._id">{{importerNo.importer_name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
