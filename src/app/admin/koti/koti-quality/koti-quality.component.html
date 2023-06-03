@@ -47,7 +47,7 @@
       <div class="col-md-6">
         <mat-form-field appearance="outline">
           <mat-label>Size Code</mat-label>
-          <input matInput placeholder="Size Code" >
+          <input matInput placeholder="Size Code" formControlName="size_code" >
         </mat-form-field>
       </div>
       <div class="col-md-3" *ngIf="!isUpdate"><button mat-raised-button color="primary">Add</button></div>
@@ -103,6 +103,10 @@
         <ng-container matColumnDef="colour_code">
           <th mat-header-cell *matHeaderCellDef> Colour Code </th>
           <td mat-cell *matCellDef="let element"> {{element.colour_code}} </td>
+        </ng-container>
+        <ng-container matColumnDef="size_code">
+          <th mat-header-cell *matHeaderCellDef> Size Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.size_code}} </td>
         </ng-container>
 
 

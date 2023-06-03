@@ -10,9 +10,12 @@
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Import Number</mat-label>
+
           <mat-select formControlName="importerNumber" >
+            <input type="text" autocomplete="off" matInput placeholder="Search by name" #matKotiImportSearch (input)="onInputChange()"  >
             <mat-option *ngFor="let importerNo of importerNoList" [value]="importerNo._id">{{importerNo.importer_name}}</mat-option>
           </mat-select>
+
         </mat-form-field>
       </div>
 

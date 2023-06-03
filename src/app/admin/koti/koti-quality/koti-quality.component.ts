@@ -22,7 +22,7 @@ export interface PeriodicElement {
   size: string;
   design_code: string;
   colour_code: string;
-  // size_code:string;
+  size_code:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -55,6 +55,7 @@ export class KotiQualityComponent implements OnInit {
     'size',
     'design_code',
     'colour_code',
+    'size_code',
     'action',
   ];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -84,6 +85,7 @@ export class KotiQualityComponent implements OnInit {
       size: ['', Validators.required],
       design_code: ['', Validators.required],
       colour_code: ['', Validators.required],
+      size_code:['',Validators.required]
     });
 
     this.getDesign();
@@ -156,6 +158,7 @@ debugger;
             size: val.size?val.size.size :'',
             design_code: val.design_code,
             colour_code: val.colour_code,
+            size_code:val.size_code
           });
           debugger
         });

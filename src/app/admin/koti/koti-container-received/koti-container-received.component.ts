@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -25,10 +25,10 @@ const ELEMENT_DATA: PeriodicElement[] = [];
   styleUrls: ['./koti-container-received.component.css'],
 })
 export class KotiContainerReceivedComponent implements OnInit {
-  importerNo = new FormControl();
+  // importerNo = new FormControl();
 
   importerNoList: any;
-
+  importerNoList2: any;
   frmContainerReceived!: FormGroup;
 
   isUpdate: boolean = false;
@@ -37,7 +37,7 @@ export class KotiContainerReceivedComponent implements OnInit {
   responsMessage: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
+  @ViewChild('matKotiImportSearch') matKotiImportSearch!: ElementRef;
   displayedColumns: string[] = [
     'id',
     'espPrice',
@@ -59,7 +59,7 @@ export class KotiContainerReceivedComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _service: KotiService,
     private _matSnack: SnackBarService,
-    private _selectList : AllselectlistService
+    private _selectList: AllselectlistService
   ) {}
   ngOnInit(): void {
     this.frmContainerReceived = this._formBuilder.group({
@@ -74,6 +74,20 @@ export class KotiContainerReceivedComponent implements OnInit {
     this.getImporterName();
   }
 
+  onInputChange() {
+    console.log(this.matKotiImportSearch.nativeElement.value);
+
+    const searchInput = this.matKotiImportSearch.nativeElement.value
+      ? this.matKotiImportSearch.nativeElement.value.toLowerCase()
+      : '';
+
+      this.importerNoList = this.importerNoList2.filter( (i:any) =>{
+        const txt:string=i.importer_name.toLowerCase();
+        return txt.indexOf(searchInput)>-1;
+
+
+      })
+  }
   selectImage(event: any) {
     this.file = event.target.files[0];
     console.log(this.file);
@@ -107,30 +121,32 @@ export class KotiContainerReceivedComponent implements OnInit {
     );
   }
 
+  getImporterName() {
+    this._selectList.getImporterName().subscribe((resp: any) => {
+      console.log(resp.data);
 
-  getImporterName(){
-this._selectList.getImporterName().subscribe((resp:any)=>{
-  console.log(resp.data);
-
-  this.importerNoList = resp.data;
-});
+      this.importerNoList = resp.data;
+      this.importerNoList2 = resp.data;
+    });
   }
 
   getContainerDetails() {
     debugger;
     this._service.getContainerReceived().subscribe((resp: any) => {
       console.log(resp.data);
-debugger
+      debugger;
       if (resp.data) {
         resp.data.map((val: any, ind: number) => {
           ELEMENT_DATA.push({
             index: ind + 1,
             id: val._id,
-            espPrice:val.espPrice,
-            importerNumber:val.importerNumber?val.importerNumber.importer_name:'',
+            espPrice: val.espPrice,
+            importerNumber: val.importerNumber
+              ? val.importerNumber.importer_name
+              : '',
             expenseAmount: val.expenseAmount,
-            totalMeter:val.totalMeter,
-            file: 'http://localhost:4000/images/'+ val.file,
+            totalMeter: val.totalMeter,
+            file: 'http://localhost:4000/images/' + val.file,
           });
         });
 
@@ -141,46 +157,21 @@ debugger
     });
   }
 
-  edit(id:any){
-    debugger
+  edit(id: any) {
+    debugger;
     console.log(id);
-this.receivedId = id;
-this.isUpdate=true;
-    this._service.getContainerReceivedById(id).subscribe((res:any)=>{
+    this.receivedId = id;
+    this.isUpdate = true;
+    this._service.getContainerReceivedById(id).subscribe((res: any) => {
       console.log(res.data);
       this.frmContainerReceived.patchValue(res.data[0]);
     });
   }
-  delete(id:any){
-    this._service.deleteContainerReceived(id).subscribe((resp:any)=>{
-      console.log(resp.data);
-      this.responsMessage = resp.message;
-      this._matSnack.openSnackBar(this.responsMessage, '');
-    },
-    (error) => {
-      if (error.error.msg) {
-        this.responsMessage = error.error.message;
-      } else {
-        this.responsMessage = global;
-      }
-      this._matSnack.openSnackBar(this.responsMessage, global.error);
-    }
-   );
-  }
-  updateContainer(){
-    console.log(this.frmContainerReceived.value);
-
-    const data = this.frmContainerReceived.value;
-    const formData = {
-      espPrice: data.espPrice,
-      importerNumber: data.importerNumber,
-      expenseAmount: data.expenseAmount,
-      totalMeter: data.totalMeter,
-    };
-    this._service.updateContainerReceived(formData,this.receivedId, this.file).subscribe(
+  delete(id: any) {
+    this._service.deleteContainerReceived(id).subscribe(
       (resp: any) => {
+        console.log(resp.data);
         this.responsMessage = resp.message;
-
         this._matSnack.openSnackBar(this.responsMessage, '');
       },
       (error) => {
@@ -190,8 +181,36 @@ this.isUpdate=true;
           this.responsMessage = global;
         }
         this._matSnack.openSnackBar(this.responsMessage, global.error);
-        // console.log('data', data);
       }
     );
+  }
+  updateContainer() {
+    console.log(this.frmContainerReceived.value);
+
+    const data = this.frmContainerReceived.value;
+    const formData = {
+      espPrice: data.espPrice,
+      importerNumber: data.importerNumber,
+      expenseAmount: data.expenseAmount,
+      totalMeter: data.totalMeter,
+    };
+    this._service
+      .updateContainerReceived(formData, this.receivedId, this.file)
+      .subscribe(
+        (resp: any) => {
+          this.responsMessage = resp.message;
+
+          this._matSnack.openSnackBar(this.responsMessage, '');
+        },
+        (error) => {
+          if (error.error.msg) {
+            this.responsMessage = error.error.message;
+          } else {
+            this.responsMessage = global;
+          }
+          this._matSnack.openSnackBar(this.responsMessage, global.error);
+          // console.log('data', data);
+        }
+      );
   }
 }
