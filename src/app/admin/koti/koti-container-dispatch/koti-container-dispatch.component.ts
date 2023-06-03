@@ -4,6 +4,9 @@ import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
+/// here i am use csv file code
+import * as XLSX from 'xlsx'
+
 @Component({
   selector: 'app-koti-container-dispatch',
   templateUrl: './koti-container-dispatch.component.html',
@@ -15,6 +18,7 @@ export class KotiContainerDispatchComponent implements OnInit{
 
   countrys= new FormControl();
 
+  excelData:any;
   countryList:any;
 
   currency= new FormControl();
@@ -34,6 +38,14 @@ export class KotiContainerDispatchComponent implements OnInit{
 ngOnInit(): void {
 
   this.frmContainerDispatch = this.fb.group({
+    date:[''],
+    portName:[''],
+    country:[''],
+    containerNo:[''],
+    linerDetails:[''],
+    currency:[,],
+    total:[''],
+    totalAmount:[''],
     frmReciepeArray: this.fb.array([])
   });
 
@@ -50,12 +62,12 @@ ngOnInit(): void {
 
   newReceipe(): FormGroup {
     return this.fb.group({
-     importerName: '',
-      invoiceNo: '',
+     importerName: [''],
+      invoiceNo:[''],
       invoiceAmount: [''],
       invoicePdf: [''],
-      blCopyPdf: '',
-
+      blCopyPdf: [''],
+      csvFile:[''],
     });
   }
 
@@ -67,5 +79,25 @@ ngOnInit(): void {
     this.onAddReceipe().removeAt(i);
   }
 
+exlsArr:any=[]
 
+  readExcelFile(event:any){
+
+    let file = event.target.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsBinaryString(file);
+    fileReader.onload=(e)=>{
+      var workBook = XLSX.read(fileReader.result,{type:'binary'});
+      var sheetNames = workBook.SheetNames;
+      this.excelData = XLSX.utils.sheet_to_json(workBook.Sheets[sheetNames[0]]);
+      console.log(this.excelData);
+      this.exlsArr.push(this.excelData);
+    }
+
+  }
+
+  containerDispatch(){
+    console.log(this.frmContainerDispatch.value);
+    console.log(this.exlsArr  )
+  }
 }

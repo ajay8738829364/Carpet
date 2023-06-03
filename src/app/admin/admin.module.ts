@@ -74,6 +74,7 @@ import { KotiContainerDispatchComponent } from './koti/koti-container-dispatch/k
 import { KotiContainerReceivedComponent } from './koti/koti-container-received/koti-container-received.component';
 import { KotiSaleBillComponent } from './koti/koti-sale-bill/koti-sale-bill.component';
 import { QualityDesignComponent } from './koti/quality-design/quality-design.component';
+import { ExcelFormateComponent } from './excel-formate/excel-formate.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -115,7 +116,8 @@ import { QualityDesignComponent } from './koti/quality-design/quality-design.com
     KotiContainerDispatchComponent,
     KotiContainerReceivedComponent,
     KotiSaleBillComponent,
-    QualityDesignComponent
+    QualityDesignComponent,
+    ExcelFormateComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,

@@ -5,27 +5,33 @@
     </div>
   </div>
 
-  <form [formGroup]="frmContainerDispatch">
+  <form [formGroup]="frmContainerDispatch" (ngSubmit)="containerDispatch()">
     <div class="row">
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input matInput [matDatepicker]="picker" formControlName="date">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
+
+
+
+
+
+
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Port Name</mat-label>
-          <input matInput placeholder="Port Name">
+          <input matInput placeholder="Port Name" formControlName="portName">
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Country</mat-label>
-          <mat-select [formControl]="countrys" multiple>
+          <mat-select formControlName="country" >
             <mat-option *ngFor="let country of countryList" [value]="country">{{country}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -34,34 +40,37 @@
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Container Number</mat-label>
-          <input matInput placeholder="Container Number">
+          <input matInput placeholder="Container Number" formControlName="containerNo">
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Liner Details</mat-label>
-          <input matInput placeholder="Liner Details">
+          <input matInput placeholder="Liner Details" formControlName="linerDetails">
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Currency</mat-label>
-          <mat-select [formControl]="currency" multiple>
+          <mat-select formControlName="currency" >
             <mat-option *ngFor="let currency of currencyList" [value]="currency">{{currency}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+
+
+
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Total Quantity</mat-label>
-          <input matInput placeholder="Total Quantity">
+          <input matInput placeholder="Total Quantity" formControlName="total">
         </mat-form-field>
       </div>
 
       <div class="col-md-4">
         <mat-form-field appearance="outline">
           <mat-label>Total Amount</mat-label>
-          <input matInput placeholder="Total Amount">
+          <input matInput placeholder="Total Amount" formControlName="totalAmount">
         </mat-form-field>
       </div>
       <div class="col-md-6 mt-3">
@@ -111,35 +120,81 @@
         <div class="col-md-4">
           <mat-form-field appearance="outline">
             <mat-label>Importer Name</mat-label>
-            <input matInput placeholder="Importer Name">
+            <input matInput placeholder="Importer Name" formControlName="importerName">
           </mat-form-field>
         </div>
         <div class="col-md-3">
           <mat-form-field appearance="outline">
             <mat-label>Invoice Number</mat-label>
-            <input matInput placeholder="Invoice Number">
+            <input matInput placeholder="Invoice Number" formControlName="invoiceNo">
           </mat-form-field>
         </div>
+
+
+
+
+
+
         <div class="col-md-4">
           <mat-form-field appearance="outline">
             <mat-label>Invoice Amount</mat-label>
-            <input matInput placeholder="Invoice Amount">
+            <input matInput placeholder="Invoice Amount" formControlName="invoiceAmount">
           </mat-form-field>
         </div>
         <div class="col-md-6">
           <label for="formFile" class="form-label">Upload B/L Copy ( .Pdf ) </label>
-          <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)">
+          <input class="form-control" formControlName="invoicePdf" type="file" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)">
         </div>
         <div class="col-md-5">
           <label for="formFile" class="form-label">Upload Invoice Copy ( .Pdf ) </label>
-          <input class="form-control" type="file" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)">
+          <input class="form-control" type="file" formControlName="blCopyPdf" id="formFile" accept=".jpeg, jpg" (change)="selectImagePan($event)">
 
         </div>
         <div class="col-md-1" style="padding-top: 28px; margin-left: -22px;">
           <span (click)="removeReceipe(i)"><img width="35px"
               src="../../../assets/admin-assets/images/icons/removeIcon.png" alt=""></span>
         </div>
-        <div class="col-md-3 mt-3"><button style="width: max-content;" mat-raised-button color="primary">Import CSV File</button></div>
+        <div class="col-md-6 mt-3">
+          <input class="form-control" type="file" accept=".xlsx" (change)="readExcelFile($event)">
+          <!-- <button type="file" style="width: max-content;" mat-raised-button color="primary" (change)="readExcelFile($event)">Import CSV File</button> -->
+        </div>
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Importer</th>
+                <th>Invoice No.</th>
+                <th>Date</th>
+                <th>Bale No.</th>
+                <th>Sl No.</th>
+                <th>Quality</th>
+                <th>Design</th>
+                <th>Colour</th>
+                <th>Width</th>
+                <th>Length</th>
+                <th>Area</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of excelData ">
+                <td>{{item.Importer}}</td>
+                <td>{{item.InvoiceNo}}</td>
+                <td>{{item.Date}}</td>
+                <td>{{item.BaleNo}}</td>
+                <td>{{item.SlNo}}</td>
+                <td>{{item.Quality}}</td>
+                <td>{{item.Design}}</td>
+                <td>{{item.Colour}}</td>
+                <td>{{item.Width}}</td>
+                <td>{{item.Length}}</td>
+                <td>{{item.Area}}</td>
+                <td>{{item.Remark}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
