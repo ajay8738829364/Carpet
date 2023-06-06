@@ -16,13 +16,12 @@ export class KotiContainerDispatchComponent implements OnInit{
 
   frmContainerDispatch!:FormGroup;
 
-  countrys= new FormControl();
 
   excelData:any;
-  countryList:any;
+  countryList:any=['India','United States','China','Russia','East Germany (German Democratic Republic)','Ukraine','Japan'];
 
-  currency= new FormControl();
-  currencyList:any;
+
+  currencyList:any=['Rupee ₹ ','Dollar $ ','Euro €','Ruble ₽' ];
 
   selectImagePan(event :any){
 
