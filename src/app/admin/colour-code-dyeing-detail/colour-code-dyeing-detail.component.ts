@@ -145,6 +145,7 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
       (res: any) => {
         console.log(res.data);
         this.responsMessage = res.message;
+        
         this._matSnack.openSnackBar(this.responsMessage, '');
       },
       (error) => {
