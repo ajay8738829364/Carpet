@@ -49,8 +49,7 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
 
   colourList: any;
 
-  isUpdate:boolean=false;
-
+  isUpdate: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -141,11 +140,29 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
       data: formData.frmReciepeArray,
     };
 
+    let length: any;
+    var recData: any = [];
+
+    length = formData.frmReciepeArray.length;
+    console.log('length of receipe form', length);
+    let i;
+    for (i = 0; i <= length - 1; i++) {
+      debugger;
+      recData.push({
+        objeId: '12',
+        name: formData.frmReciepeArray[i].chemicalName,
+        vendor: formData.frmReciepeArray[i].chemicalVendorName,
+      });
+
+    }
+    console.log(recData);
+
+
     this._service.colourCodeDyingDetails(data).subscribe(
       (res: any) => {
-        console.log(res.data);
+        console.log('rrrrrrrrrrrrrrrrrrrrrr',res);
         this.responsMessage = res.message;
-        
+
         this._matSnack.openSnackBar(this.responsMessage, '');
       },
       (error) => {
@@ -226,7 +243,7 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
   }
 
   getColourCodeById(_id: any) {
-    this.isUpdate=true;
+    this.isUpdate = true;
     console.log(_id);
     debugger;
     this._service.getColourCodeByID(_id).subscribe((resp: any) => {
@@ -234,28 +251,24 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
       console.log(resp.data2);
 
       if (resp.data2 != null) {
-        debugger
+        debugger;
         for (let x = 0; x < resp.data2.length; x++) {
-
           this.addReceipeRow();
         }
       }
       this.productForm.patchValue({
-        materialName:resp.data1[0].materialname,
+        materialName: resp.data1[0].materialname,
         count: resp.data1[0].count,
 
-        colourName:resp.data1[0].colourName,
-        colourCode:resp.data1[0].colourCode,
+        colourName: resp.data1[0].colourName,
+        colourCode: resp.data1[0].colourCode,
         recipe: resp.data1[0].recipe,
-        frmReciepeArray:resp.data2,
+        frmReciepeArray: resp.data2,
       });
-
     });
   }
 
-  deleteColourCode(_id:any){
-
-
+  deleteColourCode(_id: any) {
     this._service.deleteColourCodeDyis(_id).subscribe(
       (res: any) => {
         console.log(res.data);
@@ -274,4 +287,3 @@ export class ColourCodeDyeingDetailComponent implements OnInit {
     );
   }
 }
-

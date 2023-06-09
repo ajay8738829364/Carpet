@@ -162,8 +162,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Importer</th>
-                <th>Invoice No.</th>
+
                 <th>Date</th>
                 <th>Bale No.</th>
                 <th>Sl No.</th>
@@ -173,11 +172,14 @@
                 <th>Width</th>
                 <th>Length</th>
                 <th>Area</th>
+                <th>Invoice No.</th>
+                <th>Importer Code</th>
+
                 <th>Remarks</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of excelData ">
+              <tr *ngFor="let item of exlsArr[i] ">
                 <td>{{item.Importer}}</td>
                 <td>{{item.InvoiceNo}}</td>
                 <td>{{item.Date}}</td>

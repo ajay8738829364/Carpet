@@ -82,6 +82,7 @@ export class KotiMasterComponent implements OnInit {
 
     this._service.importerAddress(data).subscribe(
       (resp: any) => {
+        console.log('data', resp.data);
         this.responsMessage = resp.message;
         this._matSnack.openSnackBar(this.responsMessage, '');
       },
