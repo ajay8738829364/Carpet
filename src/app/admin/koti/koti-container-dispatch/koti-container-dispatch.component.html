@@ -180,9 +180,8 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of exlsArr[i] ">
-                <td>{{item.Importer}}</td>
-                <td>{{item.InvoiceNo}}</td>
-                <td>{{item.Date}}</td>
+
+                <td>{{item.Date|date:'shortDate' }}</td>
                 <td>{{item.BaleNo}}</td>
                 <td>{{item.SlNo}}</td>
                 <td>{{item.Quality}}</td>
@@ -191,6 +190,9 @@
                 <td>{{item.Width}}</td>
                 <td>{{item.Length}}</td>
                 <td>{{item.Area}}</td>
+                <td>{{item.InvoiceNo}}</td>
+                <td>{{item.Importer}}</td>
+
                 <td>{{item.Remark}}</td>
               </tr>
 
@@ -201,10 +203,22 @@
     </div>
 
 
-    <div class="col-md-3 mt-3"><button style="width: max-content;" mat-raised-button color="primary">Add</button>&nbsp;
+    <div class="col-md-3 mt-3">
+      <button style="width: max-content;" mat-raised-button color="primary">Check</button>&nbsp;
+      <button style="width: max-content;" mat-raised-button color="primary">Add</button>&nbsp;
+
     </div>
   </form>
 </div>
+
+
+
+
+
+
+
+
+
 <!-- <table class="table " formArrayName="frmReciepeArray">
   <tr>
     <th colspan="7">Add Multiple Reciepe</th>

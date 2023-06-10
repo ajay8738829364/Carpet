@@ -4,6 +4,7 @@ import { AdminMasterService } from 'src/app/services/admin-master.service';
 import { AllselectlistService } from 'src/app/services/allselectlist.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
+import * as _ from 'lodash';
 /// here i am use csv file code
 import * as XLSX from 'xlsx';
 
@@ -25,7 +26,7 @@ export class KotiContainerDispatchComponent implements OnInit {
     'Ukraine',
     'Japan',
   ];
-
+  groups: any;
   currencyList: any = ['Rupee ₹ ', 'Dollar $ ', 'Euro €', 'Ruble ₽'];
 
   selectImagePan(event: any) {}
@@ -89,8 +90,16 @@ export class KotiContainerDispatchComponent implements OnInit {
     fileReader.onload = (e) => {
       var workBook = XLSX.read(fileReader.result, { type: 'binary' });
       var sheetNames = workBook.SheetNames;
-      this.excelData = XLSX.utils.sheet_to_json(workBook.Sheets[sheetNames[0]]);
+      this.excelData = XLSX.utils.sheet_to_json(
+        workBook.Sheets[sheetNames[0]],
+        {
+          raw: false,
+
+          dateNF: 'dd/mm/yyyy',
+        }
+      );
       console.log(this.excelData);
+      console.log(this.excelData.date);
       this.exlsArr.push(this.excelData);
 
       if (this.exlsArr >= 0) {
@@ -100,23 +109,32 @@ export class KotiContainerDispatchComponent implements OnInit {
   }
 
   containerDispatch() {
+    const users = [
+      { user: 'barney', age: 36, hobbies: ['soccer', 'basketball'] },
+      { user: 'fred', age: 40, hobbies: ['soccer', 'golf'] },
+      { user: 'tom', age: 25, hobbies: ['golf'] },
+    ];
+
+    const count = _.countBy(users.flatMap((user) => user.hobbies));
+    console.log('this is a count by array', count);
+
     //console.log(this.frmContainerDispatch.value);
     const formData = this.frmContainerDispatch.value;
     let i = 0;
 
-   const length = formData.frmReciepeArray.length;
-   var repc :any=[];
-    for(i=0; i<=length-1; i++){
+    const length = formData.frmReciepeArray.length;
+    var repc: any = [];
+    for (i = 0; i <= length - 1; i++) {
       const receipeFormData = formData.frmReciepeArray[i];
       debugger;
-     repc.push({
-      importer_name: receipeFormData.importerName,
-      invoiceNo: receipeFormData.invoiceNo,
-      invoiceAmount: receipeFormData.invoiceAmount,
-      invoicePdf: receipeFormData.invoicePdf,
-      blCopyPdf: receipeFormData.blCopyPdf,
-      csvFile: this.exlsArr[i],
-    })
+      repc.push({
+        importer_name: receipeFormData.importerName,
+        invoiceNo: receipeFormData.invoiceNo,
+        invoiceAmount: receipeFormData.invoiceAmount,
+        invoicePdf: receipeFormData.invoicePdf,
+        blCopyPdf: receipeFormData.blCopyPdf,
+        csvFile: this.exlsArr[i],
+      });
     }
 
     console.log(repc);
@@ -137,5 +155,36 @@ export class KotiContainerDispatchComponent implements OnInit {
     console.log('this is a testing data', data);
     debugger;
     // console.log(this.exlsArr);
+
+    let x = repc.length;
+    let y;
+    var result =  _(this.excelData)
+  .groupBy('question')
+  .map(function(item, itemId) {
+    var obj = {};
+    obj = _.countBy(item, 'answer')
+    return obj
+  }).value();
+    for (y = 1; y <= x; y++) {
+      console.log('hi');
+      debugger;
+
+      var result = _(this.exlsArr[y])
+        .groupBy('Importer')
+        .map(function (item:any, itemId:any) {
+          var obj = {};
+          obj = _.countBy(item, 'Importer');
+          return obj;
+        })
+        .value();
+      debugger;
+      //  this.groups= repc[y].csvFile.reduce((accum:any, { Importer }:{ Importer:any }) => {
+      //   accum[Importer] = (accum[Importer] || 0) + 1;
+      //   return accum;
+      // }, {});
+    }
+    // console.log(this.groups);
+
+    // <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
   }
 }
