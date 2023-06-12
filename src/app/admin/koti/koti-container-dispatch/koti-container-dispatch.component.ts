@@ -164,7 +164,8 @@ export class KotiContainerDispatchComponent implements OnInit {
 
     let x = repc.length;
     let y;
-    for (y = 0; y <= x - 1; y++) {
+
+    for (y = 1; y <= x; y++) {
       console.log('hi');
       debugger;
 
