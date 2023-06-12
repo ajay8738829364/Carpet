@@ -158,13 +158,7 @@ export class KotiContainerDispatchComponent implements OnInit {
 
     let x = repc.length;
     let y;
-    var result =  _(this.excelData)
-  .groupBy('question')
-  .map(function(item, itemId) {
-    var obj = {};
-    obj = _.countBy(item, 'answer')
-    return obj
-  }).value();
+   
     for (y = 1; y <= x; y++) {
       console.log('hi');
       debugger;
