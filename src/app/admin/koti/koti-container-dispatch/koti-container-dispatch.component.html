@@ -204,14 +204,72 @@
 
 
     <div class="col-md-3 mt-3">
-      <button style="width: max-content;" mat-raised-button color="primary">Check</button>&nbsp;
+      <button style="width: max-content;" mat-raised-button color="primary" (click)="openDialog()">Check</button>&nbsp;
       <button style="width: max-content;" mat-raised-button color="primary">Add</button>&nbsp;
 
     </div>
   </form>
 </div>
 
+<!-- <button
+  style="margin: 50px; padding: 10px"
+  type="button"
+  class="btn btn-primary"
+  (click)="openPopup()">Show Data
+</button> -->
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Check Despatch Details</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <table class="table" >
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Quality</th>
+                    <th scope="col">Design</th>
+                    <th scope="col">No. of piece</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>xyz</td>
+                    <td>abc</td>
+                    <td>2</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>100</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

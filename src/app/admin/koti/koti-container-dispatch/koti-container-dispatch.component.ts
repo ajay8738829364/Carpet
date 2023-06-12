@@ -7,6 +7,9 @@ import { SnackBarService } from 'src/app/services/snack-bar.service';
 import * as _ from 'lodash';
 /// here i am use csv file code
 import * as XLSX from 'xlsx';
+import { MatDialog } from '@angular/material/dialog';
+import { KotiCustomerComponent } from '../koti-customer/koti-customer.component';
+import { CheckDespatchdataComponent } from '../check-despatchdata/check-despatchdata.component';
 
 @Component({
   selector: 'app-koti-container-dispatch',
@@ -35,8 +38,13 @@ export class KotiContainerDispatchComponent implements OnInit {
     private fb: FormBuilder,
     private _service: AdminMasterService,
     private _selectList: AllselectlistService,
-    private _matSnack: SnackBarService
+    private _matSnack: SnackBarService,
+    private _dialogRef: MatDialog
   ) {}
+
+  openDialog() {
+    this._dialogRef.open(CheckDespatchdataComponent);
+  }
 
   ngOnInit(): void {
     this.frmContainerDispatch = this.fb.group({
@@ -118,7 +126,6 @@ export class KotiContainerDispatchComponent implements OnInit {
     const count = _.countBy(users.flatMap((user) => user.hobbies));
     console.log('this is a count by array', count);
 
-    //console.log(this.frmContainerDispatch.value);
     const formData = this.frmContainerDispatch.value;
     let i = 0;
 
@@ -154,37 +161,60 @@ export class KotiContainerDispatchComponent implements OnInit {
     };
     console.log('this is a testing data', data);
     debugger;
-    // console.log(this.exlsArr);
 
     let x = repc.length;
     let y;
-    var result =  _(this.excelData)
-  .groupBy('question')
-  .map(function(item, itemId) {
-    var obj = {};
-    obj = _.countBy(item, 'answer')
-    return obj
-  }).value();
-    for (y = 1; y <= x; y++) {
+    for (y = 0; y <= x - 1; y++) {
       console.log('hi');
       debugger;
 
-      var result = _(this.exlsArr[y])
-        .groupBy('Importer')
-        .map(function (item:any, itemId:any) {
-          var obj = {};
-          obj = _.countBy(item, 'Importer');
-          return obj;
-        })
-        .value();
-      debugger;
-      //  this.groups= repc[y].csvFile.reduce((accum:any, { Importer }:{ Importer:any }) => {
-      //   accum[Importer] = (accum[Importer] || 0) + 1;
-      //   return accum;
-      // }, {});
-    }
-    // console.log(this.groups);
+     this.groups = _(repc[y].csvFile).groupBy('InvoiceNo').map((item, id) => ({
+          Importer: id,
+          TotalArea: _.sumBy(item, (item) => Number(item.Area)),
+          count: _.countBy(item, 'InvoiceNo'),
+          Quality: _.filter(item, (x) => count[x.InvoiceNo] > 1),
+        })).value();
 
-    // <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+      console.log(this.groups);
+
+      debugger;
+
+      var arr = [{ n: '10' }, { n: '5' }, { n: 3 }, { n: 12 }];
+      let gfg = _.sumBy(arr, 'n');
+      console.log('sum of lodash', gfg);
+    }
+let arrayData ;
+let j,k;
+let quality:any=[];
+
+for(j=0;j<=x-1;j++){
+
+for(k=0;k<=repc[j].csvFile.length-1;k++){
+  if(repc[j].csvFile[k].InvoiceNo=='RE-659'){
+    console.log('here quality by invoice no.',repc[j].csvFile[k].Quality);
+
+    if(repc[j].csvFile[k].Quality=='SARANG'){
+    console.log('here desing by quality',repc[j].csvFile[k].Design);
+
+    }
+  }
+}
+
+
+
+  console.log('here length of csv file data',repc[j].csvFile.length);
+}
+
+
+
+  }
+
+  displayStyle = 'none';
+
+  openPopup() {
+    this.displayStyle = 'block';
+  }
+  closePopup() {
+    this.displayStyle = 'none';
   }
 }

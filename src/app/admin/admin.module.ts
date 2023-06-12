@@ -75,6 +75,10 @@ import { KotiContainerReceivedComponent } from './koti/koti-container-received/k
 import { KotiSaleBillComponent } from './koti/koti-sale-bill/koti-sale-bill.component';
 import { QualityDesignComponent } from './koti/quality-design/quality-design.component';
 import { ExcelFormateComponent } from './excel-formate/excel-formate.component';
+
+
+import {MatDialogModule} from '@angular/material/dialog';
+import { CheckDespatchdataComponent } from './koti/check-despatchdata/check-despatchdata.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -117,7 +121,8 @@ import { ExcelFormateComponent } from './excel-formate/excel-formate.component';
     KotiContainerReceivedComponent,
     KotiSaleBillComponent,
     QualityDesignComponent,
-    ExcelFormateComponent
+    ExcelFormateComponent,
+    CheckDespatchdataComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FieldsetModule,
@@ -144,6 +149,7 @@ import { ExcelFormateComponent } from './excel-formate/excel-formate.component';
     FormsModule ,
     Ng2TelInputModule,
     NgxIntlTelInputModule,
+    MatDialogModule,
     TooltipModule.forRoot()
 
 
