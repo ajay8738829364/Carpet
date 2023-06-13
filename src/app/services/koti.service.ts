@@ -144,9 +144,7 @@ export class KotiService {
     );
   }
   deleteCustomer(id: any): Observable<any> {
-    return this.httpClient.delete<any>(
-      this.apiUrl + '/deleteCustomer/' + id
-    );
+    return this.httpClient.delete<any>(this.apiUrl + '/deleteCustomer/' + id);
   }
 
   addCodingDetail(data: codingDetial): Observable<codingDetial[]> {
@@ -214,8 +212,11 @@ export class KotiService {
       this.apiUrl + '/getContainerDetail/' + id
     );
   }
-  ;
-  updateContainerReceived(data: any, id:any, file: File): Observable<containerReceived> {
+  updateContainerReceived(
+    data: any,
+    id: any,
+    file: File
+  ): Observable<containerReceived> {
     debugger;
 
     const formData = new FormData();
@@ -227,7 +228,7 @@ export class KotiService {
     formData.append('file', file, file.name);
 
     return this.httpClient.patch<containerReceived>(
-      this.apiUrl + '/updateContainerDetail/'+id,
+      this.apiUrl + '/updateContainerDetail/' + id,
       formData,
       {
         headers: this.headers,
@@ -239,5 +240,9 @@ export class KotiService {
     return this.httpClient.delete<containerReceived>(
       this.apiUrl + '/deleteContainerDetail/' + id
     );
+  }
+
+  getExcelData(): Observable<any> {
+    return this.httpClient.get(this.apiUrl + '/getExcelData');
   }
 }

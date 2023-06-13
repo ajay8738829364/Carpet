@@ -39,6 +39,7 @@ import { KotiContainerReceivedComponent } from './koti/koti-container-received/k
 import { KotiSaleBillComponent } from './koti/koti-sale-bill/koti-sale-bill.component';
 import { QualityDesignComponent } from './koti/quality-design/quality-design.component';
 import { ExcelFormateComponent } from './excel-formate/excel-formate.component';
+import { CheckDespatchdataComponent } from './koti/check-despatchdata/check-despatchdata.component';
 
 const routes: Routes = [
   {path:'admin',component:AdminComponent, children:[
@@ -89,7 +90,7 @@ const routes: Routes = [
 {path:'koti-sale-bill',component:KotiSaleBillComponent},
 {path:'quality-design',component:QualityDesignComponent},
 {path:'excel-formate',component:ExcelFormateComponent},
-
+{path:'check-despatchdata',component:CheckDespatchdataComponent}
   ]}
 ];
 
